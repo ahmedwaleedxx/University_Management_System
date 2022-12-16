@@ -3,9 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/University/Semester%207/SE3/Project/Project%20Implementation/Updated%20By%20Houda/GITHUB%20AOOSE/AOOSE/UniversityManagementSystemClient/src/rmi/AdminInterface.java</file>
-            <file>file:/E:/University/Semester%207/SE3/Project/Project%20Implementation/Updated%20By%20Houda/GITHUB%20AOOSE/AOOSE/UniversityManagementSystemClient/src/rmi/StudentDTO.java</file>
-            <file>file:/E:/University/Semester%207/SE3/Project/Project%20Implementation/Updated%20By%20Houda/GITHUB%20AOOSE/AOOSE/UniversityManagementSystemClient/src/rmi/Student.java</file>
+            <file>file:/E:/University/Semester%207/SE3/Project/Project%20Implementation/Updated%20By%20Houda/GITHUB%20AOOSE/AOOSE/UniversityManagementSystemClient/src/GUIControllers/ManageStudentsController.java</file>
         </group>
     </open-files>
 </project-private>

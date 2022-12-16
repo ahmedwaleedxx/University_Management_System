@@ -121,6 +121,11 @@ public class Admin extends Employee implements AdminInterface {
         Document doc = Document.parse(gson.toJson(title));
         courseCollection.updateOne(Filters.eq("CourseID", courseid), Updates.set("CourseTitle",doc));
         }
+      
+       public void DeleteCourse(String coursename) throws RemoteException{
+        StudentCollection.deleteOne(Filters.eq("StudentID", coursename));
+        System.out.println("Deleted Successfully");
+    }
 
 
 }

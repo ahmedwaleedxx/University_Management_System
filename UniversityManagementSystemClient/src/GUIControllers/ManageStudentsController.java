@@ -81,7 +81,7 @@ public class ManageStudentsController {
             AdminInterface admin = (AdminInterface) r.lookup("admininterface");
             DefaultTableModel model = new DefaultTableModel();
             model.setColumnCount(0);
-            String header[] = new String[]{"StudentID", "First Name", "Last Name", "Email", "Password", "Grade", "Graduated", "Major", "Faculty"};
+            String header[] = new String[]{"StudentID", "First Name", "Last Name", "Email", "Password", "Grade", "Graduated", "Paid","Major", "Faculty"};
             model.setColumnIdentifiers(header);
             gui.getStudentstbl().setModel(model);
             Student std;
