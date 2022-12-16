@@ -40,11 +40,12 @@ public class Course {
     private String Faculty;
     private ArrayList<Material> CourseMaterial;
 
-    public Course(int CourseID, String CourseTitle, Doctor CourseDoctor, ArrayList<TA> CourseTAs, String Mail, String Faculty, ArrayList<Material> CourseMaterial) throws RemoteException {
+    public Course(int CourseID, String CourseTitle, Doctor CourseDoctor,  String Mail, String Faculty, ArrayList<Material> CourseMaterial) throws RemoteException {
         this.CourseID = CourseID;
         this.CourseTitle = CourseTitle;
         this.CourseDoctor = CourseDoctor;
-        this.CourseTAs = CourseTAs;
+//        this.CourseTAs = CourseTAs;
+//        CourseTAs.add(ta); 
         this.Mail = Mail;
         this.Faculty = Faculty;
         this.CourseMaterial = CourseMaterial;
@@ -117,20 +118,16 @@ public class Course {
         this.CourseMaterial = CourseMaterial;
     }
 
-    public void AddCourseMaterial(Material material) throws RemoteException {
-        courseCollection.insertOne(Document.parse(gson.toJson(material)));
-        System.out.println(" Inserted Succesfully");
-    }
+//    public void AddCourseMaterial(Material material) throws RemoteException {
+//        courseCollection.insertOne(Document.parse(gson.toJson(material)));
+//        System.out.println(" Inserted Succesfully");
+//    }
+//
+//    public void UpdateCourseTitle(String title) {
+//        Document doc = Document.parse(gson.toJson(title));
+//        courseCollection.replaceOne(Filters.eq("CourseTitle", getCourseTitle()), doc);
+//        System.out.println("Updated Successfully");
+//    }
 
-    public void UpdateCourseTitle(String title) {
-        Document doc = Document.parse(gson.toJson(title));
-        courseCollection.replaceOne(Filters.eq("CourseTitle", getCourseTitle()), doc);
-        System.out.println("Updated Successfully");
-    }
-
-    public void AddCourseTA( TA ta) {
-        courseCollection.insertOne(Document.parse(gson.toJson(ta.getEmployeeFName())));
-        System.out.println(" Inserted Succesfully");
-    }
 
 }

@@ -22,7 +22,7 @@ import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import rmi.AdminInterface;
 
 // import PackageName.ClassName;
 /**
@@ -46,7 +46,8 @@ public class UniversityManagementSystem {
         user finance = new Finance();
         user doctor = new Doctor();
         user tas = new TA();
-        user employee=new Employee();
+        user employee = new Employee();
+        AdminInterface adminInterface = new Admin();
 
 // An RMI Registry initialized on port 1099
         Registry r = LocateRegistry.createRegistry(1099);
@@ -56,17 +57,14 @@ public class UniversityManagementSystem {
         r.bind("student", student);
         r.bind("employee", employee);
         r.bind("admin", admin);
-       r.bind("doctor", doctor);
-       r.bind("ta", tas);
+        r.bind("doctor", doctor);
+        r.bind("ta", tas);
         r.bind("finance", finance);
         r.bind("superior", superior);
 
-        
-        
-        
-        
+        r.bind("admininterface", adminInterface);
         Admin a = new Admin();
-        Student s1 = new Student(9, "Menna", "Waleed", "menna@gmail.com", "menna123", 0, false, true, "SE", "ICS", null, null);
+        //Student s1 = new Student(9, "Menna", "Waleed", "menna@gmail.com", "menna123", 0, false, true, "SE", "ICS", null, null);
         //a.RegisterStudent(s1);
         // a.DeleteStudent(s1);
         //db.getStudents();
@@ -78,27 +76,31 @@ public class UniversityManagementSystem {
         ArrayList<Material> materials = new ArrayList<>();
 
         Doctor d = new Doctor(1, "Abeer", "Hamdy", "abeerhamdy@wmf.edu.eg", "1234", 1000, null, "CIB", "Doctor", null, null);
-        TA ta = new TA(5, "Meriam", "Sherif", "meriam.sherif@wmf.edu.eg", "1234", 500, null, "CIB", "TA", null);
-       
-         
+        TA ta = new TA(5, "Waleed", "Sherif", "meriam.sherif@wmf.edu.eg", "1234", 500, null, "CIB", "TA", 1);
+        TA ta2 = new TA(6, "Farouk", "Hesham", "meriam.sherif@wmf.edu.eg", "1234", 500, null, "CIB", "TA", 1);
         Material m = new Material(1, "Lecture 1", true, 1);
         materials.add(m);
-         Course c = new Course(1, "AOOSE", d, null, "aoose@wmf.edu.eg", "ICS", materials);
+        //Course c = new Course(1, "AOOSE", d, null, "aoose@wmf.edu.eg", "ICS", materials);
         Faculty f = new Faculty(2, "ICS", "Omar Karam", "omar.karam@wmf.edu.eg", null);
-              
-//Student student = new Student(2, "Ahmed", "Waleed", "testing@test.com", "testing", 0, false, true, "SE", "ICS", null, null);
-sa.AddCourse(c);
+
+        Student s = new Student(2, "Ahmed", "Waleed", "testing@test.com", "testing", 0, false, true, "SE", "ICS", null, null);
+
+// a.RemoveCourseTA(1, ta2);
+//sa.AddCourse(c);
 //sa.AssignTA(ta);
-//sa.AssignTA(ta);
+//sa.AssignTA(ta2);
 //sa.RemoveTA(ta);
 //sa.UpdateDoctorInfo(d);
 //sa.AddFaculty(f);
 //c.AddCourseMaterial(m);
-        
 //sa.DeleteCourse(c);
-    
-    
-    System.out.println("Server is ready");
+//Admin a1 = new Admin(1, "Ahmed", "Waleed", "ahmedwaleed@wmf.edu.eg", "1234", 1000, null, "CIB", "Admin");
+//a.getStudents();
+// a.AddCourseTA(1, ta2);
+// ArrayList<Student>st = new ArrayList<>();
+// st.add(s);
+// System.out.println(st);
+        System.out.println("Server is ready");
     }
 
 }

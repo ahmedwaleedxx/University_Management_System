@@ -17,27 +17,26 @@ import universitymanagementsystem.*;
  */
 public class TA extends Employee {
 
-    private Course AssignedCourse;
+    public TA() throws RemoteException {
 
-    public TA(Course AssignedCourse) throws RemoteException{
-        this.AssignedCourse = AssignedCourse;
     }
+    int courseID;
 
-    public TA(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType, Course AssignedCourse) throws RemoteException{
+    public TA(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType, int courseID) throws RemoteException {
         super(EmployeeID, EmployeeFName, EmployeeLName, Email, Password, EmployeeSalary, EmployeeWorkingHours, EmployeeBankAccountIBAN, EmployeeType);
-        this.AssignedCourse = AssignedCourse;
+        this.courseID = courseID;
     }
 
-    public Course getAssignedCourse() {
-        return AssignedCourse;
+    public int getCourseID() {
+        return courseID;
     }
 
-    public TA() throws RemoteException{
+    public void setCourseID(int courseID) {
+        this.courseID = courseID;
     }
-
-    public void setAssignedCourse(Course AssignedCourse) {
-        this.AssignedCourse = AssignedCourse;
-    }
+    
+    
+    
 
     public void setStudentAttendance(Course course, Student student) {
 

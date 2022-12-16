@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import javax.swing.ImageIcon;
 import rmi.user;
@@ -25,6 +26,9 @@ public class LoginController {
 
     static Login gui;
     Registry r;
+    
+    
+    
     Color placeholdercolor = new Color(153, 153, 153);
     Color txtColor = new Color(51, 51, 51);
     ImageIcon erroricon = new ImageIcon("src/Images/erroricon.png");
@@ -32,6 +36,7 @@ public class LoginController {
     public LoginController(Login gui, Registry r) {
         this.gui = gui;
         this.r = r;
+        gui.getPasswordtb().setEchoChar((char)0);
         gui.getShowpasswordcb().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -173,6 +178,13 @@ public class LoginController {
                         JOptionPane.showMessageDialog(null, "Login Failed!!");
                     } else {
                         JOptionPane.showMessageDialog(null, "Logged in Successfully !!");
+                         ManageStudents ms = new ManageStudents();
+                            ms.setLocationRelativeTo(null); // This makes the window appears centered
+                            ms.setVisible(true); // This shows the gui
+                            
+                            Registry r = LocateRegistry.getRegistry(1099);
+                            ManageStudentsController gui_controller = new ManageStudentsController(ms, r);
+                        gui.dispose();
                     }
                 } else if (gui.getTarb().isSelected()) {
                     usertype = "TA";

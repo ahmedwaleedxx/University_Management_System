@@ -6,6 +6,7 @@ package StudentController;
 
 import java.io.Serializable;
 
+
 /**
  *
  * @author infolos
@@ -35,7 +36,7 @@ public class StudentDTO implements Serializable {
         this.Faculty = Faculty;
     }
 
-    public int getStudentID() {
+    public int getStudentID()   {
         return StudentID;
     }
 
@@ -43,7 +44,7 @@ public class StudentDTO implements Serializable {
         this.StudentID = StudentID;
     }
 
-    public String getStudentFName() {
+    public String getStudentFName()  {
         return StudentFName;
     }
 
@@ -51,7 +52,7 @@ public class StudentDTO implements Serializable {
         this.StudentFName = StudentFName;
     }
 
-    public String getStudentLName() {
+    public String getStudentLName()  {
         return StudentLName;
     }
 
@@ -59,7 +60,7 @@ public class StudentDTO implements Serializable {
         this.StudentLName = StudentLName;
     }
 
-    public String getEmail() {
+    public String getEmail()  {
         return Email;
     }
 
@@ -67,7 +68,7 @@ public class StudentDTO implements Serializable {
         this.Email = Email;
     }
 
-    public String getPassword() {
+    public String getPassword()  {
         return Password;
     }
 
@@ -75,7 +76,7 @@ public class StudentDTO implements Serializable {
         this.Password = Password;
     }
 
-    public float getStudentOverAllGrade() {
+    public float getStudentOverAllGrade()  {
         return StudentOverAllGrade;
     }
 

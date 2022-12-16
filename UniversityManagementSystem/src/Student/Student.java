@@ -5,7 +5,7 @@
  */
 package Student;
 
-import rmi.user;
+import rmi.*;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import universitymanagementsystem.*;
  *
  * @author ahmedwaleed
  */
-public class Student extends UnicastRemoteObject implements user {
+public class Student extends UnicastRemoteObject implements user, rmi.Student {
 
 //Private Attributes
     private int StudentID;
@@ -51,7 +51,8 @@ public class Student extends UnicastRemoteObject implements user {
         this.Observers = Observers;
     }
 
-    public int getStudentID() {
+    @Override
+    public int getStudentID()  throws RemoteException {
         return StudentID;
     }
 
@@ -59,7 +60,8 @@ public class Student extends UnicastRemoteObject implements user {
         this.StudentID = StudentID;
     }
 
-    public String getStudentFName() {
+    @Override
+    public String getStudentFName() throws RemoteException {
         return StudentFName;
     }
 
@@ -67,7 +69,8 @@ public class Student extends UnicastRemoteObject implements user {
         this.StudentFName = StudentFName;
     }
 
-    public String getStudentLName() {
+    @Override
+    public String getStudentLName()  throws RemoteException{
         return StudentLName;
     }
 
@@ -75,7 +78,8 @@ public class Student extends UnicastRemoteObject implements user {
         this.StudentLName = StudentLName;
     }
 
-    public String getEmail() {
+    @Override
+    public String getEmail()  throws RemoteException{
         return Email;
     }
 
@@ -83,7 +87,8 @@ public class Student extends UnicastRemoteObject implements user {
         this.Email = Email;
     }
 
-    public String getPassword() {
+    @Override
+    public String getPassword()  throws RemoteException{
         return Password;
     }
 
@@ -91,7 +96,8 @@ public class Student extends UnicastRemoteObject implements user {
         this.Password = Password;
     }
 
-    public float getStudentOverAllGrade() {
+    @Override
+    public float getStudentOverAllGrade()  throws RemoteException{
         return StudentOverAllGrade;
     }
 
@@ -99,7 +105,8 @@ public class Student extends UnicastRemoteObject implements user {
         this.StudentOverAllGrade = StudentOverAllGrade;
     }
 
-    public boolean isIsGraduated() {
+    @Override
+    public boolean isIsGraduated()  throws RemoteException{
         return isGraduated;
     }
 
@@ -107,7 +114,8 @@ public class Student extends UnicastRemoteObject implements user {
         this.isGraduated = isGraduated;
     }
 
-    public boolean isPaidTutionFees() {
+    @Override
+    public boolean isPaidTutionFees()  throws RemoteException{
         return paidTutionFees;
     }
 
@@ -115,7 +123,8 @@ public class Student extends UnicastRemoteObject implements user {
         this.paidTutionFees = paidTutionFees;
     }
 
-    public String getMajor() {
+    @Override
+    public String getMajor()  throws RemoteException{
         return Major;
     }
 
@@ -123,7 +132,8 @@ public class Student extends UnicastRemoteObject implements user {
         this.Major = Major;
     }
 
-    public String getFaculty() {
+    @Override
+    public String getFaculty()  throws RemoteException{
         return Faculty;
     }
 
@@ -131,7 +141,8 @@ public class Student extends UnicastRemoteObject implements user {
         this.Faculty = Faculty;
     }
 
-    public ArrayList<Observer> getObservers() {
+
+    public ArrayList<Observer> getObservers()  throws RemoteException{
         return Observers;
     }
 
@@ -174,6 +185,14 @@ public class Student extends UnicastRemoteObject implements user {
     void update(String message) {
 
     }
+
+    @Override
+    public String toString() {
+        return StudentID  + StudentFName + StudentLName + Email +  Password + StudentOverAllGrade+ isGraduated +  paidTutionFees + Major + Faculty +  Courses  + '}';
+    }
+    
+    
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Override

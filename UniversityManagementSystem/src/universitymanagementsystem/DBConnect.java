@@ -180,7 +180,7 @@ public class DBConnect extends UnicastRemoteObject implements DBInterface {
         ArrayList<Student> finalList = new ArrayList<>();
         for (int i = 0; i < students.size(); i++) {
             Student result = gson.fromJson(students.get(i).toJson(), Student.class);
-            System.out.println(result.getEmail() + " " + result.getPassword());
+            System.out.println(result.toString());
             finalList.add(result);
         }
         return finalList;
