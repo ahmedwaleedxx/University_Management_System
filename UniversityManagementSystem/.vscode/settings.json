@@ -1,0 +1,9 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "e:\\University\\Semester 7\\SE3\\Project\\Project Implementation\\Updated By Houda\\University Management System\\MongoDB Java Drivers_\\bson-3.3.0.jar",
+        "e:\\University\\Semester 7\\SE3\\Project\\Project Implementation\\Updated By Houda\\University Management System\\MongoDB Java Drivers_\\gson-2.8.0.jar",
+        "e:\\University\\Semester 7\\SE3\\Project\\Project Implementation\\Updated By Houda\\University Management System\\MongoDB Java Drivers_\\mongodb-driver-3.3.0.jar",
+        "e:\\University\\Semester 7\\SE3\\Project\\Project Implementation\\Updated By Houda\\University Management System\\MongoDB Java Drivers_\\mongodb-driver-core-3.3.0.jar"
+    ]
+}
