@@ -60,11 +60,6 @@ public class Admin extends Employee implements AdminInterface {
         super(EmployeeID, EmployeeFName, EmployeeLName, Email, Password, EmployeeSalary, EmployeeWorkingHours, EmployeeBankAccountIBAN, EmployeeType);
     }
 
-
-
-    
-    
-    
 //    @Override
 //    public void RegisterStudent(Student student) throws RemoteException{
 //        StudentCollection.insertOne(Document.parse(gson.toJson(student)));
@@ -118,8 +113,5 @@ public class Admin extends Employee implements AdminInterface {
     public void HandleComplaint() throws RemoteException {
 
     }
-
-   
-
 
 }

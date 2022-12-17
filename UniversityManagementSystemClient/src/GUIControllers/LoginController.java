@@ -189,6 +189,13 @@ public class LoginController {
                                 JOptionPane.showMessageDialog(null, "Login Failed!!");
                             }else{
                                 JOptionPane.showMessageDialog(null, "Logged in Successfully");
+                                
+                                SuperiorAdminMenu am = new SuperiorAdminMenu();
+                        am.setLocationRelativeTo(null);
+                        am.setVisible(true);
+                        Registry r = LocateRegistry.getRegistry(1099);
+                        SuperiorMenuController amc = new SuperiorMenuController(am, r, sai);
+                        gui.dispose();
                             }
                             }
                     
@@ -202,16 +209,6 @@ public class LoginController {
                         JOptionPane.showMessageDialog(null, "Login Failed!!");
                     } else {
                         JOptionPane.showMessageDialog(null, "Logged in Successfully !!");
-                         
-                        
-                        
-//                        ManageStudents ms = new ManageStudents();
-//                            ms.setLocationRelativeTo(null); // This makes the window appears centered
-//                            ms.setVisible(true); // This shows the gui
-//                            
-//                            Registry r = LocateRegistry.getRegistry(1099);
-//                            ManageStudentsController gui_controller = new ManageStudentsController(ms, r, student2);
-//                        gui.dispose();
                     }
                 } else if (gui.getTarb().isSelected()) {
                     usertype = "TA";

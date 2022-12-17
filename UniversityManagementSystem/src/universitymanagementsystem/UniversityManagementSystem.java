@@ -68,6 +68,19 @@ public class UniversityManagementSystem {
 
         
         
+        ArrayList<Course> cos = new ArrayList<>();
+        Student stud = new Student();
+
+        stud.setStudentFName("Esmy El Awl");
+        stud.setStudentLName("Esmy El Tany");
+        stud.setIsGraduated(false);
+        stud.setFaculty("ICS");
+        stud.setEmail("Esmy");
+        stud.setCourses(cos);
+
+        
+        db.SignUpStudent(stud);
+        
         //Admin a = new Admin();
         //Student s1 = new Student();
         // r.bind("student2", s1);

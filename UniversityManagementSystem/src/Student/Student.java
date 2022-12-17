@@ -64,6 +64,9 @@ public class Student extends UnicastRemoteObject implements user, rmi.Student {
         this.Faculty = Faculty;
     }
 
+    public void setCourses(ArrayList<Course> courses){
+        this.Courses=courses;
+    }
     @Override
     public int getStudentID() throws RemoteException {
         return StudentID;

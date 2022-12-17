@@ -14,27 +14,33 @@ import java.util.ArrayList;
  * @author ahmedwaleed
  */
 public interface SuperiorAdminInterface extends Remote {
-//    public void AssignDoctor(Doctor doctor);
-//
-//    public void UpdateDoctorInfo(Doctor doctor);
-//
-//    public void RemoveDoctor(Doctor doctor);
-//
-//    public void AssignTA(TA ta);
-//
-//    public void UpdateTAInfo(TA ta);
-//
-//    public void RemoveTA(TA ta);
-//
-//    public void AddFaculty(Faculty faculty);
-//
-//    public void UpdateFaculty(Faculty faculty);
-//
-//    public void RemoveFaculty(Faculty facultyID);
+
+    public void AssignDoctor(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType, CourseInterface AssignedCourse, TAInterface AssignedTA) throws RemoteException;
+
+    public void UpdateDoctorInfo(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType, CourseInterface AssignedCourse, TAInterface AssignedTA) throws RemoteException;
+
+    public void RemoveDoctor(int id) throws RemoteException;
+
+    public void AssignTA(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType, CourseInterface AssignedCourse, TAInterface AssignedTA) throws RemoteException;
+
+    public void UpdateTAInfo(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType, CourseInterface AssignedCourse, TAInterface AssignedTA) throws RemoteException;
+
+    public void RemoveTA(int id) throws RemoteException;
+
+    public void AddFaculty(int FacultyID, String Name, String DeanName, String Mail, ArrayList<DoctorInterface> doctors) throws RemoteException;
+
+    public void UpdateFaculty(int FacultyID, String Name, String DeanName, String Mail, ArrayList<DoctorInterface> doctors) throws RemoteException;
+
+    public void RemoveFaculty(int id) throws RemoteException;
+
+    public void AddCourse(int CourseID, String CourseTitle, DoctorInterface CourseDoctor, String Mail, String Faculty) throws RemoteException;
+
+    public void UpdateCourse(int CourseID, String CourseTitle, DoctorInterface CourseDoctor, String Mail, String Faculty) throws RemoteException;
+
+    public void DeleteCourse(int id) throws RemoteException;
 
     public void AddAdmin(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType) throws RemoteException;
 
     public void UpdateAdmin(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType) throws RemoteException;
 
-    public void DeleteAdmin(int id);
 }

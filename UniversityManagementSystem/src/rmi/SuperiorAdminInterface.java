@@ -17,29 +17,31 @@ import universitymanagementsystem.*;
  */
 public interface SuperiorAdminInterface extends Remote {
 
-    public void AssignDoctor(Doctor doctor) throws RemoteException;
+    public void AssignDoctor(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType, Course AssignedCourse, TA AssignedTA)throws RemoteException;
 
-    public void UpdateDoctorInfo(Doctor doctor) throws RemoteException;
+    public void UpdateDoctorInfo(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType, Course AssignedCourse, TA AssignedTA) throws RemoteException;
 
-    public void RemoveDoctor(Doctor doctor) throws RemoteException;
+    public void RemoveDoctor(int id) throws RemoteException;
 
-    public void AssignTA(TA ta) throws RemoteException;
+    public void AssignTA(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType, Course AssignedCourse, TA AssignedTA) throws RemoteException;
 
-    public void UpdateTAInfo(TA ta) throws RemoteException;
+    public void UpdateTAInfo(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType, Course AssignedCourse, TA AssignedTA) throws RemoteException;
 
-    public void RemoveTA(TA ta) throws RemoteException;
+    public void RemoveTA(int id) throws RemoteException;
+    
+    
 
-    public void AddFaculty(Faculty faculty) throws RemoteException;
+    public void AddFaculty(int FacultyID, String Name, String DeanName, String Mail, ArrayList<Doctor> doctors) throws RemoteException;
 
-    public void UpdateFaculty(Faculty faculty) throws RemoteException;
+    public void UpdateFaculty(int FacultyID, String Name, String DeanName, String Mail, ArrayList<Doctor> doctors) throws RemoteException;
 
-    public void RemoveFaculty(Faculty facultyID) throws RemoteException;
+    public void RemoveFaculty(int id) throws RemoteException;
 
-    public void AddCourse(Course c) throws RemoteException;
+    public void AddCourse(int CourseID, String CourseTitle, Doctor CourseDoctor, String Mail, String Faculty) throws RemoteException;
 
-    public void UpdateCourse(Course c) throws RemoteException;
+    public void UpdateCourse(int CourseID, String CourseTitle, Doctor CourseDoctor, String Mail, String Faculty) throws RemoteException;
 
-    public void DeleteCourse(Course c) throws RemoteException;
+    public void DeleteCourse(int id) throws RemoteException;
     
     public void AddAdmin(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType) throws RemoteException;
 

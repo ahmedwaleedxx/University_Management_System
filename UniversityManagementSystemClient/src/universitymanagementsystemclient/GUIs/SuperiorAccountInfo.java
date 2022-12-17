@@ -7,18 +7,17 @@ package universitymanagementsystemclient.GUIs;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 /**
  *
  * @author ahmedwaleed
  */
-public class AccountInformation extends javax.swing.JFrame {
+public class SuperiorAccountInfo extends javax.swing.JFrame {
 
     /**
-     * Creates new form AddStudent
+     * Creates new form SuperiorAccountInfo
      */
-    public AccountInformation() {
+    public SuperiorAccountInfo() {
         initComponents();
     }
 
@@ -34,46 +33,6 @@ public class AccountInformation extends javax.swing.JFrame {
         return idlbl;
     }
 
-    public JButton getjButton1() {
-        return jButton1;
-    }
-
-    public JLabel getjLabel1() {
-        return jLabel1;
-    }
-
-    public JLabel getjLabel10() {
-        return jLabel10;
-    }
-
-    public JLabel getjLabel11() {
-        return jLabel11;
-    }
-
-    public JLabel getjLabel12() {
-        return jLabel12;
-    }
-
-    public JLabel getjLabel2() {
-        return jLabel2;
-    }
-
-    public JLabel getjLabel3() {
-        return jLabel3;
-    }
-
-    public JLabel getjLabel6() {
-        return jLabel6;
-    }
-
-    public JLabel getjLabel9() {
-        return jLabel9;
-    }
-
-    public JPanel getjPanel1() {
-        return jPanel1;
-    }
-
     public JLabel getNamelbl() {
         return namelbl;
     }
@@ -86,6 +45,12 @@ public class AccountInformation extends javax.swing.JFrame {
         return salarylbl;
     }
 
+    public JButton getjButton1() {
+        return jButton1;
+    }
+
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -97,19 +62,19 @@ public class AccountInformation extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        idlbl = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        namelbl = new javax.swing.JLabel();
-        passwordlbl = new javax.swing.JLabel();
-        emaillbl = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         banklbl = new javax.swing.JLabel();
         salarylbl = new javax.swing.JLabel();
+        passwordlbl = new javax.swing.JLabel();
+        emaillbl = new javax.swing.JLabel();
+        namelbl = new javax.swing.JLabel();
+        idlbl = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -121,15 +86,15 @@ public class AccountInformation extends javax.swing.JFrame {
         jLabel1.setText("Account Information");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(146, 19, -1, 65));
 
-        jButton1.setFont(new java.awt.Font("Engravers MT", 0, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(153, 0, 0));
-        jButton1.setText("Return to menu");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 380, -1, -1));
+        jLabel12.setFont(new java.awt.Font("Engravers MT", 0, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel12.setText("ID");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 102, 140, 30));
+
+        jLabel9.setFont(new java.awt.Font("Engravers MT", 0, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("Name");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 142, 140, 30));
 
         jLabel2.setFont(new java.awt.Font("Engravers MT", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
@@ -141,16 +106,6 @@ public class AccountInformation extends javax.swing.JFrame {
         jLabel6.setText("Password");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 222, 140, 30));
 
-        idlbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        idlbl.setForeground(new java.awt.Color(0, 0, 0));
-        idlbl.setText("ID");
-        jPanel1.add(idlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(481, 102, 310, 30));
-
-        jLabel9.setFont(new java.awt.Font("Engravers MT", 0, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setText("Name");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 142, 140, 30));
-
         jLabel10.setFont(new java.awt.Font("Engravers MT", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Salary");
@@ -161,39 +116,49 @@ public class AccountInformation extends javax.swing.JFrame {
         jLabel11.setText("Bank");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 302, 140, 30));
 
-        jLabel12.setFont(new java.awt.Font("Engravers MT", 0, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel12.setText("ID");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 102, 140, 30));
-
-        namelbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        namelbl.setForeground(new java.awt.Color(0, 0, 0));
-        namelbl.setText("Name");
-        jPanel1.add(namelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(481, 142, 310, 30));
-
-        passwordlbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        passwordlbl.setForeground(new java.awt.Color(0, 0, 0));
-        passwordlbl.setText("Name");
-        jPanel1.add(passwordlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(481, 222, 310, 30));
-
-        emaillbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        emaillbl.setForeground(new java.awt.Color(0, 0, 0));
-        emaillbl.setText("ID");
-        jPanel1.add(emaillbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(481, 182, 310, 30));
+        jButton1.setFont(new java.awt.Font("Engravers MT", 0, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(153, 0, 0));
+        jButton1.setText("Return to menu");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 380, -1, -1));
 
         banklbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         banklbl.setForeground(new java.awt.Color(0, 0, 0));
         banklbl.setText("Name");
-        jPanel1.add(banklbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(481, 298, 310, 30));
+        jPanel1.add(banklbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(481, 298, 360, 30));
 
         salarylbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         salarylbl.setForeground(new java.awt.Color(0, 0, 0));
         salarylbl.setText("ID");
-        jPanel1.add(salarylbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(481, 258, 310, 30));
+        jPanel1.add(salarylbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(481, 258, 360, 30));
+
+        passwordlbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        passwordlbl.setForeground(new java.awt.Color(0, 0, 0));
+        passwordlbl.setText("Name");
+        jPanel1.add(passwordlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(481, 222, 360, 30));
+
+        emaillbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        emaillbl.setForeground(new java.awt.Color(0, 0, 0));
+        emaillbl.setText("ID");
+        jPanel1.add(emaillbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(481, 182, 360, 30));
+
+        namelbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        namelbl.setForeground(new java.awt.Color(0, 0, 0));
+        namelbl.setText("Name");
+        jPanel1.add(namelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(481, 142, 360, 30));
+
+        idlbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        idlbl.setForeground(new java.awt.Color(0, 0, 0));
+        idlbl.setText("ID");
+        jPanel1.add(idlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(481, 102, 360, 30));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universitymanagementsystemclient/GUIs/abstract-1780378_960_720.png"))); // NOI18N
         jLabel3.setText("jLabel3");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -5, 890, 510));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -5, 900, 500));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -230,21 +195,20 @@ public class AccountInformation extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AccountInformation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SuperiorAccountInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AccountInformation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SuperiorAccountInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AccountInformation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SuperiorAccountInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AccountInformation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SuperiorAccountInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AccountInformation().setVisible(true);
+                new SuperiorAccountInfo().setVisible(true);
             }
         });
     }

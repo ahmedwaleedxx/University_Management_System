@@ -71,7 +71,7 @@ public class AdminMenu extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Engravers MT", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 21, 212, 38));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 21, 480, 38));
 
         managestudentsbtn.setFont(new java.awt.Font("Engravers MT", 0, 24)); // NOI18N
         managestudentsbtn.setText("Manage Students");
