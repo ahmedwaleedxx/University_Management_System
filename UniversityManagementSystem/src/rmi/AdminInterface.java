@@ -30,14 +30,7 @@ public interface AdminInterface extends Remote {
 
     public void HandleComplaint() throws RemoteException;
 
-    public void AddCourseTA(int courseid, TA ta) throws RemoteException;
-
-    public void RemoveCourseTA(int courseid) throws RemoteException;
-
-    public void UpdateCourseTitle(int courseid, String title) throws RemoteException;
-
-    public void DeleteCourse(String coursename) throws RemoteException;
-
+    
 //      public rmi.Student students(int StudentID, String StudentFName, String StudentLName, String Email, String Password, float StudentOverAllGrade, boolean isGraduated, boolean paidTutionFees, String Major, String Faculty) throws RemoteException;
 
 }

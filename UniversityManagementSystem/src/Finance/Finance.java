@@ -14,7 +14,7 @@ import universitymanagementsystem.DBConnect;
  *
  * @author ahmedwaleed
  */
-public class Finance extends Employee implements user {
+public class Finance extends Employee {
 
     public Finance() throws RemoteException {
     }
@@ -45,10 +45,10 @@ public class Finance extends Employee implements user {
 
     }
 
-    @Override
-    public user Login(String email, String password, String usertype) throws RemoteException {
-        DBConnect db = new DBConnect();
-        user u = db.Login(email, password, usertype);
-        return u;
-    }
+//    @Override
+//    public user Login(String email, String password, String usertype) throws RemoteException {
+//        DBConnect db = new DBConnect();
+//        user u = db.Login(email, password, usertype);
+//        return u;
+//    }
 }

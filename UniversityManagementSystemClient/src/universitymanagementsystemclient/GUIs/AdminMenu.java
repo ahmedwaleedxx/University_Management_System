@@ -7,6 +7,7 @@ package universitymanagementsystemclient.GUIs;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -21,18 +22,32 @@ public class AdminMenu extends javax.swing.JFrame {
         initComponents();
     }
 
-    public JButton getjButton1() {
-        return jButton1;
-    }
-
-    public JButton getjButton2() {
-        return jButton2;
+    public JButton getAccinfobtn() {
+        return accinfobtn;
     }
 
     public JLabel getjLabel1() {
         return jLabel1;
     }
 
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public JButton getManagestudentsbtn() {
+        return managestudentsbtn;
+    }
+
+    public JButton getSignoutbtn() {
+        return signoutbtn;
+    }
+
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,48 +59,39 @@ public class AdminMenu extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        managestudentsbtn = new javax.swing.JButton();
+        accinfobtn = new javax.swing.JButton();
+        signoutbtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Engravers MT", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("jLabel1");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 21, 212, 38));
 
-        jButton1.setText("Manage Students");
+        managestudentsbtn.setFont(new java.awt.Font("Engravers MT", 0, 24)); // NOI18N
+        managestudentsbtn.setText("Manage Students");
+        jPanel1.add(managestudentsbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 360, 50));
 
-        jButton2.setText("Account Info");
+        accinfobtn.setFont(new java.awt.Font("Engravers MT", 0, 24)); // NOI18N
+        accinfobtn.setText("Account Info");
+        accinfobtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accinfobtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(accinfobtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, 280, 50));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(312, 312, 312)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(366, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(156, 156, 156)
-                .addComponent(jButton1)
-                .addGap(37, 37, 37)
-                .addComponent(jButton2)
-                .addContainerGap(207, Short.MAX_VALUE))
-        );
+        signoutbtn.setFont(new java.awt.Font("Engravers MT", 0, 24)); // NOI18N
+        signoutbtn.setText("Sign out");
+        jPanel1.add(signoutbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 200, 30));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universitymanagementsystemclient/GUIs/Grad2.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 500));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,6 +106,10 @@ public class AdminMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void accinfobtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accinfobtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_accinfobtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,9 +147,11 @@ public class AdminMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton accinfobtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton managestudentsbtn;
+    private javax.swing.JButton signoutbtn;
     // End of variables declaration//GEN-END:variables
 }

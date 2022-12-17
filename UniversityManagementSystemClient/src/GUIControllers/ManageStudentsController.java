@@ -146,22 +146,18 @@ public class ManageStudentsController {
         gui.getBackbtn().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                Login l = new Login();
-                try {
-
-                    l.setLocationRelativeTo(null); // This makes the window appears centered
-                    l.setVisible(true); // This shows the gui
-
-                    Registry r;
-
-                    r = LocateRegistry.getRegistry(1099);
-                } catch (RemoteException ex) {
-                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                  try{
+                AdminMenu am = new AdminMenu();
+                        am.setLocationRelativeTo(null);
+                        am.setVisible(true);
+                        Registry r = LocateRegistry.getRegistry(1099);
+                        AdminMenuController amc = new AdminMenuController(am, r, adminn);
+                        gui.dispose();
+              } catch (RemoteException ex) {
+                    Logger.getLogger(AccountInformationController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                LoginController gui_controller = new LoginController(l, r);
-
             }
+              
         });
 
         gui.getStudentstbl().addMouseListener(new MouseListener() {

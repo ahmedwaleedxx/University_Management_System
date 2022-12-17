@@ -26,4 +26,16 @@ public interface MaterialInterface extends Remote {
 
     public void changeMaterialTitle(String title) throws RemoteException;
 
+    public void AddCourseMaterial(int ID, String MaterialTitle, boolean MaterialVisibility, int CourseID) throws RemoteException;
+
+    public void RemoveCourseMaterial(int id) throws RemoteException;
+
+    public void UpdateMaterialTitle(int matid, String title) throws RemoteException;
+
+    public void UpdateMaterialVisibility(int matid, boolean vis) throws RemoteException;
+
+    public void UpdateMaterialCourse(int matid, int cid) throws RemoteException;
+
+
+
 }

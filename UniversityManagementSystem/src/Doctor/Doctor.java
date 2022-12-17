@@ -115,45 +115,5 @@ public class Doctor extends Employee implements DoctorInterface{
 
     }
 
-    @Override
-    public void AddCourseMaterial(Material m) {
-        MaterialCollection.insertOne(Document.parse(gson.toJson(m)));
-        System.out.println("File Inserted Succesfully");
-    }
-
-    
-    
-    @Override
-    public void RemoveCourseMaterial(Material m) throws RemoteException {
-        MaterialCollection.deleteOne(Filters.eq("ID", m.getID()));
-        System.out.println("File Deleted Successfully");
-    }
-
-    @Override
-    public void UpdateMaterialTitle(int matid, String title) throws RemoteException {
-        System.out.println("Title Edited");
-        Document doc = Document.parse(gson.toJson(title));
-        MaterialCollection.updateOne(Filters.eq("ID", matid), Updates.set("MaterialTitle", doc));
-    }
-
-    @Override
-    public void UpdateMaterialVisibility(int matid, boolean vis) throws RemoteException {
-        System.out.println("Visibility Edited");
-        Document doc = Document.parse(gson.toJson(vis));
-        MaterialCollection.updateOne(Filters.eq("ID", matid), Updates.set("MaterialVisibility", doc));
-    }
-
-    @Override
-    public void UpdateMaterialCourse(int matid, int cid) throws RemoteException {
-        System.out.println("Course Edited");
-        Document doc = Document.parse(gson.toJson(cid));
-        MaterialCollection.updateOne(Filters.eq("ID", matid), Updates.set("CourseID", doc));
-    }
-    
-    
-      public void UpdateCourseTitle(int courseid, String title) throws RemoteException {
-        System.out.println("Title Edited");
-        Document doc = Document.parse(gson.toJson(title));
-        courseCollection.updateOne(Filters.eq("CourseID", courseid), Updates.set("CourseTitle",doc));
-        }
+   
 }

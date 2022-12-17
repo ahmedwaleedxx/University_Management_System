@@ -9,20 +9,46 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import rmi.MaterialInterface;
 import Student.*;
+import com.google.gson.Gson;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.bson.Document;
 
 /**
  *
  * @author ahmedwaleed
  */
-public class Material implements MaterialInterface, ViewMaterial{
+//MaterialCollection
+public class Material implements MaterialInterface, ViewMaterial {
+
+    private MongoClient client;
+    private MongoDatabase database;
+    private MongoCollection<Document> MaterialCollection;
+        private MongoCollection<Document> courseCollection;
 
     private int ID;
     private String MaterialTitle;
     private boolean MaterialVisibility;
     private int CourseID;
-  
+    private Gson gson;
+
+    public Material() throws RemoteException {
+        Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
+        mongoLogger.setLevel(Level.SEVERE);
+        // Initialize
+        client = new MongoClient(new MongoClientURI("mongodb://admin:jl6fIl0vxg1oyuME@ac-tm8fwxy-shard-00-00.bnsnciy.mongodb.net:27017,ac-tm8fwxy-shard-00-01.bnsnciy.mongodb.net:27017,ac-tm8fwxy-shard-00-02.bnsnciy.mongodb.net:27017/?ssl=true&replicaSet=atlas-117fq2-shard-0&authSource=admin&retryWrites=true&w=majority"));
+        database = client.getDatabase("UniversityManagementSystem");
+        MaterialCollection = database.getCollection("Material");
+        courseCollection  = database.getCollection("Course");
+        gson = new Gson();
+
+    }
 
     public Material(int ID, String MaterialTitle, boolean MaterialVisibility, int CourseID) {
         this.ID = ID;
@@ -32,7 +58,7 @@ public class Material implements MaterialInterface, ViewMaterial{
     }
 
     @Override
-    public int getID() throws RemoteException{
+    public int getID() throws RemoteException {
         return ID;
     }
 
@@ -41,7 +67,7 @@ public class Material implements MaterialInterface, ViewMaterial{
     }
 
     @Override
-    public String getMaterialTitle() throws RemoteException{
+    public String getMaterialTitle() throws RemoteException {
         return MaterialTitle;
     }
 
@@ -50,7 +76,7 @@ public class Material implements MaterialInterface, ViewMaterial{
     }
 
     @Override
-    public boolean isMaterialVisibility() throws RemoteException{
+    public boolean isMaterialVisibility() throws RemoteException {
         return MaterialVisibility;
     }
 
@@ -59,7 +85,7 @@ public class Material implements MaterialInterface, ViewMaterial{
     }
 
     @Override
-    public int getCourseID() throws RemoteException{
+    public int getCourseID() throws RemoteException {
         return CourseID;
     }
 
@@ -68,8 +94,8 @@ public class Material implements MaterialInterface, ViewMaterial{
     }
 
     @Override
-    public void changeMaterialVisibility(Boolean newVisibility) throws RemoteException{
-        this.MaterialVisibility= newVisibility;
+    public void changeMaterialVisibility(Boolean newVisibility) throws RemoteException {
+        this.MaterialVisibility = newVisibility;
     }
 
     public void changeMaterialFileUrl(String newUrl) {
@@ -77,16 +103,46 @@ public class Material implements MaterialInterface, ViewMaterial{
     }
 
     @Override
-    public void changeMaterialTitle(String title) throws RemoteException{
+    public void changeMaterialTitle(String title) throws RemoteException {
         this.MaterialTitle = title;
     }
-    
-    
 
-    
-    
-    
+    @Override
+    public void AddCourseMaterial(int ID, String MaterialTitle, boolean MaterialVisibility, int CourseID) {
+        Material m = new Material(ID, MaterialTitle, MaterialVisibility, CourseID);
+        MaterialCollection.insertOne(Document.parse(gson.toJson(m)));
+        System.out.println("File Inserted Succesfully");
+    }
 
+    @Override
+    public void RemoveCourseMaterial(int id) throws RemoteException {
+
+        MaterialCollection.deleteOne(Filters.eq("ID", id));
+        System.out.println("File Deleted Successfully");
+    }
+
+    @Override
+    public void UpdateMaterialTitle(int matid, String title) throws RemoteException {
+        System.out.println("Title Edited");
+        Document doc = Document.parse(gson.toJson(title));
+        MaterialCollection.updateOne(Filters.eq("ID", matid), Updates.set("MaterialTitle", doc));
+    }
+
+    @Override
+    public void UpdateMaterialVisibility(int matid, boolean vis) throws RemoteException {
+        System.out.println("Visibility Edited");
+        Document doc = Document.parse(gson.toJson(vis));
+        MaterialCollection.updateOne(Filters.eq("ID", matid), Updates.set("MaterialVisibility", doc));
+    }
+
+    @Override
+    public void UpdateMaterialCourse(int matid, int cid) throws RemoteException {
+        System.out.println("Course Edited");
+        Document doc = Document.parse(gson.toJson(cid));
+        MaterialCollection.updateOne(Filters.eq("ID", matid), Updates.set("CourseID", doc));
+    }
+
+  
     public void registerObserv(Observer o) {
 
     }
@@ -100,7 +156,7 @@ public class Material implements MaterialInterface, ViewMaterial{
     }
 
     @Override
-  public ArrayList<Material>getMaterials(int courseID){
+    public ArrayList<Material> getMaterials(int courseID) {
 //      ArrayList<Material>result = new ArrayList();
 //      ArrayList<Document>docs ;//= collection.find(Filters.eq("CourseID", courseID)).into(new ArrayList<Document>());
 //      
@@ -110,7 +166,7 @@ public class Material implements MaterialInterface, ViewMaterial{
 //        }
 //        return result;
 //      
-return null;
-  }
+        return null;
+    }
 
 }

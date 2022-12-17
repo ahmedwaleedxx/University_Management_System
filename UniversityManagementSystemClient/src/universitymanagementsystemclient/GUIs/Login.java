@@ -264,7 +264,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_showpasswordcbActionPerformed
 
     private void signupbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupbtnActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_signupbtnActionPerformed
 
     private void loginbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginbtnActionPerformed

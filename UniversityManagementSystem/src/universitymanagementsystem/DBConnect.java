@@ -26,14 +26,14 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import org.bson.Document;
-import rmi.DBInterface;
+
 import rmi.user;
 
 /**
  *
  * @author ahmedwaleed
  */
-public class DBConnect extends UnicastRemoteObject implements DBInterface {
+public class DBConnect extends UnicastRemoteObject{
 
     private MongoClient client;
     private MongoDatabase database;
@@ -139,29 +139,29 @@ public class DBConnect extends UnicastRemoteObject implements DBInterface {
     
     
 
-    @Override
+
     public MongoDatabase getDatabase() throws RemoteException {
         return database;
     }
 
-    @Override
+
     public void SignUpStudent(Student s) throws RemoteException {
         StudentsCollection.insertOne(Document.parse(gson.toJson(s)));
         System.out.println("Student Inserted Succesfully");
     }
 
-    @Override
+
     public void UpdateStudent(Student s) throws RemoteException {
         Document doc = Document.parse(gson.toJson(s));
         StudentsCollection.replaceOne(Filters.eq("StudentID", s.getStudentID()), doc);
     }
 
-    @Override
+
     public void DeleteStudent(Student s) throws RemoteException {
         StudentsCollection.deleteOne(Filters.eq("StudentID", s.getStudentID()));
     }
 
-    @Override
+
     public Employee getEmployee(String email, String password, String EmployeeType) throws RemoteException {
         Document employee = EmployeesCollection.find(Filters.eq("email", email)).first();
         Employee result = gson.fromJson(employee.toJson(), Employee.class);
@@ -172,14 +172,14 @@ public class DBConnect extends UnicastRemoteObject implements DBInterface {
         }
     }
 
-    @Override
+
     public Course getCourse(int Course) throws RemoteException {
         Document course = CoursesCollection.find(Filters.eq("CourseID", Course)).first();
         Course result = gson.fromJson(course.toJson(), Course.class);
         return result;
     }
 
-    @Override
+
     public ArrayList<Student> getStudents() throws RemoteException {
         ArrayList<Document> students = StudentsCollection.find().into(new ArrayList<>());
         ArrayList<Student> finalList = new ArrayList<>();
@@ -191,7 +191,7 @@ public class DBConnect extends UnicastRemoteObject implements DBInterface {
         return finalList;
     }
 
-    @Override
+
     public ArrayList<Faculty> getFaculties() throws RemoteException {
         ArrayList<Document> facs = (ArrayList<Document>) facultiesCollection.find();
         ArrayList<Faculty> finalFacs = new ArrayList<>();
@@ -202,7 +202,7 @@ public class DBConnect extends UnicastRemoteObject implements DBInterface {
         return finalFacs;
     }
 
-    @Override
+
     public void close() throws RemoteException {
         client.close();
     }
