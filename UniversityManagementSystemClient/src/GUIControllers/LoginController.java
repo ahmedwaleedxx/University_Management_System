@@ -178,7 +178,10 @@ public class LoginController {
                         JOptionPane.showMessageDialog(null, "Login Failed!!");
                     } else {
                         JOptionPane.showMessageDialog(null, "Logged in Successfully !!");
-                         ManageStudents ms = new ManageStudents();
+                         
+                        
+                        
+                        ManageStudents ms = new ManageStudents();
                             ms.setLocationRelativeTo(null); // This makes the window appears centered
                             ms.setVisible(true); // This shows the gui
                             

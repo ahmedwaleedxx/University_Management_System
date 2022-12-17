@@ -246,6 +246,11 @@ public class ManageStudents extends javax.swing.JFrame {
         addstudentbtn.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         addstudentbtn.setForeground(new java.awt.Color(255, 255, 255));
         addstudentbtn.setText("Add Student");
+        addstudentbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addstudentbtnActionPerformed(evt);
+            }
+        });
         getContentPane().add(addstudentbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 460, -1, -1));
 
         updatestudentbtn.setBackground(new java.awt.Color(0, 0, 0));
@@ -265,6 +270,10 @@ public class ManageStudents extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addstudentbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addstudentbtnActionPerformed
+        
+    }//GEN-LAST:event_addstudentbtnActionPerformed
 
     /**
      * @param args the command line arguments

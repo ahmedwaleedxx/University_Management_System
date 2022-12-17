@@ -36,7 +36,7 @@ public class Student extends UnicastRemoteObject implements user, rmi.Student {
     public Student() throws RemoteException {
     }
 
-    public Student(int StudentID, String StudentFName, String StudentLName, String Email, String Password, float StudentOverAllGrade, boolean isGraduated, boolean paidTutionFees, String Major, String Faculty, ArrayList<Course> Courses, ArrayList<Observer> Observers) throws RemoteException{
+    public Student(int StudentID, String StudentFName, String StudentLName, String Email, String Password, float StudentOverAllGrade, boolean isGraduated, boolean paidTutionFees, String Major, String Faculty, ArrayList<Course> Courses, ArrayList<Observer> Observers) throws RemoteException {
         this.StudentID = StudentID;
         this.StudentFName = StudentFName;
         this.StudentLName = StudentLName;
@@ -51,8 +51,21 @@ public class Student extends UnicastRemoteObject implements user, rmi.Student {
         this.Observers = Observers;
     }
 
+    public Student(int StudentID, String StudentFName, String StudentLName, String Email, String Password, float StudentOverAllGrade, boolean isGraduated, boolean paidTutionFees, String Major, String Faculty) throws RemoteException {
+        this.StudentID = StudentID;
+        this.StudentFName = StudentFName;
+        this.StudentLName = StudentLName;
+        this.Email = Email;
+        this.Password = Password;
+        this.StudentOverAllGrade = StudentOverAllGrade;
+        this.isGraduated = isGraduated;
+        this.paidTutionFees = paidTutionFees;
+        this.Major = Major;
+        this.Faculty = Faculty;
+    }
+
     @Override
-    public int getStudentID()  throws RemoteException {
+    public int getStudentID() throws RemoteException {
         return StudentID;
     }
 
@@ -70,7 +83,7 @@ public class Student extends UnicastRemoteObject implements user, rmi.Student {
     }
 
     @Override
-    public String getStudentLName()  throws RemoteException{
+    public String getStudentLName() throws RemoteException {
         return StudentLName;
     }
 
@@ -79,7 +92,7 @@ public class Student extends UnicastRemoteObject implements user, rmi.Student {
     }
 
     @Override
-    public String getEmail()  throws RemoteException{
+    public String getEmail() throws RemoteException {
         return Email;
     }
 
@@ -88,7 +101,7 @@ public class Student extends UnicastRemoteObject implements user, rmi.Student {
     }
 
     @Override
-    public String getPassword()  throws RemoteException{
+    public String getPassword() throws RemoteException {
         return Password;
     }
 
@@ -97,7 +110,7 @@ public class Student extends UnicastRemoteObject implements user, rmi.Student {
     }
 
     @Override
-    public float getStudentOverAllGrade()  throws RemoteException{
+    public float getStudentOverAllGrade() throws RemoteException {
         return StudentOverAllGrade;
     }
 
@@ -106,7 +119,7 @@ public class Student extends UnicastRemoteObject implements user, rmi.Student {
     }
 
     @Override
-    public boolean isIsGraduated()  throws RemoteException{
+    public boolean isIsGraduated() throws RemoteException {
         return isGraduated;
     }
 
@@ -115,7 +128,7 @@ public class Student extends UnicastRemoteObject implements user, rmi.Student {
     }
 
     @Override
-    public boolean isPaidTutionFees()  throws RemoteException{
+    public boolean isPaidTutionFees() throws RemoteException {
         return paidTutionFees;
     }
 
@@ -124,7 +137,7 @@ public class Student extends UnicastRemoteObject implements user, rmi.Student {
     }
 
     @Override
-    public String getMajor()  throws RemoteException{
+    public String getMajor() throws RemoteException {
         return Major;
     }
 
@@ -133,7 +146,7 @@ public class Student extends UnicastRemoteObject implements user, rmi.Student {
     }
 
     @Override
-    public String getFaculty()  throws RemoteException{
+    public String getFaculty() throws RemoteException {
         return Faculty;
     }
 
@@ -141,8 +154,7 @@ public class Student extends UnicastRemoteObject implements user, rmi.Student {
         this.Faculty = Faculty;
     }
 
-
-    public ArrayList<Observer> getObservers()  throws RemoteException{
+    public ArrayList<Observer> getObservers() throws RemoteException {
         return Observers;
     }
 
@@ -154,11 +166,11 @@ public class Student extends UnicastRemoteObject implements user, rmi.Student {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Student Functions
-    ArrayList<Grade> getGrades(){
+    ArrayList<Grade> getGrades() {
         return getGrades();
     }
 
-    ArrayList<Course> getCourses(){
+    ArrayList<Course> getCourses() {
         return getCourses();
     }
 
@@ -188,28 +200,42 @@ public class Student extends UnicastRemoteObject implements user, rmi.Student {
 
     @Override
     public String toString() {
-        return StudentID  + StudentFName + StudentLName + Email +  Password + StudentOverAllGrade+ isGraduated +  paidTutionFees + Major + Faculty +  Courses  + '}';
+        return StudentID + StudentFName + StudentLName + Email + Password + StudentOverAllGrade + isGraduated + paidTutionFees + Major + Faculty + Courses + '}';
     }
-    
-    
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     @Override
     public user Login(String email, String password, String usertype) throws RemoteException {
         DBConnect db = new DBConnect();
-        user u = db.Login(email, password, usertype);        
+        user u = db.Login(email, password, usertype);
         return u;
     }
 
     @Override
-    public void ChangePassword(String OldPassword, String NewPassword) throws RemoteException{
+    public void ChangePassword(String OldPassword, String NewPassword) throws RemoteException {
 
     }
 
     @Override
-    public void ForgotPassword(String emailAddress) throws RemoteException{
+    public void ForgotPassword(String emailAddress) throws RemoteException {
 
+    }
+
+    @Override
+    public Student students(int StudentID, String StudentFName, String StudentLName, String Email, String Password, float StudentOverAllGrade, boolean isGraduated, boolean paidTutionFees, String Major, String Faculty) throws RemoteException {
+        this.StudentID = StudentID;
+        this.StudentFName = StudentFName;
+        this.StudentLName = StudentLName;
+        this.Email = Email;
+        this.Password = Password;
+        this.StudentOverAllGrade = StudentOverAllGrade;
+        this.isGraduated = isGraduated;
+        this.paidTutionFees = paidTutionFees;
+        this.Major = Major;
+        this.Faculty = Faculty;
+
+        Student s = new Student(StudentID, StudentFName, StudentLName, Email, Password, StudentOverAllGrade, isGraduated, paidTutionFees, Major, Faculty, Courses, Observers);
+        return s;
     }
 
 }

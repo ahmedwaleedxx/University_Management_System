@@ -48,6 +48,7 @@ public class UniversityManagementSystem {
         user tas = new TA();
         user employee = new Employee();
         AdminInterface adminInterface = new Admin();
+        rmi.Student st = new Student();
 
 // An RMI Registry initialized on port 1099
         Registry r = LocateRegistry.createRegistry(1099);
@@ -55,6 +56,7 @@ public class UniversityManagementSystem {
         // Our remote object g is binded to the name "grade"
         r.bind("database", db);
         r.bind("student", student);
+        r.bind("student2", student);
         r.bind("employee", employee);
         r.bind("admin", admin);
         r.bind("doctor", doctor);
@@ -64,7 +66,9 @@ public class UniversityManagementSystem {
 
         r.bind("admininterface", adminInterface);
         Admin a = new Admin();
-        //Student s1 = new Student(9, "Menna", "Waleed", "menna@gmail.com", "menna123", 0, false, true, "SE", "ICS", null, null);
+        Student s1= new Student() ;//= new Student(9, "Mario", "Medhat", "mario@gmail.com", "123", 55, true, false, "Networks", "ICS", null, null);
+       // s1.students(9, "Mario", "Medhat", "mario@gmail.com", "123", 55, true, false, "Networks", "ICS", null, null);
+        
         //a.RegisterStudent(s1);
         // a.DeleteStudent(s1);
         //db.getStudents();

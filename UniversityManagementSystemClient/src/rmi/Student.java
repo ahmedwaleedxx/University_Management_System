@@ -15,6 +15,8 @@ import java.util.ArrayList;
  */
 public interface Student extends Remote {
 
+    public Student students(int StudentID, String StudentFName, String StudentLName, String Email, String Password, float StudentOverAllGrade, boolean isGraduated, boolean paidTutionFees, String Major, String Faculty) throws RemoteException;
+
     public int getStudentID() throws RemoteException;
 
     public String getStudentFName() throws RemoteException;

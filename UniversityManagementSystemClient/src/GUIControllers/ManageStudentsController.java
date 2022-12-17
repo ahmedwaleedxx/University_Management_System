@@ -12,14 +12,16 @@ import java.awt.event.MouseListener;
 import java.rmi.AccessException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import rmi.AdminInterface;
 import rmi.Student;
-import universitymanagementsystemclient.GUIs.ManageStudents;
+import universitymanagementsystemclient.GUIs.*;
 
 /**
  *
@@ -29,12 +31,44 @@ public class ManageStudentsController {
 
     ManageStudents gui;
     Registry r;
+    Registry r1;
 
     public ManageStudentsController(ManageStudents gui, Registry r) {
         this.gui = gui;
         this.r = r;
         System.out.println("Hello");
         getStudentsInTable();
+
+        gui.getAddstudentbtn().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    addStudent();
+                } catch (RemoteException ex) {
+                    JOptionPane.showMessageDialog(gui, ex);
+                }
+            }
+        });
+        gui.getBackbtn().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                Login l = new Login();
+                try {
+
+                    l.setLocationRelativeTo(null); // This makes the window appears centered
+                    l.setVisible(true); // This shows the gui
+
+                    Registry r;
+
+                    r = LocateRegistry.getRegistry(1099);
+                } catch (RemoteException ex) {
+                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                LoginController gui_controller = new LoginController(l, r);
+
+            }
+        });
 
         gui.getStudentstbl().addMouseListener(new MouseListener() {
             @Override
@@ -82,7 +116,7 @@ public class ManageStudentsController {
             AdminInterface admin = (AdminInterface) r.lookup("admininterface");
             DefaultTableModel model = new DefaultTableModel();
             model.setColumnCount(0);
-            String header[] = new String[]{"StudentID", "First Name", "Last Name", "Email", "Password", "Grade", "Graduated", "Paid","Major", "Faculty"};
+            String header[] = new String[]{"StudentID", "First Name", "Last Name", "Email", "Password", "Grade", "Graduated", "Paid", "Major", "Faculty"};
             model.setColumnIdentifiers(header);
             gui.getStudentstbl().setModel(model);
             Student std;
@@ -109,9 +143,8 @@ public class ManageStudentsController {
             Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
-    public void addStudent() throws RemoteException{
+
+    public void addStudent() throws RemoteException {
         try {
             AdminInterface admin = (AdminInterface) r.lookup("admininterface");
 //            Student student;
@@ -123,19 +156,19 @@ public class ManageStudentsController {
             boolean ispaid = Boolean.parseBoolean(gui.getPaidfeestb().getText());
             String major = gui.getMajortb().getText();
             String faculty = gui.getFacultytb().getText();
-            
-            ArrayList<Student> students=new ArrayList<>();
-            
+
+            Student s = (Student) r1.lookup("student2");
+            //s.students(id, fname, fname, major, password, grade, isgrad, ispaid, major, faculty);
+             s.students(55, "Farouk", "Mario", "ICS", "123", 55, true, true, "SE", "CS");
+            admin.RegisterStudent(s);
 //            admin.RegisterStudent();
-            
-            
-            
+
         } catch (NotBoundException ex) {
             Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (AccessException ex) {
             Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
 }
