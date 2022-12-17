@@ -27,6 +27,14 @@ public class Login extends javax.swing.JFrame {
         initComponents();
     }
 
+    public JRadioButton getFinancerb() {
+        return financerb;
+    }
+
+    public JRadioButton getSuperioradminrb() {
+        return superioradminrb;
+    }
+
     public JRadioButton getAdminrb() {
         return adminrb;
     }
@@ -109,8 +117,10 @@ public class Login extends javax.swing.JFrame {
         loginbtn = new javax.swing.JButton();
         studentrb = new javax.swing.JRadioButton();
         doctorrb = new javax.swing.JRadioButton();
-        tarb = new javax.swing.JRadioButton();
+        financerb = new javax.swing.JRadioButton();
+        superioradminrb = new javax.swing.JRadioButton();
         adminrb = new javax.swing.JRadioButton();
+        tarb = new javax.swing.JRadioButton();
         errorpnl = new javax.swing.JPanel();
         emailerrlbl = new javax.swing.JLabel();
         passworderrlbl = new javax.swing.JLabel();
@@ -199,11 +209,17 @@ public class Login extends javax.swing.JFrame {
         doctorrb.setText("Doctor");
         jPanel1.add(doctorrb, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
 
-        buttonGroup2.add(tarb);
-        tarb.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
-        tarb.setForeground(new java.awt.Color(255, 255, 255));
-        tarb.setText("TA");
-        jPanel1.add(tarb, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, -1, -1));
+        buttonGroup2.add(financerb);
+        financerb.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
+        financerb.setForeground(new java.awt.Color(255, 255, 255));
+        financerb.setText("Finance");
+        jPanel1.add(financerb, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, -1, 20));
+
+        buttonGroup2.add(superioradminrb);
+        superioradminrb.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
+        superioradminrb.setForeground(new java.awt.Color(255, 255, 255));
+        superioradminrb.setText("Superior Admin");
+        jPanel1.add(superioradminrb, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, 20));
 
         buttonGroup2.add(adminrb);
         adminrb.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
@@ -211,18 +227,14 @@ public class Login extends javax.swing.JFrame {
         adminrb.setText("Admin");
         jPanel1.add(adminrb, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, -1, -1));
 
-        javax.swing.GroupLayout errorpnlLayout = new javax.swing.GroupLayout(errorpnl);
-        errorpnl.setLayout(errorpnlLayout);
-        errorpnlLayout.setHorizontalGroup(
-            errorpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 110, Short.MAX_VALUE)
-        );
-        errorpnlLayout.setVerticalGroup(
-            errorpnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 230, Short.MAX_VALUE)
-        );
+        buttonGroup2.add(tarb);
+        tarb.setFont(new java.awt.Font("Engravers MT", 0, 12)); // NOI18N
+        tarb.setForeground(new java.awt.Color(255, 255, 255));
+        tarb.setText("TA");
+        jPanel1.add(tarb, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, -1, -1));
 
-        jPanel1.add(errorpnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 230));
+        errorpnl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(errorpnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 180));
 
         emailerrlbl.setForeground(new java.awt.Color(255, 51, 51));
         jPanel1.add(emailerrlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 200, 200, 30));
@@ -271,6 +283,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel emailerrlbl;
     private javax.swing.JTextField emailtb;
     private javax.swing.JPanel errorpnl;
+    private javax.swing.JRadioButton financerb;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -282,6 +295,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JCheckBox showpasswordcb;
     private javax.swing.JButton signupbtn;
     private javax.swing.JRadioButton studentrb;
+    private javax.swing.JRadioButton superioradminrb;
     private javax.swing.JRadioButton tarb;
     // End of variables declaration//GEN-END:variables
 }

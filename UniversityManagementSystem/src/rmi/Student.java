@@ -18,8 +18,7 @@ import universitymanagementsystem.Observer;
 public interface Student extends Remote {
 
     //public Student data(int id, String fname, String lname, String mail, String password, ) throws RemoteException;
-    public Student students(int StudentID, String StudentFName, String StudentLName, String Email, String Password, float StudentOverAllGrade, boolean isGraduated, boolean paidTutionFees, String Major, String Faculty) throws RemoteException;
-
+   
     public int getStudentID() throws RemoteException;
 
     public String getStudentFName() throws RemoteException;

@@ -221,21 +221,21 @@ public class Student extends UnicastRemoteObject implements user, rmi.Student {
 
     }
 
-    @Override
-    public Student students(int StudentID, String StudentFName, String StudentLName, String Email, String Password, float StudentOverAllGrade, boolean isGraduated, boolean paidTutionFees, String Major, String Faculty) throws RemoteException {
-        this.StudentID = StudentID;
-        this.StudentFName = StudentFName;
-        this.StudentLName = StudentLName;
-        this.Email = Email;
-        this.Password = Password;
-        this.StudentOverAllGrade = StudentOverAllGrade;
-        this.isGraduated = isGraduated;
-        this.paidTutionFees = paidTutionFees;
-        this.Major = Major;
-        this.Faculty = Faculty;
-
-        Student s = new Student(StudentID, StudentFName, StudentLName, Email, Password, StudentOverAllGrade, isGraduated, paidTutionFees, Major, Faculty, Courses, Observers);
-        return s;
-    }
+//    @Override
+//    public Student students(int StudentID, String StudentFName, String StudentLName, String Email, String Password, float StudentOverAllGrade, boolean isGraduated, boolean paidTutionFees, String Major, String Faculty) throws RemoteException {
+//        this.StudentID = StudentID;
+//        this.StudentFName = StudentFName;
+//        this.StudentLName = StudentLName;
+//        this.Email = Email;
+//        this.Password = Password;
+//        this.StudentOverAllGrade = StudentOverAllGrade;
+//        this.isGraduated = isGraduated;
+//        this.paidTutionFees = paidTutionFees;
+//        this.Major = Major;
+//        this.Faculty = Faculty;
+//
+//        Student s = new Student(StudentID, StudentFName, StudentLName, Email, Password, StudentOverAllGrade, isGraduated, paidTutionFees, Major, Faculty);
+//        return s;
+//    }
 
 }

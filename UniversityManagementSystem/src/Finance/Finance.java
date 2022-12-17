@@ -7,17 +7,17 @@ package Finance;
 
 import Employee.*;
 import java.rmi.RemoteException;
+import rmi.user;
+import universitymanagementsystem.DBConnect;
 
 /**
  *
  * @author ahmedwaleed
  */
-public class Finance extends Employee {
+public class Finance extends Employee implements user {
 
     public Finance() throws RemoteException {
     }
-    
-    
 
     public void setFacultyFees(String FacultyName, Double fees) {
 
@@ -43,5 +43,12 @@ public class Finance extends Employee {
 
     public void HandleComplaint() {
 
+    }
+
+    @Override
+    public user Login(String email, String password, String usertype) throws RemoteException {
+        DBConnect db = new DBConnect();
+        user u = db.Login(email, password, usertype);
+        return u;
     }
 }

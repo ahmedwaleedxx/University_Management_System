@@ -20,7 +20,9 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import rmi.AdminInterface;
+import rmi.EmployeeInterface;
 import rmi.Student;
+import rmi.user;
 import universitymanagementsystemclient.GUIs.*;
 
 /**
@@ -32,21 +34,113 @@ public class ManageStudentsController {
     ManageStudents gui;
     Registry r;
     Registry r1;
-
-    public ManageStudentsController(ManageStudents gui, Registry r) {
+    AdminInterface adminn;
+    EmployeeInterface employee;
+    
+    public ManageStudentsController(ManageStudents gui, Registry r, AdminInterface adminn) throws RemoteException {
         this.gui = gui;
         this.r = r;
+        this.employee = (EmployeeInterface) adminn;
         System.out.println("Hello");
-        getStudentsInTable();
+
+        gui.getjLabel13().setText(employee.getEmployeeFName());
+        try {
+            AdminInterface admin = (AdminInterface) r.lookup("admininterface");
+            DefaultTableModel model = new DefaultTableModel();
+            model.setColumnCount(0);
+            String header[] = new String[]{"StudentID", "First Name", "Last Name", "Email", "Password", "Grade", "Graduated", "Paid", "Major", "Faculty"};
+            model.setColumnIdentifiers(header);
+            gui.getStudentstbl().setModel(model);
+            Student std;
+            for (int i = 0; i < admin.getStudents().size(); i++) {
+                //String id = stud.getCoursesID().get(i);
+                std = (Student) admin.getStudents().get(i);
+                int id = std.getStudentID();
+                String fname = std.getStudentFName();
+                String lname = std.getStudentLName();
+                String email = std.getEmail();
+                String password = std.getPassword();
+                float grade = std.getStudentOverAllGrade();
+                boolean isgraduated = std.isIsGraduated();
+                boolean ispaidfees = std.isPaidTutionFees();
+                String major = std.getMajor();
+                String faculty = std.getFaculty();
+
+                model.addRow(new Object[]{id, fname, lname, email, password, grade, isgraduated, ispaidfees, major, faculty});
+            }
+
+        } catch (RemoteException ex) {
+            Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NotBoundException ex) {
+            Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        gui.getUpdatestudentbtn().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    AdminInterface admin = (AdminInterface) r.lookup("admininterface");
+
+                    int id = Integer.parseInt(gui.getIdtb().getText());
+                    String fname = gui.getFnametb().getText();
+                    String lname = gui.getLnametb().getText();
+                    String email = gui.getEmailtb().getText();
+                    String password = gui.getPasswordtb().getText();
+                    float grade = Float.parseFloat(gui.getGradetb().getText());
+                    boolean isgrad = Boolean.parseBoolean(gui.getGradetb().getText());
+                    boolean ispaid = Boolean.parseBoolean(gui.getPaidfeestb().getText());
+                    String major = gui.getMajortb().getText();
+                    String faculty = gui.getFacultytb().getText();
+
+                    admin.UpdateStudent(id, fname, lname, email, password, grade, isgrad, ispaid, major, faculty);
+
+                } catch (RemoteException | NotBoundException ex) {
+                    Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+        });
+
+        gui.getDeletestudentbtn().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                try {
+                    AdminInterface admin = (AdminInterface) r.lookup("admininterface");
+                    int id = Integer.parseInt(gui.getIdtb().getText());
+                    admin.DeleteStudent(id);
+                } catch (RemoteException ex) {
+                    Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (NotBoundException ex) {
+                    Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+        });
 
         gui.getAddstudentbtn().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 try {
-                    addStudent();
-                } catch (RemoteException ex) {
-                    JOptionPane.showMessageDialog(gui, ex);
+                    AdminInterface admin = (AdminInterface) r.lookup("admininterface");
+                    int id = Integer.parseInt(gui.getIdtb().getText());
+                    String fname = gui.getFnametb().getText();
+                    String lname = gui.getLnametb().getText();
+                    String email = gui.getEmailtb().getText();
+                    String password = gui.getPasswordtb().getText();
+                    float grade = Float.parseFloat(gui.getGradetb().getText());
+                    boolean isgrad = Boolean.parseBoolean(gui.getGradetb().getText());
+                    boolean ispaid = Boolean.parseBoolean(gui.getPaidfeestb().getText());
+                    String major = gui.getMajortb().getText();
+                    String faculty = gui.getFacultytb().getText();
+                    admin.RegisterStudent(id, fname, lname, email, password, grade, isgrad, ispaid, major, faculty);
+                    JOptionPane.showMessageDialog(gui, "Student Inserted Successfully");
+
+                } catch (RemoteException | NotBoundException ex) {
+                    Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
                 }
+
             }
         });
         gui.getBackbtn().addActionListener(new ActionListener() {
@@ -111,64 +205,5 @@ public class ManageStudentsController {
 
     }
 
-    public void getStudentsInTable() {
-        try {
-            AdminInterface admin = (AdminInterface) r.lookup("admininterface");
-            DefaultTableModel model = new DefaultTableModel();
-            model.setColumnCount(0);
-            String header[] = new String[]{"StudentID", "First Name", "Last Name", "Email", "Password", "Grade", "Graduated", "Paid", "Major", "Faculty"};
-            model.setColumnIdentifiers(header);
-            gui.getStudentstbl().setModel(model);
-            Student std;
-            for (int i = 0; i < admin.getStudents().size(); i++) {
-                //String id = stud.getCoursesID().get(i);
-                std = (Student) admin.getStudents().get(i);
-                int id = std.getStudentID();
-                String fname = std.getStudentFName();
-                String lname = std.getStudentLName();
-                String email = std.getEmail();
-                String password = std.getPassword();
-                float grade = std.getStudentOverAllGrade();
-                boolean isgraduated = std.isIsGraduated();
-                boolean ispaidfees = std.isPaidTutionFees();
-                String major = std.getMajor();
-                String faculty = std.getFaculty();
-
-                model.addRow(new Object[]{id, fname, lname, email, password, grade, isgraduated, ispaidfees, major, faculty});
-            }
-
-        } catch (RemoteException ex) {
-            Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NotBoundException ex) {
-            Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public void addStudent() throws RemoteException {
-        try {
-            AdminInterface admin = (AdminInterface) r.lookup("admininterface");
-//            Student student;
-            int id = Integer.parseInt(gui.getIdtb().getText());
-            String fname = gui.getFnametb().getText();
-            String password = gui.getPasswordtb().getText();
-            float grade = Float.parseFloat(gui.getGradetb().getText());
-            boolean isgrad = Boolean.parseBoolean(gui.getGradetb().getText());
-            boolean ispaid = Boolean.parseBoolean(gui.getPaidfeestb().getText());
-            String major = gui.getMajortb().getText();
-            String faculty = gui.getFacultytb().getText();
-
-            Student s = (Student) r1.lookup("student2");
-            //s.students(id, fname, fname, major, password, grade, isgrad, ispaid, major, faculty);
-             s.students(55, "Farouk", "Mario", "ICS", "123", 55, true, true, "SE", "CS");
-            admin.RegisterStudent(s);
-//            admin.RegisterStudent();
-
-        } catch (NotBoundException ex) {
-            Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (AccessException ex) {
-            Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
+//   
 }

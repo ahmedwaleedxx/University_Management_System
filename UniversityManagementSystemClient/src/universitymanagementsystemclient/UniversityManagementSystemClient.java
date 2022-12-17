@@ -15,6 +15,7 @@ import universitymanagementsystemclient.GUIs.SplashScreen;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import rmi.user;
 import universitymanagementsystemclient.GUIs.*;
 
 /**
@@ -52,6 +53,7 @@ public class UniversityManagementSystemClient {
                             gui.setVisible(true); // This shows the gui
                             
                             Registry r = LocateRegistry.getRegistry(1099);
+                          
                             LoginController gui_controller = new LoginController(gui, r);
                             break;
 

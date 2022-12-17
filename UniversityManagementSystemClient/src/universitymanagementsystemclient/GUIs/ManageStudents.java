@@ -36,6 +36,10 @@ public class ManageStudents extends javax.swing.JFrame {
         return jScrollPane1;
     }
 
+    public JLabel getjLabel13() {
+        return jLabel13;
+    }
+
     public JTable getStudentstbl() {
         return studentstbl;
     }
@@ -134,6 +138,7 @@ public class ManageStudents extends javax.swing.JFrame {
         addstudentbtn = new javax.swing.JButton();
         updatestudentbtn = new javax.swing.JButton();
         backbtn = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -265,6 +270,10 @@ public class ManageStudents extends javax.swing.JFrame {
         backbtn.setText("Back to menu");
         getContentPane().add(backbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 160, 30));
 
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("jLabel13");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 90, 40));
+
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Grad2.png"))); // NOI18N
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 500));
 
@@ -294,6 +303,7 @@ public class ManageStudents extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

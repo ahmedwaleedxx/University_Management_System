@@ -2,3 +2,4 @@
 *.xml
 UniversityManagementSystem/nbproject/private/private.xml
 UniversityManagementSystemClient/nbproject/private/private.xml
+/UniversityManagementSystem/dist/

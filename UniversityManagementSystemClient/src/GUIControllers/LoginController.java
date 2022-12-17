@@ -16,6 +16,9 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import javax.swing.ImageIcon;
+import rmi.AdminInterface;
+import rmi.Student;
+import rmi.SuperiorAdminInterface;
 import rmi.user;
 
 /**
@@ -109,6 +112,8 @@ public class LoginController {
         gui.getStudentrb().setOpaque(false);
         gui.getDoctorrb().setOpaque(false);
         gui.getTarb().setOpaque(false);
+        gui.getSuperioradminrb().setOpaque(false);
+        gui.getFinancerb().setOpaque(false);
         gui.getLoginbtn().setOpaque(false);
         gui.getCancelbtn().setOpaque(false);
         gui.getSignupbtn().setOpaque(false);
@@ -158,21 +163,40 @@ public class LoginController {
                 String usertype = null;
                 validateLogin();
 
+                
                 if (gui.getAdminrb().isSelected()) {
                     usertype = "Admin";
                     user admin = (user) r.lookup("admin");
-                    user admin2 = admin.Login(email, password, usertype);
+                    AdminInterface admin2 = (AdminInterface) admin.Login(email, password, usertype);
                     if (admin2 == null) {
                         JOptionPane.showMessageDialog(null, "Login Failed!!");
                     } else {
                         JOptionPane.showMessageDialog(null, "Logged in Successfully !!");
+                        
+                        AdminMenu am = new AdminMenu();
+                        am.setLocationRelativeTo(null);
+                        am.setVisible(true);
+                        Registry r = LocateRegistry.getRegistry(1099);
+                        AdminMenuController amc = new AdminMenuController(am, r, admin2);
+                        gui.dispose();
                     }
 
-                    JOptionPane.showMessageDialog(null, "Not Registered yet!!");
-                } else if (gui.getStudentrb().isSelected()) {
+                } else if(gui.getSuperioradminrb().isSelected()){
+                            usertype="Superior Admin";
+                            user superior = (user) r.lookup("superior");
+                            SuperiorAdminInterface sai = (SuperiorAdminInterface) superior.Login(email, password, usertype);
+                            if(sai == null){
+                                JOptionPane.showMessageDialog(null, "Login Failed!!");
+                            }else{
+                                JOptionPane.showMessageDialog(null, "Logged in Successfully");
+                            }
+                            }
+                    
+                    
+                 else if (gui.getStudentrb().isSelected()) {
                     usertype = "Student";
                     user student = (user) r.lookup("student");
-                    user student2 = student.Login(email, password, usertype);
+                    Student student2 = (Student) student.Login(email, password, usertype);
 
                     if (student2 == null) {
                         JOptionPane.showMessageDialog(null, "Login Failed!!");
@@ -181,13 +205,13 @@ public class LoginController {
                          
                         
                         
-                        ManageStudents ms = new ManageStudents();
-                            ms.setLocationRelativeTo(null); // This makes the window appears centered
-                            ms.setVisible(true); // This shows the gui
-                            
-                            Registry r = LocateRegistry.getRegistry(1099);
-                            ManageStudentsController gui_controller = new ManageStudentsController(ms, r);
-                        gui.dispose();
+//                        ManageStudents ms = new ManageStudents();
+//                            ms.setLocationRelativeTo(null); // This makes the window appears centered
+//                            ms.setVisible(true); // This shows the gui
+//                            
+//                            Registry r = LocateRegistry.getRegistry(1099);
+//                            ManageStudentsController gui_controller = new ManageStudentsController(ms, r, student2);
+//                        gui.dispose();
                     }
                 } else if (gui.getTarb().isSelected()) {
                     usertype = "TA";

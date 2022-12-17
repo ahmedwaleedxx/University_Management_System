@@ -6,6 +6,8 @@
 package rmi;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 /**
  *
@@ -30,4 +32,9 @@ public interface SuperiorAdminInterface extends Remote {
 //
 //    public void RemoveFaculty(Faculty facultyID);
 
+    public void AddAdmin(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType) throws RemoteException;
+
+    public void UpdateAdmin(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType) throws RemoteException;
+
+    public void DeleteAdmin(int id);
 }

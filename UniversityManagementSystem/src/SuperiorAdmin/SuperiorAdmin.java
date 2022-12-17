@@ -5,6 +5,7 @@
  */
 package SuperiorAdmin;
 
+import Admin.Admin;
 import Doctor.*;
 import Employee.*;
 import TA.*;
@@ -20,13 +21,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bson.Document;
 import rmi.SuperiorAdminInterface;
+import rmi.user;
 import universitymanagementsystem.*;
 
 /**
  *
  * @author ahmedwaleed
  */
-public class SuperiorAdmin extends Employee implements SuperiorAdminInterface {
+public class SuperiorAdmin extends Employee implements SuperiorAdminInterface, user {
 
     private MongoClient client;
     private MongoDatabase database;
@@ -35,15 +37,17 @@ public class SuperiorAdmin extends Employee implements SuperiorAdminInterface {
     private MongoCollection<Document> DoctorCollection;
     private MongoCollection<Document> TACollection;
     private MongoCollection<Document> FacuCollection;
-    private Gson gson = new Gson();
+    private Gson gson;
 
     public SuperiorAdmin() throws RemoteException {
         Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
         mongoLogger.setLevel(Level.SEVERE);
         // Initialize
+        gson = new Gson();
         client = new MongoClient(new MongoClientURI("mongodb://admin:jl6fIl0vxg1oyuME@ac-tm8fwxy-shard-00-00.bnsnciy.mongodb.net:27017,ac-tm8fwxy-shard-00-01.bnsnciy.mongodb.net:27017,ac-tm8fwxy-shard-00-02.bnsnciy.mongodb.net:27017/?ssl=true&replicaSet=atlas-117fq2-shard-0&authSource=admin&retryWrites=true&w=majority"));
         database = client.getDatabase("UniversityManagementSystem");
         DoctorCollection = database.getCollection("Doctor");
+        AdminCollection = database.getCollection("Admin");
         TACollection = database.getCollection("TA");
         FacuCollection = database.getCollection("Faculty");
         CourseCollection = database.getCollection("Course");
@@ -133,5 +137,35 @@ public class SuperiorAdmin extends Employee implements SuperiorAdminInterface {
     public void DeleteCourse(Course c) throws RemoteException {
         CourseCollection.deleteOne(Filters.eq("CourseID", c.getCourseID()));
         System.out.println("Deleted Successfully");
+    }
+
+    @Override
+    public void AddAdmin(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType) throws RemoteException {
+        Admin admin = new Admin(EmployeeID, EmployeeFName, EmployeeLName, Email, Password, EmployeeSalary, EmployeeWorkingHours, EmployeeBankAccountIBAN, EmployeeType);
+        AdminCollection.insertOne(Document.parse(gson.toJson(admin)));
+        System.out.println("Admin Inserted Succesfully");
+    }
+
+    @Override
+    public void UpdateAdmin(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType) throws RemoteException {
+
+        Admin admin = new Admin(EmployeeID, EmployeeFName, EmployeeLName, Email, Password, EmployeeSalary, EmployeeWorkingHours, EmployeeBankAccountIBAN, EmployeeType);
+                Document doc = Document.parse(gson.toJson(admin));
+        AdminCollection.replaceOne(Filters.eq("EmployeeID", admin.getEmployeeID()), doc);
+        System.out.println("Updated Successfully");
+    }
+
+//    @Override
+//    public void DeleteAdmin(int id) {
+//        AdminCollection.deleteOne(Filters.eq("EmployeeID", id));
+//        System.out.println("Deleted Successfully");
+//    }
+
+    @Override
+    public user Login(String email, String password, String usertype) throws RemoteException {
+        DBConnect db = new DBConnect();
+        user u = db.Login(email, password, usertype);
+        return u;
+
     }
 }

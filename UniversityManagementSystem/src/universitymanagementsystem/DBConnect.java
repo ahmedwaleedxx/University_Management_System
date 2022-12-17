@@ -46,7 +46,7 @@ public class DBConnect extends UnicastRemoteObject implements DBInterface {
     private MongoCollection<Document> EmployeesCollection;
     private MongoCollection<Document> CoursesCollection;
     private MongoCollection<Document> facultiesCollection;
-    private MongoCollection<Document> adminCollection;
+    private MongoCollection<Document> AdminCollection;
     private MongoCollection<Document> doctorcollection;
     private MongoCollection<Document> tacollection;
     private MongoCollection<Document> superioradmincollection;
@@ -63,13 +63,14 @@ public class DBConnect extends UnicastRemoteObject implements DBInterface {
         database = client.getDatabase("UniversityManagementSystem"); // Database name
         collection = database.getCollection("Depertmant"); // Collection name
         
+        AdminCollection = database.getCollection("Admin");
         StudentsCollection = database.getCollection("Student");
         EmployeesCollection = database.getCollection("Employee");
         CoursesCollection = database.getCollection("Course");
         facultiesCollection = database.getCollection("Faculty");
         doctorcollection = database.getCollection("Doctor");
         tacollection = database.getCollection("TA");
-        superioradmincollection = database.getCollection("Superior Admin");
+        superioradmincollection = database.getCollection("SuperiorAdmin");
         financecollection = database.getCollection("Finance");
 
     }
@@ -82,6 +83,7 @@ public class DBConnect extends UnicastRemoteObject implements DBInterface {
                 if (student == null) {
                     return null;
                 }
+                System.out.println(gson.fromJson(student.toJson(), Student.class));
                 Student studentresult = gson.fromJson(student.toJson(), Student.class);
 
                 return studentresult;
@@ -93,12 +95,15 @@ public class DBConnect extends UnicastRemoteObject implements DBInterface {
                 }
                 Doctor doctorresult = gson.fromJson(doctor.toJson(), Doctor.class);
                 return doctorresult;
-            case "Admin":
-                Document admin = adminCollection.find(Filters.and(Filters.eq("Email", email), Filters.eq("Password", Password))).first();
-                if (admin == null) {
+            case "Admin":               
+               Document adminn = AdminCollection.find(Filters.and(Filters.eq("Email", email), Filters.eq("Password", Password))).first();
+                //System.out.println(adminn); 
+               if (adminn == null) {
                     return null;
                 }
-                Admin adminresult = gson.fromJson(admin.toJson(), Admin.class);
+                
+                Admin adminresult = gson.fromJson(adminn.toJson(), Admin.class);
+                //System.out.println(adminresult);
                 return adminresult;
             case "TA":
                 Document ta = tacollection.find(Filters.and(Filters.eq("Email", email), Filters.eq("Password", Password))).first();

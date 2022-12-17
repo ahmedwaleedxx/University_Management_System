@@ -5,9 +5,7 @@
  */
 package rmi;
 
-import java.rmi.Remote;
-import java.rmi.RemoteException;
-import java.util.ArrayList;
+import java.rmi.*;
 
 /**
  *
@@ -36,6 +34,4 @@ public interface Student extends Remote {
     public String getMajor() throws RemoteException;
 
     public String getFaculty() throws RemoteException;
-
-//    public ArrayList<Observer> getObservers() throws RemoteException;
 }

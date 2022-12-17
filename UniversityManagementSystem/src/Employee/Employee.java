@@ -8,6 +8,7 @@ package Employee;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
+import rmi.EmployeeInterface;
 import rmi.user;
 import universitymanagementsystem.DBConnect;
 
@@ -15,7 +16,7 @@ import universitymanagementsystem.DBConnect;
  *
  * @author ahmedwaleed
  */
-public class Employee extends UnicastRemoteObject implements user {
+public class Employee extends UnicastRemoteObject implements user, EmployeeInterface {
 
     //Private Attributes
     private int EmployeeID;
@@ -47,7 +48,8 @@ public class Employee extends UnicastRemoteObject implements user {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Getters And Setters
-    public int getEmployeeID() {
+    @Override
+    public int getEmployeeID() throws RemoteException{
         return EmployeeID;
     }
 
@@ -55,7 +57,8 @@ public class Employee extends UnicastRemoteObject implements user {
         this.EmployeeID = EmployeeID;
     }
 
-    public String getEmployeeFName() {
+    @Override
+    public String getEmployeeFName() throws RemoteException{
         return EmployeeFName;
     }
 
@@ -63,7 +66,8 @@ public class Employee extends UnicastRemoteObject implements user {
         this.EmployeeFName = EmployeeFName;
     }
 
-    public String getEmployeeLName() {
+    @Override
+    public String getEmployeeLName() throws RemoteException {
         return EmployeeLName;
     }
 
@@ -71,7 +75,8 @@ public class Employee extends UnicastRemoteObject implements user {
         this.EmployeeLName = EmployeeLName;
     }
 
-    public String getEmail() {
+    @Override
+    public String getEmail() throws RemoteException {
         return Email;
     }
 
@@ -79,7 +84,8 @@ public class Employee extends UnicastRemoteObject implements user {
         this.Email = Email;
     }
 
-    public String getPassword() {
+    @Override
+    public String getPassword() throws RemoteException{
         return Password;
     }
 
@@ -87,7 +93,8 @@ public class Employee extends UnicastRemoteObject implements user {
         this.Password = Password;
     }
 
-    public float getEmployeeSalary() {
+    @Override
+    public float getEmployeeSalary() throws RemoteException{
         return EmployeeSalary;
     }
 
@@ -95,7 +102,8 @@ public class Employee extends UnicastRemoteObject implements user {
         this.EmployeeSalary = EmployeeSalary;
     }
 
-    public ArrayList<String> getEmployeeWorkingHours() {
+    @Override
+    public ArrayList<String> getEmployeeWorkingHours() throws RemoteException{
         return EmployeeWorkingHours;
     }
 
@@ -103,7 +111,8 @@ public class Employee extends UnicastRemoteObject implements user {
         this.EmployeeWorkingHours = EmployeeWorkingHours;
     }
 
-    public String getEmployeeBankAccountIBAN() {
+    @Override
+    public String getEmployeeBankAccountIBAN() throws RemoteException{
         return EmployeeBankAccountIBAN;
     }
 
@@ -111,7 +120,8 @@ public class Employee extends UnicastRemoteObject implements user {
         this.EmployeeBankAccountIBAN = EmployeeBankAccountIBAN;
     }
 
-    public String getEmployeeType() {
+    @Override
+    public String getEmployeeType() throws RemoteException {
         return EmployeeType;
     }
 
