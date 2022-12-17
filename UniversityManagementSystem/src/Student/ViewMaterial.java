@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package universitymanagementsystem;
+package Student;
+
+import java.util.ArrayList;
+import universitymanagementsystem.Material;
 
 /**
  *
@@ -11,5 +14,5 @@ package universitymanagementsystem;
  */
 public interface ViewMaterial {
 
-    public void DisplayMaterial();
+    public ArrayList<Material>getMaterials(int courseID);
 }

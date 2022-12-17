@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bson.Document;
+import rmi.DoctorInterface;
 import rmi.user;
 import universitymanagementsystem.*;
 
@@ -29,7 +30,7 @@ import universitymanagementsystem.*;
  *
  * @author ahmedwaleed
  */
-public class Doctor extends Employee {
+public class Doctor extends Employee implements DoctorInterface{
 
     private Course AssignedCourse;
     private TA AssignedTA;
@@ -114,6 +115,7 @@ public class Doctor extends Employee {
 
     }
 
+    @Override
     public void AddCourseMaterial(Material m) {
         MaterialCollection.insertOne(Document.parse(gson.toJson(m)));
         System.out.println("File Inserted Succesfully");
@@ -121,27 +123,31 @@ public class Doctor extends Employee {
 
     
     
+    @Override
     public void RemoveCourseMaterial(Material m) throws RemoteException {
         MaterialCollection.deleteOne(Filters.eq("ID", m.getID()));
         System.out.println("File Deleted Successfully");
     }
 
+    @Override
     public void UpdateMaterialTitle(int matid, String title) throws RemoteException {
         System.out.println("Title Edited");
         Document doc = Document.parse(gson.toJson(title));
         MaterialCollection.updateOne(Filters.eq("ID", matid), Updates.set("MaterialTitle", doc));
     }
 
+    @Override
     public void UpdateMaterialVisibility(int matid, boolean vis) throws RemoteException {
         System.out.println("Visibility Edited");
         Document doc = Document.parse(gson.toJson(vis));
         MaterialCollection.updateOne(Filters.eq("ID", matid), Updates.set("MaterialVisibility", doc));
     }
 
+    @Override
     public void UpdateMaterialCourse(int matid, int cid) throws RemoteException {
         System.out.println("Course Edited");
         Document doc = Document.parse(gson.toJson(cid));
-        MaterialCollection.updateOne(Filters.eq("ID", matid), Updates.set("MaterialVisibility", doc));
+        MaterialCollection.updateOne(Filters.eq("ID", matid), Updates.set("CourseID", doc));
     }
     
     
@@ -150,25 +156,4 @@ public class Doctor extends Employee {
         Document doc = Document.parse(gson.toJson(title));
         courseCollection.updateOne(Filters.eq("CourseID", courseid), Updates.set("CourseTitle",doc));
         }
-
-//    @Override
-//    public void Login(String e, String p, String u) throws RemoteException{
-//        
-//    }
-//    @Override
-//    public user Login(String email, String password, String usertype) throws RemoteException {
-//        DBConnect db = new DBConnect();
-//        user u = db.Login(email, password, usertype);
-//        return u;
-//    }
-//
-//    @Override
-//    public void ChangePassword(String OldPassword, String NewPassword) throws RemoteException {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-//
-//    @Override
-//    public void ForgotPassword(String emailAddress) throws RemoteException {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
 }

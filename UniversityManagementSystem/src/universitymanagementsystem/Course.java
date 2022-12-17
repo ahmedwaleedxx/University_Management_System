@@ -40,7 +40,7 @@ public class Course {
     private String Faculty;
     private ArrayList<Material> CourseMaterial;
 
-    public Course(int CourseID, String CourseTitle, Doctor CourseDoctor,  String Mail, String Faculty, ArrayList<Material> CourseMaterial) throws RemoteException {
+    public Course(int CourseID, String CourseTitle, Doctor CourseDoctor,  String Mail, String Faculty) throws RemoteException {
         this.CourseID = CourseID;
         this.CourseTitle = CourseTitle;
         this.CourseDoctor = CourseDoctor;
@@ -48,7 +48,7 @@ public class Course {
 //        CourseTAs.add(ta); 
         this.Mail = Mail;
         this.Faculty = Faculty;
-        this.CourseMaterial = CourseMaterial;
+        //this.CourseMaterial = CourseMaterial;
     }
 
     public Course() throws RemoteException {

@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.rmi.AccessException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
@@ -107,6 +108,34 @@ public class ManageStudentsController {
         } catch (NotBoundException ex) {
             Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    
+    public void addStudent() throws RemoteException{
+        try {
+            AdminInterface admin = (AdminInterface) r.lookup("admininterface");
+//            Student student;
+            int id = Integer.parseInt(gui.getIdtb().getText());
+            String fname = gui.getFnametb().getText();
+            String password = gui.getPasswordtb().getText();
+            float grade = Float.parseFloat(gui.getGradetb().getText());
+            boolean isgrad = Boolean.parseBoolean(gui.getGradetb().getText());
+            boolean ispaid = Boolean.parseBoolean(gui.getPaidfeestb().getText());
+            String major = gui.getMajortb().getText();
+            String faculty = gui.getFacultytb().getText();
+            
+            ArrayList<Student> students=new ArrayList<>();
+            
+//            admin.RegisterStudent();
+            
+            
+            
+        } catch (NotBoundException ex) {
+            Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (AccessException ex) {
+            Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
 }

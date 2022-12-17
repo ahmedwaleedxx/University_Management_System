@@ -6,6 +6,7 @@
 package rmi;
 
 import Student.Student;
+import TA.TA;
 import java.rmi.*;
 import java.util.*;
 import universitymanagementsystem.*;
@@ -16,7 +17,7 @@ import universitymanagementsystem.*;
  */
 public interface AdminInterface extends Remote {
 
-     public void RegisterStudent(Student student) throws RemoteException;
+    public void RegisterStudent(Student student) throws RemoteException;
 
     public void UpdateStudent(Student student) throws RemoteException;
 
@@ -25,8 +26,16 @@ public interface AdminInterface extends Remote {
     public void DeleteStudent(Student studentID) throws RemoteException;
 
 //    public ArrayList<Complaint> viewPendingComplaints() throws RemoteException;
-    
-        public ArrayList<Student> getStudents() throws RemoteException;
+    public ArrayList<Student> getStudents() throws RemoteException;
 
     public void HandleComplaint() throws RemoteException;
+
+    public void AddCourseTA(int courseid, TA ta) throws RemoteException;
+
+    public void RemoveCourseTA(int courseid) throws RemoteException;
+
+    public void UpdateCourseTitle(int courseid, String title) throws RemoteException;
+
+    public void DeleteCourse(String coursename) throws RemoteException;
+
 }

@@ -59,6 +59,7 @@ public class Admin extends Employee implements AdminInterface {
     }
 
     
+    @Override
     public void RegisterStudent(Student student) throws RemoteException{
         StudentCollection.insertOne(Document.parse(gson.toJson(student)));
         System.out.println("Student Inserted Succesfully");
@@ -104,24 +105,30 @@ public class Admin extends Employee implements AdminInterface {
 
     }
 
+    
+    
+    @Override
     public void AddCourseTA(int courseid, TA ta) throws RemoteException {
         System.out.println("Error");
         Document doc1 = Document.parse(gson.toJson(ta));
         courseCollection.updateOne(Filters.eq("CourseID", courseid), Updates.set("CourseTAs", doc1));
     }
 
+    @Override
     public void RemoveCourseTA(int courseid) throws RemoteException {
         System.out.println("Error");
         Document doc = null;
         courseCollection.updateOne(Filters.eq("CourseID", courseid), Updates.set("CourseTAs", doc));
     }
     
+    @Override
       public void UpdateCourseTitle(int courseid, String title) throws RemoteException {
         System.out.println("Title Edited");
         Document doc = Document.parse(gson.toJson(title));
         courseCollection.updateOne(Filters.eq("CourseID", courseid), Updates.set("CourseTitle",doc));
         }
       
+    @Override
        public void DeleteCourse(String coursename) throws RemoteException{
         StudentCollection.deleteOne(Filters.eq("StudentID", coursename));
         System.out.println("Deleted Successfully");
