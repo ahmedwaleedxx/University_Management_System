@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -30,6 +31,38 @@ public class DoctorMaterials extends javax.swing.JFrame {
 
     public JLabel getIdlbl() {
         return idlbl;
+    }
+
+    public JTextField getCourseidtb() {
+        return courseidtb;
+    }
+
+    public JTextField getIdtb() {
+        return idtb;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public JLabel getjLabel3() {
+        return jLabel3;
+    }
+
+    public JLabel getjLabel4() {
+        return jLabel4;
+    }
+
+    public JLabel getjLabel5() {
+        return jLabel5;
+    }
+
+    public JTextField getTitletb() {
+        return titletb;
+    }
+
+    public JTextField getViisibilitytb() {
+        return viisibilitytb;
     }
 
     public JLabel getjLabel1() {
@@ -83,8 +116,18 @@ public class DoctorMaterials extends javax.swing.JFrame {
         updatebtn = new javax.swing.JButton();
         addbtn = new javax.swing.JButton();
         backbtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        courseidtb = new javax.swing.JTextField();
+        viisibilitytb = new javax.swing.JTextField();
+        titletb = new javax.swing.JTextField();
+        idtb = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         docstable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -96,86 +139,71 @@ public class DoctorMaterials extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(docstable);
 
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 123, 798, 132));
+
         jLabel1.setFont(new java.awt.Font("Engravers MT", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Doctor Materials");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(216, 42, -1, 63));
 
         showbtn.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         showbtn.setForeground(new java.awt.Color(0, 0, 0));
         showbtn.setText("Show");
+        jPanel1.add(showbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(375, 350, 136, -1));
 
         idlbl.setText("jLabel2");
+        jPanel1.add(idlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 21, 44, 51));
 
         deletebtn.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         deletebtn.setForeground(new java.awt.Color(0, 0, 0));
         deletebtn.setText("Delete");
+        jPanel1.add(deletebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(732, 439, 136, -1));
 
         updatebtn.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         updatebtn.setForeground(new java.awt.Color(0, 0, 0));
         updatebtn.setText("Update");
+        jPanel1.add(updatebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 439, 136, -1));
 
         addbtn.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         addbtn.setForeground(new java.awt.Color(0, 0, 0));
         addbtn.setText("Add");
+        jPanel1.add(addbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(375, 439, 136, -1));
 
         backbtn.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         backbtn.setText("Back");
+        jPanel1.add(backbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 455, 133, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 798, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(idlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(160, 160, 160)
-                        .addComponent(jLabel1)))
-                .addContainerGap(57, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(showbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(backbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(addbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(40, 40, 40)
-                .addComponent(updatebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addComponent(deletebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(idlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(showbtn)
-                        .addGap(55, 55, 55)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(deletebtn)
-                            .addComponent(updatebtn)
-                            .addComponent(addbtn))
-                        .addGap(27, 27, 27))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(backbtn)
-                        .addContainerGap())))
-        );
+        jLabel2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Visibility");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 90, 30));
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("CourseID");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 90, 30));
+
+        jLabel4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Title");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 90, 30));
+
+        jLabel5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("ID");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 90, 30));
+
+        courseidtb.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jPanel1.add(courseidtb, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, 110, 30));
+
+        viisibilitytb.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jPanel1.add(viisibilitytb, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 360, 110, 30));
+
+        titletb.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jPanel1.add(titletb, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 110, 30));
+
+        idtb.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jPanel1.add(idtb, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 269, 110, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -229,13 +257,21 @@ public class DoctorMaterials extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addbtn;
     private javax.swing.JButton backbtn;
+    private javax.swing.JTextField courseidtb;
     private javax.swing.JButton deletebtn;
     private javax.swing.JTable docstable;
     private javax.swing.JLabel idlbl;
+    private javax.swing.JTextField idtb;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton showbtn;
+    private javax.swing.JTextField titletb;
     private javax.swing.JButton updatebtn;
+    private javax.swing.JTextField viisibilitytb;
     // End of variables declaration//GEN-END:variables
 }

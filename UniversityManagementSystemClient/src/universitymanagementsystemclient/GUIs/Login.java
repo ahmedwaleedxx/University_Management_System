@@ -134,7 +134,7 @@ public class Login extends javax.swing.JFrame {
         emailtb.setBackground(new java.awt.Color(255, 255, 255));
         emailtb.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         emailtb.setForeground(new java.awt.Color(153, 153, 153));
-        emailtb.setText("Enter Username");
+        emailtb.setText("Enter Email");
         jPanel1.add(emailtb, new org.netbeans.lib.awtextra.AbsoluteConstraints(377, 192, 307, 42));
 
         passwordtb.setBackground(new java.awt.Color(255, 255, 255));

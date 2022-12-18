@@ -14,7 +14,7 @@ import java.rmi.RemoteException;
  */
 public interface MaterialInterface extends Remote {
 
-  public int getID() throws RemoteException;
+    public int getID() throws RemoteException;
 
     public String getMaterialTitle() throws RemoteException;
 

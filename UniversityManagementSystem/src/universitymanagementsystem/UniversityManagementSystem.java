@@ -94,6 +94,12 @@ Admin a = new Admin();
 Material m = new Material();
 
 //a.getStudents();
+Doctor d = new Doctor();
+//d.getMaterialbyDoctorID(1);
+
+
+//m.AddCourseMaterialByDoctorID(1, "Hello", true, 1);
+
 
 
 

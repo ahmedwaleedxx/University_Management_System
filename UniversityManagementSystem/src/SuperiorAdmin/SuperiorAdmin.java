@@ -209,7 +209,7 @@ public class SuperiorAdmin extends Employee implements SuperiorAdminInterface, u
     public void UpdateFaculty(int FacultyID, String Name, String DeanName, String Mail, double Fees) throws RemoteException {
         Faculty faculty = new Faculty(FacultyID, Name, DeanName, Mail, Fees);
         Document doc = Document.parse(gson.toJson(faculty));
-        FacuCollection.replaceOne(Filters.eq("EmployeeID", faculty.getFacultyID()), doc);
+        FacuCollection.replaceOne(Filters.eq("FacultyID", faculty.getFacultyID()), doc);
         System.out.println("Updated Successfully");
     }
 

@@ -14,14 +14,21 @@ import java.util.ArrayList;
  * @author farouuk
  */
 public interface DoctorInterface extends Remote {
-    
-       // void AddCourseMaterial(Material m);
 
+    // void AddCourseMaterial(Material m);
     void HandleComplaint();
 
-        public ArrayList<MaterialInterface> getMaterialbyDoctorID(int id) throws RemoteException;
-   // void RemoveCourseMaterial(Material m) throws RemoteException;
+    public ArrayList<MaterialInterface> getMaterialbyDoctorID(int id) throws RemoteException;
 
+    public void UpdateMaterialTitle(int matid, String title) throws RemoteException;
+
+    public void UpdateMaterialVisibility(int matid, boolean vis) throws RemoteException;
+
+    public void UpdateMaterialCourse(int matid, int cid) throws RemoteException;
+    
+    public void RemoveCourseMaterial(int id) throws RemoteException;
+
+    // void RemoveCourseMaterial(Material m) throws RemoteException;
 //    void UpdateCourseTitle(int courseid, String title) throws RemoteException;
 // 
 //    void UpdateMaterialCourse(int matid, int cid) throws RemoteException;
@@ -31,28 +38,17 @@ public interface DoctorInterface extends Remote {
 //    void UpdateMaterialVisibility(int matid, boolean vis) throws RemoteException;
 //
 //    public ArrayList<MaterialInterface> getMaterialbyDoctorID(int doctorID);
-
     //void addCourseMaterial(Course course, Material material);
-
     //void addTAtoCourse(Course course, TA ta);
-
-   // void assignTATasks(TA ta, String task);
-
+    // void assignTATasks(TA ta, String task);
     //Course getAssignedCourse();
-
-   // TA getAssignedTA();
-
-   // void removeCourseMaterial(Course course, Material courseMaterial);
-
-   // void removeCourseTA(Course course, TA ta);
-
+    // TA getAssignedTA();
+    // void removeCourseMaterial(Course course, Material courseMaterial);
+    // void removeCourseTA(Course course, TA ta);
     void sendAnnouncements(Student student);
 
-   // void setAssignedCourse(Course AssignedCourse);
-
-   // void setAssignedTA(TA AssignedTA);
-
+    // void setAssignedCourse(Course AssignedCourse);
+    // void setAssignedTA(TA AssignedTA);
     //void setGrades(Course assignedCourse, Student student);
-
     //void setMaterialVisibility(Material material, Boolean isVisible);
 }

@@ -90,7 +90,7 @@ public class ManageDoctorsController {
                     JOptionPane.showMessageDialog(gui, "Doctor Inserted Successfully");
 
                 } catch (RemoteException | NotBoundException ex) {
-                    Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ManageDoctorsController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
 
@@ -101,10 +101,10 @@ public class ManageDoctorsController {
 
            
         });
-                                  gui.getUpdatedoctorbtn().addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                         try {
+                                gui.getUpdatedoctorbtn().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
                     SuperiorAdminInterface admin = (SuperiorAdminInterface) r.lookup("superiorinterface");
                     int id = Integer.parseInt(gui.getIdtb().getText());
                     String fname = gui.getFnametb().getText();
@@ -113,30 +113,29 @@ public class ManageDoctorsController {
                     String password = gui.getPasswordtb().getText();
                     float salary = Float.parseFloat(gui.getSalarytb().getText());
                     String bank = gui.getBanktb().getText();
-                    
+
                     admin.UpdateDoctorInfo(id, fname, lname, email, password, salary, null, bank, "Doctor");
                     JOptionPane.showMessageDialog(gui, "Doctor Updated Successfully");
 
                 } catch (RemoteException | NotBoundException ex) {
-                    Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ManageDoctorsController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                    }
-                });
-                                  
-                                  
-               gui.getDeletedoctorbtn().addActionListener(new ActionListener() {
+            }
+        });
+
+        gui.getDeletedoctorbtn().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-           
-                  try {
+
+                try {
                     SuperiorAdminInterface admin = (SuperiorAdminInterface) r.lookup("superiorinterface");
                     int id = Integer.parseInt(gui.getIdtb().getText());
                     admin.RemoveDoctor(id);
                     JOptionPane.showMessageDialog(gui, "Doctor Deleted Successfully");
                 } catch (RemoteException ex) {
-                    Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ManageDoctorsController.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (NotBoundException ex) {
-                    Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ManageDoctorsController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -159,6 +158,8 @@ public class ManageDoctorsController {
             }
         });
          
+               
+               
                
                gui.getDoctorstbl().addMouseListener(new MouseListener() {
             @Override

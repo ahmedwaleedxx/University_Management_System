@@ -33,9 +33,9 @@ public interface SuperiorAdminInterface extends Remote {
 
     public void RemoveFaculty(int id) throws RemoteException;
 
-    public void AddCourse(int CourseID, String CourseTitle, DoctorInterface CourseDoctor, String Mail, String Faculty) throws RemoteException;
+    public void AddCourse(int CourseID, String CourseTitle, int CourseDoctor, String Mail, String Faculty) throws RemoteException;
 
-    public void UpdateCourse(int CourseID, String CourseTitle, DoctorInterface CourseDoctor, String Mail, String Faculty) throws RemoteException;
+    public void UpdateCourse(int CourseID, String CourseTitle, int CourseDoctor, String Mail, String Faculty) throws RemoteException;
 
     public void DeleteCourse(int id) throws RemoteException;
 

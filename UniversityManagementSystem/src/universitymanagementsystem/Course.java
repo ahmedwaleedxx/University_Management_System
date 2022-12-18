@@ -21,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bson.Document;
 import rmi.CourseInterface;
+import rmi.MaterialInterface;
 
 /**
  *
@@ -171,15 +172,15 @@ public class Course extends UnicastRemoteObject implements CourseInterface {
        public Course getCoursebyDoctorID (int doctorID) throws RemoteException {
         Document doc = courseCollection.find(Filters.eq("CourseDoctorID", doctorID)).first();
            System.out.println(doc);
-        Course result = gson.fromJson(doc.toJson(), Course.class);
+            Course result = gson.fromJson(doc.toJson(), Course.class);
            System.out.println(result.getCourseID());
         return result;
     }
        
        
-       public ArrayList<Material> getMaterialbyDoctorID(int doctorID) throws RemoteException {
+       public ArrayList<MaterialInterface> getMaterialbyDoctorID(int doctorID) throws RemoteException {
         Course c = getCoursebyDoctorID(doctorID);
-        ArrayList<Material> result = new ArrayList();
+        ArrayList<MaterialInterface> result = new ArrayList();
        
         ArrayList<Document> docs = materialcollection.find(Filters.eq("CourseID", c.getCourseID())).into(new ArrayList<>());
           //System.out.println(docs);

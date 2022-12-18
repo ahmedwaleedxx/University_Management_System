@@ -25,9 +25,7 @@ public class ManageFaculties extends javax.swing.JFrame {
         initComponents();
     }
 
-    public JButton getAddtabtn() {
-        return addtabtn;
-    }
+
 
     public JButton getBackbtn() {
         return backbtn;
@@ -37,8 +35,18 @@ public class ManageFaculties extends javax.swing.JFrame {
         return deantb;
     }
 
-    public JButton getDeletetabtn() {
-        return deletetabtn;
+
+
+    public JButton getAddfacbtn() {
+        return addfacbtn;
+    }
+
+    public JButton getDeletefacbtn() {
+        return deletefacbtn;
+    }
+
+    public JButton getUpdatefacbtn() {
+        return updatefacbtn;
     }
 
     public JTextField getEmailtb() {
@@ -101,9 +109,7 @@ public class ManageFaculties extends javax.swing.JFrame {
         return testlbl;
     }
 
-    public JButton getUpdatetabtn() {
-        return updatetabtn;
-    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -130,9 +136,9 @@ public class ManageFaculties extends javax.swing.JFrame {
         deantb = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         testlbl = new javax.swing.JLabel();
-        deletetabtn = new javax.swing.JButton();
-        updatetabtn = new javax.swing.JButton();
-        addtabtn = new javax.swing.JButton();
+        deletefacbtn = new javax.swing.JButton();
+        updatefacbtn = new javax.swing.JButton();
+        addfacbtn = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -206,28 +212,28 @@ public class ManageFaculties extends javax.swing.JFrame {
         testlbl.setText("jLabel13");
         jPanel1.add(testlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 90, 30));
 
-        deletetabtn.setBackground(new java.awt.Color(0, 0, 0));
-        deletetabtn.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        deletetabtn.setForeground(new java.awt.Color(255, 255, 255));
-        deletetabtn.setText("Delete Faculty");
-        jPanel1.add(deletetabtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 460, -1, -1));
+        deletefacbtn.setBackground(new java.awt.Color(0, 0, 0));
+        deletefacbtn.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        deletefacbtn.setForeground(new java.awt.Color(255, 255, 255));
+        deletefacbtn.setText("Delete Faculty");
+        jPanel1.add(deletefacbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 460, -1, -1));
 
-        updatetabtn.setBackground(new java.awt.Color(0, 0, 0));
-        updatetabtn.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        updatetabtn.setForeground(new java.awt.Color(255, 255, 255));
-        updatetabtn.setText("Update Faculty");
-        jPanel1.add(updatetabtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 460, -1, -1));
+        updatefacbtn.setBackground(new java.awt.Color(0, 0, 0));
+        updatefacbtn.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        updatefacbtn.setForeground(new java.awt.Color(255, 255, 255));
+        updatefacbtn.setText("Update Faculty");
+        jPanel1.add(updatefacbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 460, -1, -1));
 
-        addtabtn.setBackground(new java.awt.Color(0, 0, 0));
-        addtabtn.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        addtabtn.setForeground(new java.awt.Color(255, 255, 255));
-        addtabtn.setText("Add Faculty");
-        addtabtn.addActionListener(new java.awt.event.ActionListener() {
+        addfacbtn.setBackground(new java.awt.Color(0, 0, 0));
+        addfacbtn.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        addfacbtn.setForeground(new java.awt.Color(255, 255, 255));
+        addfacbtn.setText("Add Faculty");
+        addfacbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addtabtnActionPerformed(evt);
+                addfacbtnActionPerformed(evt);
             }
         });
-        jPanel1.add(addtabtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 460, -1, -1));
+        jPanel1.add(addfacbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 460, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universitymanagementsystemclient/GUIs/Grad2.png"))); // NOI18N
         jLabel4.setText("jLabel4");
@@ -247,9 +253,9 @@ public class ManageFaculties extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addtabtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addtabtnActionPerformed
+    private void addfacbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addfacbtnActionPerformed
 
-    }//GEN-LAST:event_addtabtnActionPerformed
+    }//GEN-LAST:event_addfacbtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -287,10 +293,10 @@ public class ManageFaculties extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addtabtn;
+    private javax.swing.JButton addfacbtn;
     private javax.swing.JButton backbtn;
     private javax.swing.JTextField deantb;
-    private javax.swing.JButton deletetabtn;
+    private javax.swing.JButton deletefacbtn;
     private javax.swing.JTextField emailtb;
     private javax.swing.JTable factbl;
     private javax.swing.JTextField feestb;
@@ -306,6 +312,6 @@ public class ManageFaculties extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nametb;
     private javax.swing.JLabel testlbl;
-    private javax.swing.JButton updatetabtn;
+    private javax.swing.JButton updatefacbtn;
     // End of variables declaration//GEN-END:variables
 }

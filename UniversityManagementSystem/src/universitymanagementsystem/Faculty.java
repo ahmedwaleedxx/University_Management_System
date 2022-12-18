@@ -33,18 +33,17 @@ import org.bson.BSON;
  */
 public class Faculty extends UnicastRemoteObject implements FacultyInterface, Serializable {
 
-    
-       private MongoClient client;
+    private MongoClient client;
     private MongoDatabase database;
     private MongoCollection<Document> collection;
 //    private MongoCollection<Document> FinanceCollection;
 //    private MongoCollection<Document> StudentCollection;
 //    private MongoCollection<Document> EmployeeCollection;
-    
-      private MongoCollection<Document> facultiesCollection;
-    
-     private Gson gson = new Gson();
-    
+
+    private MongoCollection<Document> facultiesCollection;
+
+    private Gson gson;
+
     private int FacultyID;
     private String Name;
     private String DeanName;
@@ -52,8 +51,8 @@ public class Faculty extends UnicastRemoteObject implements FacultyInterface, Se
     private ArrayList<Doctor> doctors;
     private double Fees;
 
-    public Faculty() throws RemoteException{
-        
+    public Faculty() throws RemoteException {
+
         Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
         mongoLogger.setLevel(Level.SEVERE);
 
@@ -62,9 +61,10 @@ public class Faculty extends UnicastRemoteObject implements FacultyInterface, Se
         database = client.getDatabase("UniversityManagementSystem");
         collection = database.getCollection("Depertmant");
         facultiesCollection = database.getCollection("Faculty");
+        gson = new Gson();
     }
 
-    public Faculty(int FacultyID, String Name, String DeanName, String Mail, double Fees) throws RemoteException{
+    public Faculty(int FacultyID, String Name, String DeanName, String Mail, double Fees) throws RemoteException {
         this.FacultyID = FacultyID;
         this.Name = Name;
         this.DeanName = DeanName;
@@ -73,7 +73,6 @@ public class Faculty extends UnicastRemoteObject implements FacultyInterface, Se
         this.Fees = Fees;
     }
 
-
 //    public void setFacultyFees(Faculty FacultyName, Double fees) {
 //   
 //          FacultyCollection.insertOne(Document.parse(gson.toJson(FacultyName)));
@@ -81,32 +80,25 @@ public class Faculty extends UnicastRemoteObject implements FacultyInterface, Se
 //        System.out.println("Fees Inserted Succesfully");
 //
 //    }
-    
-    
-     public void setFacultyFees(int facultyID, double fees) throws RemoteException {
-         
-        
-        
+    public void setFacultyFees(int facultyID, double fees) throws RemoteException {
+
         facultiesCollection.updateOne(Filters.eq("FacultyID", facultyID), Updates.set("Fees", fees));
-        
-         System.out.println("Faculty Fees Added");
-         
+
+        System.out.println("Faculty Fees Added");
+
     }
 
-       @Override
-    public double getFees() throws RemoteException{
+    @Override
+    public double getFees() throws RemoteException {
         return Fees;
     }
 
     public void setFees(double Fees) {
         this.Fees = Fees;
     }
-     
-     
-     
- 
+
     @Override
-    public int getFacultyID() throws RemoteException{
+    public int getFacultyID() throws RemoteException {
         return FacultyID;
     }
 
@@ -124,7 +116,7 @@ public class Faculty extends UnicastRemoteObject implements FacultyInterface, Se
     }
 
     @Override
-    public String getDeanName() throws RemoteException{
+    public String getDeanName() throws RemoteException {
         return DeanName;
     }
 
@@ -133,7 +125,7 @@ public class Faculty extends UnicastRemoteObject implements FacultyInterface, Se
     }
 
     @Override
-    public String getMail() throws RemoteException{
+    public String getMail() throws RemoteException {
         return Mail;
     }
 

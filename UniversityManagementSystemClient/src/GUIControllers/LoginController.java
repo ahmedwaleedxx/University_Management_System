@@ -54,7 +54,7 @@ public class LoginController {
         gui.getEmailtb().addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (gui.getEmailtb().getText().equals("Enter Username")) {
+                if (gui.getEmailtb().getText().equals("Enter Email")) {
                     gui.getEmailtb().setText("");
                     gui.getEmailtb().setForeground(txtColor);
                     gui.getEmailerrlbl().setText("");
@@ -65,7 +65,7 @@ public class LoginController {
             @Override
             public void focusLost(FocusEvent e) {
                 if (gui.getEmailtb().getText().equals("")) {
-                    gui.getEmailtb().setText("Enter Username");
+                    gui.getEmailtb().setText("Enter Email");
                     gui.getEmailtb().setForeground(placeholdercolor);
                     gui.getEmailerrlbl().setText("Missing Field!!!");
                     gui.getEmailerrlbl().setIcon(erroricon);
@@ -277,6 +277,8 @@ public class LoginController {
                 System.out.println(ex);
             }
 
+            
+          
             // gui.dispose();
         }
     }

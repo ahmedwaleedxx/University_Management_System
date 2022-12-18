@@ -17,7 +17,15 @@ import universitymanagementsystem.Material;
 public interface DoctorInterface extends Remote {
     
     
-    public ArrayList<Material> getMaterialbyDoctorID(int id) throws RemoteException;
+    public ArrayList<MaterialInterface> getMaterialbyDoctorID(int id) throws RemoteException;
+    
+        public void UpdateMaterialTitle(int matid, String title) throws RemoteException;
+
+    public void UpdateMaterialVisibility(int matid, boolean vis) throws RemoteException;
+
+    public void UpdateMaterialCourse(int matid, int cid) throws RemoteException;
+    
+    public void RemoveCourseMaterial(int id) throws RemoteException;
        // void AddCourseMaterial(Material m);
 
     //void HandleComplaint();

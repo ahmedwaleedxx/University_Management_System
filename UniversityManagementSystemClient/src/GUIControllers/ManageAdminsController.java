@@ -7,6 +7,8 @@ package GUIControllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -59,10 +61,8 @@ public class ManageAdminsController {
                 model.addRow(new Object[]{id, fname, lname, email, password, salary, bank});
             }
 
-        } catch (RemoteException ex) {
-            Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NotBoundException ex) {
-            Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (RemoteException | NotBoundException ex) {
+            Logger.getLogger(ManageAdminsController.class.getName()).log(Level.SEVERE, null, ex);
         }
  
     
@@ -87,7 +87,7 @@ public class ManageAdminsController {
                     JOptionPane.showMessageDialog(gui, "Admin Inserted Successfully");
 
                 } catch (RemoteException | NotBoundException ex) {
-                    Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ManageAdminsController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
 
@@ -115,7 +115,7 @@ public class ManageAdminsController {
                     JOptionPane.showMessageDialog(gui, "Admin Updated Successfully");
 
                 } catch (RemoteException | NotBoundException ex) {
-                    Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ManageAdminsController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                     }
                 });
@@ -132,10 +132,43 @@ public class ManageAdminsController {
                         SuperiorMenuController amc = new SuperiorMenuController(am, r, admin);
                         gui.dispose();
            }    catch (RemoteException ex) {
-                    Logger.getLogger(ManageDoctorsController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ManageAdminsController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             
             }
+        });
+                
+           
+                                      gui.getAdminstbl().addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+           DefaultTableModel defaulttablemodelmodel = (DefaultTableModel) gui.getAdminstbl().getModel();
+                int index = gui.getAdminstbl().getSelectedRow();
+
+                gui.getIdtb().setText(defaulttablemodelmodel.getValueAt(index, 0).toString());
+                gui.getFnametb().setText(defaulttablemodelmodel.getValueAt(index, 1).toString());
+                gui.getLnametb().setText(defaulttablemodelmodel.getValueAt(index, 2).toString());
+                gui.getEmailtb().setText(defaulttablemodelmodel.getValueAt(index, 3).toString());
+                gui.getPasswordtb().setText(defaulttablemodelmodel.getValueAt(index, 4).toString());
+                gui.getSalarytb().setText(defaulttablemodelmodel.getValueAt(index, 5).toString());
+                gui.getBanktb().setText(defaulttablemodelmodel.getValueAt(index, 6).toString());
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+         }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+          }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+       }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+          }
         });
     }
     

@@ -16,6 +16,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bson.Document;
@@ -25,12 +26,12 @@ import org.bson.Document;
  * @author ahmedwaleed
  */
 //MaterialCollection
-public class Material implements MaterialInterface, ViewMaterial {
+public class Material extends UnicastRemoteObject implements MaterialInterface, ViewMaterial {
 
     private MongoClient client;
     private MongoDatabase database;
     private MongoCollection<Document> MaterialCollection;
-        private MongoCollection<Document> courseCollection;
+    private MongoCollection<Document> courseCollection;
 
     private int ID;
     private String MaterialTitle;
@@ -45,12 +46,12 @@ public class Material implements MaterialInterface, ViewMaterial {
         client = new MongoClient(new MongoClientURI("mongodb://admin:jl6fIl0vxg1oyuME@ac-tm8fwxy-shard-00-00.bnsnciy.mongodb.net:27017,ac-tm8fwxy-shard-00-01.bnsnciy.mongodb.net:27017,ac-tm8fwxy-shard-00-02.bnsnciy.mongodb.net:27017/?ssl=true&replicaSet=atlas-117fq2-shard-0&authSource=admin&retryWrites=true&w=majority"));
         database = client.getDatabase("UniversityManagementSystem");
         MaterialCollection = database.getCollection("Material");
-        courseCollection  = database.getCollection("Course");
+        courseCollection = database.getCollection("Course");
         gson = new Gson();
 
     }
 
-    public Material(int ID, String MaterialTitle, boolean MaterialVisibility, int CourseID) {
+    public Material(int ID, String MaterialTitle, boolean MaterialVisibility, int CourseID) throws RemoteException {
         this.ID = ID;
         this.MaterialTitle = MaterialTitle;
         this.MaterialVisibility = MaterialVisibility;
@@ -108,8 +109,17 @@ public class Material implements MaterialInterface, ViewMaterial {
     }
 
     @Override
-    public void AddCourseMaterial(int ID, String MaterialTitle, boolean MaterialVisibility, int CourseID) {
+    public void AddCourseMaterial(int ID, String MaterialTitle, boolean MaterialVisibility, int CourseID) throws RemoteException {
         Material m = new Material(ID, MaterialTitle, MaterialVisibility, CourseID);
+        MaterialCollection.insertOne(Document.parse(gson.toJson(m)));
+        System.out.println("File Inserted Succesfully");
+    }
+
+    public void AddCourseMaterialByDoctorID(int ID, String MaterialTitle, boolean MaterialVisibility, int DoctorID) throws RemoteException {
+        Course c = new Course();
+        c.getCoursebyDoctorID(DoctorID);
+        System.out.println(c.getCourseID());
+        Material m = new Material(ID, MaterialTitle, MaterialVisibility, c.getCourseID());
         MaterialCollection.insertOne(Document.parse(gson.toJson(m)));
         System.out.println("File Inserted Succesfully");
     }
@@ -142,7 +152,6 @@ public class Material implements MaterialInterface, ViewMaterial {
         MaterialCollection.updateOne(Filters.eq("ID", matid), Updates.set("CourseID", cid));
     }
 
-  
     public void registerObserv(Observer o) {
 
     }

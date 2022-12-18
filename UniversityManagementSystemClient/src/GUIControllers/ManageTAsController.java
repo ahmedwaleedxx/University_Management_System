@@ -60,10 +60,8 @@ public class ManageTAsController {
                 model.addRow(new Object[]{id, fname, lname, email, password, salary, bank});
             }
 
-        } catch (RemoteException ex) {
-            Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NotBoundException ex) {
-            Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (RemoteException | NotBoundException ex) {
+            Logger.getLogger(ManageTAsController.class.getName()).log(Level.SEVERE, null, ex);
         }
  
     
@@ -88,7 +86,7 @@ public class ManageTAsController {
                     JOptionPane.showMessageDialog(gui, "TA Inserted Successfully");
 
                 } catch (RemoteException | NotBoundException ex) {
-                    Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ManageTAsController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
 
@@ -116,7 +114,7 @@ public class ManageTAsController {
                     JOptionPane.showMessageDialog(gui, "TA Updated Successfully");
 
                 } catch (RemoteException | NotBoundException ex) {
-                    Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ManageTAsController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                     }
                 });
@@ -131,10 +129,8 @@ public class ManageTAsController {
                     int id = Integer.parseInt(gui.getIdtb().getText());
                     admin.RemoveTA(id);
                     JOptionPane.showMessageDialog(gui, "Doctor Deleted Successfully");
-                } catch (RemoteException ex) {
-                    Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (NotBoundException ex) {
-                    Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (RemoteException | NotBoundException ex) {
+                    Logger.getLogger(ManageTAsController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -151,7 +147,7 @@ public class ManageTAsController {
                         SuperiorMenuController amc = new SuperiorMenuController(am, r, admin);
                         gui.dispose();
            }    catch (RemoteException ex) {
-                    Logger.getLogger(ManageDoctorsController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ManageTAsController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             
             }
@@ -204,7 +200,7 @@ public class ManageTAsController {
                         SuperiorMenuController amc = new SuperiorMenuController(am, r, admin);
                         gui.dispose();
            }    catch (RemoteException ex) {
-                    Logger.getLogger(ManageDoctorsController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ManageTAsController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             
             }
