@@ -39,7 +39,7 @@ public interface Student extends Remote {
 
     public String getFaculty() throws RemoteException;
     
-     public ArrayList<String> getNotificationsByFacultyName(String FacultyName);
+   //  public ArrayList<String> getNotificationsByFacultyName(String FacultyName)throws RemoteException;
      
      public ArrayList<String> getCoursessByFacultyName(String FacultyName) throws RemoteException;
 

@@ -247,21 +247,21 @@ public class Student extends UnicastRemoteObject implements user, rmi.Student {
 
     }
 
-    @Override   
-    public ArrayList<String> getNotificationsByFacultyName(String FacultyName){
-        ArrayList<Notification> result = new ArrayList();
-        ArrayList<Document> docs = NotificationCollection.find(Filters.eq("FacultyName", FacultyName)).into(new ArrayList<>());
-        //System.out.println(docs);
-        ArrayList<String> notifications = new ArrayList<>();
-        for (int i = 0; i < docs.size(); i++) {
-            String jsonResult = docs.get(i).toJson();
-            Notification noti = gson.fromJson(jsonResult, Notification.class);
-            notifications.add(noti.getNotificationContent());
-//            System.out.println(result);
-        }
-        System.out.println(notifications);
-        return notifications;
-    }
+//    @Override   
+//    public ArrayList<String> getNotificationsByFacultyName(String FacultyName) throws RemoteException{
+//        ArrayList<Notification> result = new ArrayList();
+//        ArrayList<Document> docs = NotificationCollection.find(Filters.eq("FacultyName", FacultyName)).into(new ArrayList<>());
+//        //System.out.println(docs);
+//        ArrayList<String> notifications = new ArrayList<>();
+//        for (int i = 0; i < docs.size(); i++) {
+//            String jsonResult = docs.get(i).toJson();
+//            Notification noti = gson.fromJson(jsonResult, Notification.class);
+//            notifications.add(noti.getNotificationContent());
+////            System.out.println(result);
+//        }
+//        System.out.println(notifications);
+//        return notifications;
+//    }
         
         @Override
          public ArrayList<String> getCoursessByFacultyName(String FacultyName) throws RemoteException{

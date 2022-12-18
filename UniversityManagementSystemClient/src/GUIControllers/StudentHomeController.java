@@ -47,10 +47,10 @@ public class StudentHomeController {
         gui.getNotifications().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Notifications notifications = new Notifications();
-                notifications.setVisible(true);
-                gui.setVisible(false);
-                NotificationsController NotificationsController = new NotificationsController(notifications, reg, stud);
+//                Notifications notifications = new Notifications();
+//                notifications.setVisible(true);
+//                gui.setVisible(false);
+//                NotificationsController NotificationsController = new NotificationsController(notifications, reg, stud);
             }
         });
     }

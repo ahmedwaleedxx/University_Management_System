@@ -98,9 +98,9 @@ Material m = new Material();
 Doctor d = new Doctor();
 //d.getMaterialbyDoctorID(1);
 
-Student s = new Student();
-s.getNotificationsByFacultyName("ICS");
-s.getCoursessByFacultyName("ICS");
+//Student s = new Student();
+//s.getNotificationsByFacultyName("ICS");
+//s.getCoursessByFacultyName("ICS");
 
 //m.AddCourseMaterial(1, "Hello", true, 1);
 

@@ -15,8 +15,7 @@ import java.util.ArrayList;
  */
 public interface AdminInterface extends Remote {
 
-    public void RegisterStudent(int StudentID, String StudentFName, String StudentLName, String Email, String Password, float StudentOverAllGrade, boolean isGraduated, boolean paidTutionFees, String Major, String Faculty
-);
+    public void RegisterStudent(int StudentID, String StudentFName, String StudentLName, String Email, String Password, float StudentOverAllGrade, boolean isGraduated, boolean paidTutionFees, String Major, String Faculty);
 
     public void UpdateStudent(int StudentID, String StudentFName, String StudentLName, String Email, String Password, float StudentOverAllGrade, boolean isGraduated, boolean paidTutionFees, String Major, String Faculty);
 
