@@ -43,6 +43,7 @@ public class StudentHome extends javax.swing.JFrame {
         status = new javax.swing.JLabel();
         fees = new javax.swing.JLabel();
         edit = new javax.swing.JButton();
+        notifications = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,6 +70,8 @@ public class StudentHome extends javax.swing.JFrame {
         jLabel3.setText("You have outstadning fees:");
 
         edit.setText("View Account Info");
+
+        notifications.setText("Notifications");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,8 +103,10 @@ public class StudentHome extends javax.swing.JFrame {
                                 .addComponent(status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(paymentfees))))
                 .addContainerGap(44, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(notifications)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(logout)
                 .addGap(83, 83, 83))
         );
@@ -129,7 +134,9 @@ public class StudentHome extends javax.swing.JFrame {
                     .addComponent(transcript)
                     .addComponent(edit))
                 .addGap(72, 72, 72)
-                .addComponent(logout)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(logout)
+                    .addComponent(notifications))
                 .addGap(19, 19, 19))
         );
 
@@ -166,6 +173,10 @@ public class StudentHome extends javax.swing.JFrame {
     }
     public JButton getView(){
         return edit;
+    }
+
+    public JButton getNotifications() {
+        return notifications;
     }
     /**
      * @param args the command line arguments
@@ -210,6 +221,7 @@ public class StudentHome extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JButton logout;
+    private javax.swing.JButton notifications;
     private javax.swing.JButton paymentfees;
     private javax.swing.JLabel status;
     private javax.swing.JLabel studname;

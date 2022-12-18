@@ -5,11 +5,15 @@
  */
 package GUIControllers;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import rmi.AdminInterface;
 import rmi.DoctorInterface;
@@ -66,6 +70,42 @@ public class DoctorSalaryController {
         }
         
         
+         gui.getBackbtn().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                try{
+                FinanceSelection fs = new FinanceSelection();
+                        fs.setLocationRelativeTo(null);
+                        fs.setVisible(true);
+                        Registry r = LocateRegistry.getRegistry(1099);
+                        FinanceSelectionController amc = new FinanceSelectionController(fs, finance, r);
+                        gui.dispose();
+                } catch (RemoteException ex) {
+                    Logger.getLogger(AdminSalaryController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                }
+        });
+         
+         
+         gui.getUpdatesalarybtn().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                   try {
+                    FinanceInterface admin = (FinanceInterface) r.lookup("financeinterface");
+                    int id = Integer.parseInt(gui.getIdtxt().getText());
+                    double salary = Double.parseDouble(gui.getSalarytxt().getText());
+                    
+                    admin.setDoctorSalary(id, salary);
+                    JOptionPane.showMessageDialog(gui, "Doctor Salary Updated Successfully");
+
+                } catch (RemoteException | NotBoundException ex) {
+                    Logger.getLogger(ManageAdminsController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                    }
+                });
+            
         
     }
     

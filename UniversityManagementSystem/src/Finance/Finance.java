@@ -132,6 +132,34 @@ gson = new Gson();
         return db.getDoctors();
     }
     
+     @Override
+         public ArrayList<Employee>getTAs() throws RemoteException{
+        DBConnect db = new DBConnect();
+        return db.getTAs();
+    }
+    
+         
+          @Override
+         public ArrayList<Employee>getAdmins() throws RemoteException{
+        DBConnect db = new DBConnect();
+        return db.getAdmins();
+    }
+         
+         
+            @Override
+         public ArrayList<Employee>getSuperiorAdmins() throws RemoteException{
+        DBConnect db = new DBConnect();
+        return db.getSuperiorAdmins();
+    }
+         
+                 @Override
+         public ArrayList<Employee>getFinancier() throws RemoteException{
+        DBConnect db = new DBConnect();
+        return db.getFinanciers();
+    }
+
+    
+    
 //    public void AddOverTimeBonus(int EmployeeID, Double overtimeBonus) {
 //        
 //    }

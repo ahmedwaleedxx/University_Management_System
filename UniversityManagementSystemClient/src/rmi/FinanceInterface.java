@@ -30,4 +30,12 @@ public interface FinanceInterface extends Remote {
 
     public ArrayList<EmployeeInterface> getDoctors() throws RemoteException;
 
+    public ArrayList<EmployeeInterface> getTAs() throws RemoteException;
+
+    public ArrayList<EmployeeInterface> getAdmins() throws RemoteException;
+
+    public ArrayList<EmployeeInterface> getSuperiorAdmins() throws RemoteException;
+
+    public ArrayList<EmployeeInterface> getFinancier() throws RemoteException;
+
 }

@@ -21,7 +21,7 @@ import rmi.AdminInterface;
 import rmi.DoctorInterface;
 import rmi.FinanceInterface;
 import rmi.Student;
-import rmi.StudentDTO;
+import rmi.Student;
 import rmi.SuperiorAdminInterface;
 import rmi.user;
 
@@ -215,10 +215,10 @@ public class LoginController {
                         Registry reg = LocateRegistry.getRegistry(1099);
 // int StudentID, String StudentFName, String StudentLName, String Email, String Password, float StudentOverAllGrade, boolean isGraduated, boolean paidTutionFees, String Major, String Faculty, ArrayList<String> CoursesID
 
-                        ArrayList<String> cours = new ArrayList<>();
-                        cours.add("1");
-                        StudentDTO std = new StudentDTO(1, "Hi", "Lo", "Test@test.com", "2", (float) 1.2, false, true, "SE", "ICS", cours);
-                        StudentHomeController con = new StudentHomeController(hom, reg, std);
+//                        ArrayList<String> cours = new ArrayList<>();
+//                        cours.add("1");
+//                        Student std = new Student(1, "Hi", "Lo", "Test@test.com", "2", (float) 1.2, false, true, "SE", "ICS", cours);
+                        StudentHomeController con = new StudentHomeController(hom, reg,  student2);
 
                     }
                 } else if (gui.getTarb().isSelected()) {

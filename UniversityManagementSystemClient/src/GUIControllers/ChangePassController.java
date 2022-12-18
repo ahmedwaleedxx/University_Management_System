@@ -6,7 +6,11 @@ package GUIControllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import rmi.Student;
 import rmi.StudentDTO;
 import universitymanagementsystemclient.GUIs.ChangePass;
 import universitymanagementsystemclient.GUIs.StudentHome;
@@ -36,10 +40,14 @@ public class ChangePassController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            StudentHome guii = new StudentHome();
-            guii.setVisible(true);
-            gui.setVisible(false);
-            StudentHomeController newCont = new StudentHomeController(guii,reg,stud);     
+            try {
+                StudentHome guii = new StudentHome();
+                guii.setVisible(true);
+                gui.setVisible(false);     
+                StudentHomeController newCont = new StudentHomeController(guii,reg, (Student) stud);
+            } catch (RemoteException ex) {
+                Logger.getLogger(ChangePassController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
      }
      class Update implements ActionListener{

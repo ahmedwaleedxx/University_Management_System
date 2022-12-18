@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import org.bson.Document;
+import rmi.Student;
 import universitymanagementsystemclient.GUIs.Courses;
 import universitymanagementsystemclient.GUIs.StudentHome;
 
@@ -51,6 +52,7 @@ public class CoursesController {
             if(stud.isPaidTutionFees() == true){
                 fillCourses();
             }
+            
     }
     
 
@@ -59,10 +61,14 @@ public class CoursesController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            StudentHome guii = new StudentHome();
-            guii.setVisible(true);
-            gui.setVisible(false);
-            StudentHomeController newCont = new StudentHomeController(guii,reg,stud);
+            try {
+                StudentHome guii = new StudentHome();
+                guii.setVisible(true);
+                gui.setVisible(false);
+                StudentHomeController newCont = new StudentHomeController(guii,reg, (Student) stud);
+            } catch (RemoteException ex) {
+                Logger.getLogger(CoursesController.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
         }
         

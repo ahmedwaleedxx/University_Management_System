@@ -5,10 +5,19 @@
  */
 package Student;
 
+import com.google.gson.Gson;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 import rmi.*;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.bson.Document;
 import universitymanagementsystem.*;
 
 /**
@@ -17,6 +26,12 @@ import universitymanagementsystem.*;
  */
 public class Student extends UnicastRemoteObject implements user, rmi.Student {
 
+     private MongoClient client;
+    private MongoDatabase database;
+    private MongoCollection<Document> NotificationCollection;
+        private MongoCollection<Document> CourseCollection;
+    private Gson gson;
+    
 //Private Attributes
     private int StudentID;
     private String StudentFName;
@@ -34,6 +49,14 @@ public class Student extends UnicastRemoteObject implements user, rmi.Student {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Constructors
     public Student() throws RemoteException {
+         Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
+        mongoLogger.setLevel(Level.SEVERE);
+        // Initialize
+        client = new MongoClient(new MongoClientURI("mongodb://admin:jl6fIl0vxg1oyuME@ac-tm8fwxy-shard-00-00.bnsnciy.mongodb.net:27017,ac-tm8fwxy-shard-00-01.bnsnciy.mongodb.net:27017,ac-tm8fwxy-shard-00-02.bnsnciy.mongodb.net:27017/?ssl=true&replicaSet=atlas-117fq2-shard-0&authSource=admin&retryWrites=true&w=majority"));
+        database = client.getDatabase("UniversityManagementSystem");
+        NotificationCollection = database.getCollection("Notification");
+        CourseCollection = database.getCollection("Course");
+        gson = new Gson();
     }
 
     public Student(int StudentID, String StudentFName, String StudentLName, String Email, String Password, float StudentOverAllGrade, boolean isGraduated, boolean paidTutionFees, String Major, String Faculty, ArrayList<String> Courses, ArrayList<Observer> Observers) throws RemoteException {
@@ -224,6 +247,38 @@ public class Student extends UnicastRemoteObject implements user, rmi.Student {
 
     }
 
+    @Override   
+    public ArrayList<String> getNotificationsByFacultyName(String FacultyName){
+        ArrayList<Notification> result = new ArrayList();
+        ArrayList<Document> docs = NotificationCollection.find(Filters.eq("FacultyName", FacultyName)).into(new ArrayList<>());
+        //System.out.println(docs);
+        ArrayList<String> notifications = new ArrayList<>();
+        for (int i = 0; i < docs.size(); i++) {
+            String jsonResult = docs.get(i).toJson();
+            Notification noti = gson.fromJson(jsonResult, Notification.class);
+            notifications.add(noti.getNotificationContent());
+//            System.out.println(result);
+        }
+        System.out.println(notifications);
+        return notifications;
+    }
+        
+        @Override
+         public ArrayList<String> getCoursessByFacultyName(String FacultyName) throws RemoteException{
+        ArrayList<Course> result = new ArrayList();
+        ArrayList<Document> docs = CourseCollection.find(Filters.eq("Faculty", FacultyName)).into(new ArrayList<>());
+        //System.out.println(docs);
+        ArrayList<String> courses = new ArrayList<>();
+        for (int i = 0; i < docs.size(); i++) {
+            String jsonResult = docs.get(i).toJson();
+            Course noti = gson.fromJson(jsonResult, Course.class);
+            courses.add(noti.getCourseTitle());
+//            System.out.println(result);
+        }
+        System.out.println(courses);
+        return courses;
+    }
+    
 //    @Override
 //    public Student students(int StudentID, String StudentFName, String StudentLName, String Email, String Password, float StudentOverAllGrade, boolean isGraduated, boolean paidTutionFees, String Major, String Faculty) throws RemoteException {
 //        this.StudentID = StudentID;

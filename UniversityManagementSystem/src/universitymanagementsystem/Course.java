@@ -33,7 +33,7 @@ public class Course extends UnicastRemoteObject implements CourseInterface {
     private MongoDatabase database;
     private MongoCollection<Document> courseCollection;
     private MongoCollection<Document> materialcollection;
-    private MongoCollection<Document>doctorcollection;
+    private MongoCollection<Document> doctorcollection;
 
     private Gson gson;
 
@@ -78,7 +78,7 @@ public class Course extends UnicastRemoteObject implements CourseInterface {
     }
 
     @Override
-    public String getCourseTitle() throws RemoteException{
+    public String getCourseTitle() throws RemoteException {
         return CourseTitle;
     }
 
@@ -87,7 +87,7 @@ public class Course extends UnicastRemoteObject implements CourseInterface {
     }
 
     @Override
-    public int getCourseDoctor() throws RemoteException{
+    public int getCourseDoctor() throws RemoteException {
         return CourseDoctorID;
     }
 
@@ -104,15 +104,16 @@ public class Course extends UnicastRemoteObject implements CourseInterface {
     }
 
     @Override
-    public String getMail() throws RemoteException{
+    public String getMail() throws RemoteException {
         return Mail;
     }
 
     public void setMail(String Mail) {
         this.Mail = Mail;
     }
-@Override
-    public String getFaculty() throws RemoteException{
+
+    @Override
+    public String getFaculty() throws RemoteException {
         return Faculty;
     }
 
@@ -148,51 +149,59 @@ public class Course extends UnicastRemoteObject implements CourseInterface {
         System.out.println("Title Edited");
         courseCollection.updateOne(Filters.eq("CourseID", courseid), Updates.set("CourseTitle", title));
     }
-    
+
     @Override
     public void DeleteCourse(int id) throws RemoteException {
         courseCollection.deleteOne(Filters.eq("CourseID", id));
         System.out.println("Deleted Successfully");
     }
-    
-    
-      public ArrayList<Material> getMaterialbyCourseID(int courseID) {
+
+    public ArrayList<Material> getMaterialbyCourseID(int courseID) {
         ArrayList<Material> result = new ArrayList();
         ArrayList<Document> docs = materialcollection.find(Filters.eq("CourseID", courseID)).into(new ArrayList<>());
-          //System.out.println(docs);
+        //System.out.println(docs);
         for (int i = 0; i < docs.size(); i++) {
             String jsonResult = docs.get(i).toJson();
             result.add(gson.fromJson(jsonResult, Material.class));
 //            System.out.println(result);
         }
-          System.out.println(result);
+        System.out.println(result);
         return result;
     }
-      
-       public Course getCoursebyDoctorID (int doctorID) throws RemoteException {
+
+    public Course getCoursebyDoctorID(int doctorID) throws RemoteException {
         Document doc = courseCollection.find(Filters.eq("CourseDoctorID", doctorID)).first();
-           System.out.println(doc);
-            Course result = gson.fromJson(doc.toJson(), Course.class);
-           System.out.println(result.getCourseID());
+        System.out.println(doc);
+        Course result = gson.fromJson(doc.toJson(), Course.class);
+        System.out.println(result.getCourseID());
         return result;
     }
-       
-       
-       public ArrayList<MaterialInterface> getMaterialbyDoctorID(int doctorID) throws RemoteException {
+
+    public ArrayList<MaterialInterface> getMaterialbyDoctorID(int doctorID) throws RemoteException {
         Course c = getCoursebyDoctorID(doctorID);
         ArrayList<MaterialInterface> result = new ArrayList();
-       
+
         ArrayList<Document> docs = materialcollection.find(Filters.eq("CourseID", c.getCourseID())).into(new ArrayList<>());
-          //System.out.println(docs);
+        //System.out.println(docs);
         for (int i = 0; i < docs.size(); i++) {
             String jsonResult = docs.get(i).toJson();
             result.add(gson.fromJson(jsonResult, Material.class));
-           System.out.println(result.toString());
+            System.out.println(result.toString());
         }
-          System.out.println(result);
+        System.out.println(result);
         return result;
     }
-      
+
+    public String getFacultyByCourseID(int id) throws RemoteException {
+        Document doc = courseCollection.find(Filters.eq("CourseID", id)).first();
+        System.out.println(doc);
+        Course result = gson.fromJson(doc.toJson(), Course.class);
+//        System.out.println(result.getCourseID());
+        System.out.println(result.getFaculty());
+        return result.getFaculty();
+
+    }
+
 //       public ArrayList<Material> getCoursebyDoctorID(int doctorID) {
 //        ArrayList<Material> result = new ArrayList();
 //        ArrayList<Document> docs = courseCollection.find(Filters.eq("CourseDoctorID", doctorID)).into(new ArrayList<>());
@@ -205,14 +214,9 @@ public class Course extends UnicastRemoteObject implements CourseInterface {
 //          System.out.println(result);
 //        return result;
 //    }
-
     @Override
     public String toString() {
         return "Course{" + "client=" + client + ", database=" + database + ", courseCollection=" + courseCollection + ", materialcollection=" + materialcollection + ", gson=" + gson + ", CourseID=" + CourseID + ", CourseTitle=" + CourseTitle + ", CourseDoctorID=" + CourseDoctorID + ", CourseTAs=" + CourseTAs + ", Mail=" + Mail + ", Faculty=" + Faculty + ", CourseMaterial=" + CourseMaterial + '}';
     }
-      
-      
-    
-    
 
 }

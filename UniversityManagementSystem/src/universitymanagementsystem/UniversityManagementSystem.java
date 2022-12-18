@@ -93,12 +93,16 @@ Admin a = new Admin();
         
 Material m = new Material();
 
+//m.AddCourseMaterial(2, "Lecture 2", true, 2);
 //a.getStudents();
 Doctor d = new Doctor();
 //d.getMaterialbyDoctorID(1);
 
+Student s = new Student();
+s.getNotificationsByFacultyName("ICS");
+s.getCoursessByFacultyName("ICS");
 
-//m.AddCourseMaterialByDoctorID(1, "Hello", true, 1);
+//m.AddCourseMaterial(1, "Hello", true, 1);
 
 
 
@@ -111,6 +115,8 @@ SuperiorAdmin ss = new SuperiorAdmin();
 //m.UpdateMaterialVisibility(1, false);
 
         Course c = new Course();
+        
+       // c.getFacultyByCourseID(1);
      // c.getMaterialbyDoctorID(1);
         // c.getCoursebyDoctorID(1);
 ///c.RemoveCourseTA(1);

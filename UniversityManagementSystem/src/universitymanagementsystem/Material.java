@@ -31,7 +31,7 @@ public class Material extends UnicastRemoteObject implements MaterialInterface, 
     private MongoClient client;
     private MongoDatabase database;
     private MongoCollection<Document> MaterialCollection;
-    private MongoCollection<Document> courseCollection;
+    private MongoCollection<Document> NotificationCollection;
 
     private int ID;
     private String MaterialTitle;
@@ -46,7 +46,7 @@ public class Material extends UnicastRemoteObject implements MaterialInterface, 
         client = new MongoClient(new MongoClientURI("mongodb://admin:jl6fIl0vxg1oyuME@ac-tm8fwxy-shard-00-00.bnsnciy.mongodb.net:27017,ac-tm8fwxy-shard-00-01.bnsnciy.mongodb.net:27017,ac-tm8fwxy-shard-00-02.bnsnciy.mongodb.net:27017/?ssl=true&replicaSet=atlas-117fq2-shard-0&authSource=admin&retryWrites=true&w=majority"));
         database = client.getDatabase("UniversityManagementSystem");
         MaterialCollection = database.getCollection("Material");
-        courseCollection = database.getCollection("Course");
+        NotificationCollection = database.getCollection("Notification");
         gson = new Gson();
 
     }
@@ -56,6 +56,7 @@ public class Material extends UnicastRemoteObject implements MaterialInterface, 
         this.MaterialTitle = MaterialTitle;
         this.MaterialVisibility = MaterialVisibility;
         this.CourseID = CourseID;
+      //  notifyObservers(null);
     }
 
     @Override
@@ -113,6 +114,7 @@ public class Material extends UnicastRemoteObject implements MaterialInterface, 
         Material m = new Material(ID, MaterialTitle, MaterialVisibility, CourseID);
         MaterialCollection.insertOne(Document.parse(gson.toJson(m)));
         System.out.println("File Inserted Succesfully");
+        notifyObservers(CourseID, MaterialTitle, ID);
     }
 
     public void AddCourseMaterialByDoctorID(int ID, String MaterialTitle, boolean MaterialVisibility, int DoctorID) throws RemoteException {
@@ -156,14 +158,23 @@ public class Material extends UnicastRemoteObject implements MaterialInterface, 
 
     }
 
-    public void notifyObservers(Observer o) {
-
+    public void notifyObservers(int CouserID, String MaterialTitle, int MaterialID) throws RemoteException {
+        String FacultyName;
+        Course c = new Course();
+        FacultyName = c.getFacultyByCourseID(CouserID);
+        new Notification().sendNotification(MaterialID, MaterialTitle + " is Posted", FacultyName);
+        System.out.println("Notification has been sent");
     }
 
     public void removeObserv(Observer o) {
 
     }
 
+    
+    
+
+     
+     
     @Override
     public ArrayList<Material> getMaterials(int courseID) {
 //      ArrayList<Material>result = new ArrayList();

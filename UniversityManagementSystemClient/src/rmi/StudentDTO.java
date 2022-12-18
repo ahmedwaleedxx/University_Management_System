@@ -5,13 +5,15 @@
 package rmi;
 
 import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 /**
  *
  * @author infolos
  */
-public class StudentDTO implements Serializable {
+public class StudentDTO extends UnicastRemoteObject  implements Serializable {
     private int StudentID;
     private String StudentFName;
     private String StudentLName;
@@ -24,7 +26,7 @@ public class StudentDTO implements Serializable {
     private String Faculty;
     private ArrayList<String> CoursesID;
 
-    public StudentDTO(int StudentID, String StudentFName, String StudentLName, String Email, String Password, float StudentOverAllGrade, boolean isGraduated, boolean paidTutionFees, String Major, String Faculty, ArrayList<String> CoursesID) {
+    public StudentDTO(int StudentID, String StudentFName, String StudentLName, String Email, String Password, float StudentOverAllGrade, boolean isGraduated, boolean paidTutionFees, String Major, String Faculty, ArrayList<String> CoursesID) throws RemoteException{
         this.StudentID = StudentID;
         this.StudentFName = StudentFName;
         this.StudentLName = StudentLName;

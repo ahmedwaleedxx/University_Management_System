@@ -261,6 +261,34 @@ public class DBConnect extends UnicastRemoteObject {
 //        return finalFacs;
 //    }
 
+
+    public ArrayList<Employee> getSuperiorAdmins() throws RemoteException {
+        ArrayList<Document> superioradmins = superioradmincollection.find().into(new ArrayList<>());
+        //System.out.println(doctors);
+        ArrayList<Employee> finalList = new ArrayList<>();
+        for (int i = 0; i < superioradmins.size(); i++) {
+            Doctor result = gson.fromJson(superioradmins.get(i).toJson(), Doctor.class);
+            System.out.println(result.toString());
+            finalList.add(result);
+        }
+        return finalList;
+    }
+
+   public ArrayList<Employee> getFinanciers() throws RemoteException {
+        ArrayList<Document> finance = financecollection.find().into(new ArrayList<>());
+        ArrayList<Employee> finalList = new ArrayList<>();
+
+        for (int i = 0; i < finance.size(); i++) {
+            Finance result = gson.fromJson(finance.get(i).toJson(), Finance.class);
+            System.out.println(result.toString());
+            finalList.add(result);
+        }
+        return finalList;
+    }
+
+
+
+
     public void close() throws RemoteException {
         client.close();
     }

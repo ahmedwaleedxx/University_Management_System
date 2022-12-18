@@ -22,8 +22,12 @@ import rmi.EmployeeInterface;
 import rmi.FinanceInterface;
 
 import rmi.Student;
+import universitymanagementsystemclient.GUIs.AdminSalary;
 import universitymanagementsystemclient.GUIs.DoctorSalary;
+import universitymanagementsystemclient.GUIs.FinanceSalary;
 import universitymanagementsystemclient.GUIs.FinanceSelection;
+import universitymanagementsystemclient.GUIs.SuperiorAdminSalary;
+import universitymanagementsystemclient.GUIs.TASalary;
 
 /**
  *
@@ -61,6 +65,88 @@ public class FinanceSelectionController {
 
             }
         });
+          gui.getTabtn().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                TASalary fs = new TASalary();
+                fs.setLocationRelativeTo(null);
+                fs.setVisible(true);
+                try {
+
+                    Registry r;
+
+                    r = LocateRegistry.getRegistry(1099);
+                    TASalaryController gui_controller = new TASalaryController(finance, fs, r);
+                    gui.dispose();
+                } catch (RemoteException ex) {
+                    Logger.getLogger(FinanceSelectionController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+        });
+        
+           gui.getAdminbtn().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                AdminSalary fs = new AdminSalary();
+                fs.setLocationRelativeTo(null);
+                fs.setVisible(true);
+                try {
+
+                    Registry r;
+
+                    r = LocateRegistry.getRegistry(1099);
+                    AdminSalaryController gui_controller = new AdminSalaryController(finance, fs, r);
+                    gui.dispose();
+                } catch (RemoteException ex) {
+                    Logger.getLogger(FinanceSelectionController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+        });
+           
+           gui.getFinancebtn().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                FinanceSalary fs = new FinanceSalary();
+                fs.setLocationRelativeTo(null);
+                fs.setVisible(true);
+                try {
+
+                    Registry r;
+
+                    r = LocateRegistry.getRegistry(1099);
+                    FinanceSalaryController gui_controller = new FinanceSalaryController(finance, fs, r);
+                    gui.dispose();
+                } catch (RemoteException ex) {
+                    Logger.getLogger(FinanceSelectionController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+        });
+           
+           gui.getSuperioradminbtn().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               SuperiorAdminSalary fs = new SuperiorAdminSalary();
+                fs.setLocationRelativeTo(null);
+                fs.setVisible(true);
+                try {
+
+                    Registry r;
+
+                    r = LocateRegistry.getRegistry(1099);
+                    SuperiorAdminSalaryController gui_controller = new SuperiorAdminSalaryController(finance, fs, r);
+                    gui.dispose();
+                } catch (RemoteException ex) {
+                    Logger.getLogger(FinanceSelectionController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+           
+
+        
+        
     }
 
 }

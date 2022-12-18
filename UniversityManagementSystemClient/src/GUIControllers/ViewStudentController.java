@@ -4,10 +4,15 @@ package GUIControllers;
 import GUIControllers.StudentHomeController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import rmi.Student;
 import rmi.StudentDTO;
 import universitymanagementsystemclient.GUIs.StudentHome;
 import universitymanagementsystemclient.GUIs.StudentView;
+
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -40,10 +45,14 @@ public class ViewStudentController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            StudentHome guii = new StudentHome();
-            guii.setVisible(true);
-            sd.setVisible(false);
-            StudentHomeController newCont = new StudentHomeController(guii,reg,stud);
+            try {
+                StudentHome guii = new StudentHome();
+                guii.setVisible(true);
+                sd.setVisible(false);
+                StudentHomeController newCont = new StudentHomeController(guii,reg, (Student) stud);
+            } catch (RemoteException ex) {
+                Logger.getLogger(ViewStudentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
         }
     }

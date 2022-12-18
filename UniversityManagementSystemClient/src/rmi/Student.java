@@ -6,6 +6,7 @@
 package rmi;
 
 import java.rmi.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -34,4 +35,8 @@ public interface Student extends Remote {
     public String getMajor() throws RemoteException;
 
     public String getFaculty() throws RemoteException;
+    
+    public ArrayList<String> getNotificationsByFacultyName(String FacultyName);
+     
+     public ArrayList<String> getCoursessByFacultyName(String FacultyName) throws RemoteException;
 }

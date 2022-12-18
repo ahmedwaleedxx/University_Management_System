@@ -148,4 +148,18 @@ public class Faculty extends UnicastRemoteObject implements FacultyInterface, Se
     public void UpdateFacultyInfo() {
 
     }
+
+//    public void AddFaculty(String faculty) throws RemoteException{
+//        facultiesCollection.insertOne(Filters.eq("FacultyName", faculty));
+//
+//        System.out.println("Faculty Added");
+//
+//    }
+
+    public void DeleteFaculty(int id) throws RemoteException{
+        facultiesCollection.deleteOne(Filters.eq("FacultyID", id));
+
+        System.out.println("Faculty Deleted");
+
+    }
 }

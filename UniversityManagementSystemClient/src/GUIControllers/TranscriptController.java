@@ -4,7 +4,11 @@ package GUIControllers;
 import rmi.StudentDTO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import rmi.Student;
 import universitymanagementsystemclient.GUIs.StudentHome;
 import universitymanagementsystemclient.GUIs.Transcript;
 
@@ -38,10 +42,14 @@ public class TranscriptController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            StudentHome guii = new StudentHome();
-            guii.setVisible(true);
-            gui.setVisible(false);
-            StudentHomeController newCont = new StudentHomeController(guii,reg,user);
+            try {
+                StudentHome guii = new StudentHome();
+                guii.setVisible(true);
+                gui.setVisible(false);
+                StudentHomeController newCont = new StudentHomeController(guii,reg, (Student) user);
+            } catch (RemoteException ex) {
+                Logger.getLogger(TranscriptController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
     }
