@@ -23,9 +23,7 @@ public class ManageDoctors extends javax.swing.JFrame {
         initComponents();
     }
 
-    public JButton getAddstudentbtn() {
-        return addstudentbtn;
-    }
+
 
     public JButton getBackbtn() {
         return backbtn;
@@ -35,9 +33,18 @@ public class ManageDoctors extends javax.swing.JFrame {
         return banktb;
     }
 
-    public JButton getDeletestudentbtn() {
-        return deletestudentbtn;
+    public JButton getAdddoctorbtn() {
+        return adddoctorbtn;
     }
+
+    public JButton getDeletedoctorbtn() {
+        return deletedoctorbtn;
+    }
+
+    public JButton getUpdatedoctorbtn() {
+        return updatedoctorbtn;
+    }
+
 
     public JTable getDoctorstbl() {
         return doctorstbl;
@@ -71,9 +78,7 @@ public class ManageDoctors extends javax.swing.JFrame {
         return testlbl;
     }
 
-    public JButton getUpdatestudentbtn() {
-        return updatestudentbtn;
-    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -104,9 +109,9 @@ public class ManageDoctors extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         backbtn = new javax.swing.JButton();
-        addstudentbtn = new javax.swing.JButton();
-        updatestudentbtn = new javax.swing.JButton();
-        deletestudentbtn = new javax.swing.JButton();
+        adddoctorbtn = new javax.swing.JButton();
+        updatedoctorbtn = new javax.swing.JButton();
+        deletedoctorbtn = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -196,28 +201,28 @@ public class ManageDoctors extends javax.swing.JFrame {
         backbtn.setText("Back to menu");
         jPanel1.add(backbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 160, 30));
 
-        addstudentbtn.setBackground(new java.awt.Color(0, 0, 0));
-        addstudentbtn.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        addstudentbtn.setForeground(new java.awt.Color(255, 255, 255));
-        addstudentbtn.setText("Add Student");
-        addstudentbtn.addActionListener(new java.awt.event.ActionListener() {
+        adddoctorbtn.setBackground(new java.awt.Color(0, 0, 0));
+        adddoctorbtn.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        adddoctorbtn.setForeground(new java.awt.Color(255, 255, 255));
+        adddoctorbtn.setText("Add Doctor");
+        adddoctorbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addstudentbtnActionPerformed(evt);
+                adddoctorbtnActionPerformed(evt);
             }
         });
-        jPanel1.add(addstudentbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 460, -1, -1));
+        jPanel1.add(adddoctorbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 460, -1, -1));
 
-        updatestudentbtn.setBackground(new java.awt.Color(0, 0, 0));
-        updatestudentbtn.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        updatestudentbtn.setForeground(new java.awt.Color(255, 255, 255));
-        updatestudentbtn.setText("Update Student");
-        jPanel1.add(updatestudentbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 460, -1, -1));
+        updatedoctorbtn.setBackground(new java.awt.Color(0, 0, 0));
+        updatedoctorbtn.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        updatedoctorbtn.setForeground(new java.awt.Color(255, 255, 255));
+        updatedoctorbtn.setText("Update Doctor");
+        jPanel1.add(updatedoctorbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 460, -1, -1));
 
-        deletestudentbtn.setBackground(new java.awt.Color(0, 0, 0));
-        deletestudentbtn.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        deletestudentbtn.setForeground(new java.awt.Color(255, 255, 255));
-        deletestudentbtn.setText("Delete Student");
-        jPanel1.add(deletestudentbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 460, -1, -1));
+        deletedoctorbtn.setBackground(new java.awt.Color(0, 0, 0));
+        deletedoctorbtn.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        deletedoctorbtn.setForeground(new java.awt.Color(255, 255, 255));
+        deletedoctorbtn.setText("Delete Doctor");
+        jPanel1.add(deletedoctorbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 460, -1, -1));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universitymanagementsystemclient/GUIs/abstract-1780378_960_720.png"))); // NOI18N
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 500));
@@ -236,9 +241,9 @@ public class ManageDoctors extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addstudentbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addstudentbtnActionPerformed
+    private void adddoctorbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adddoctorbtnActionPerformed
 
-    }//GEN-LAST:event_addstudentbtnActionPerformed
+    }//GEN-LAST:event_adddoctorbtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,10 +251,10 @@ public class ManageDoctors extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addstudentbtn;
+    private javax.swing.JButton adddoctorbtn;
     private javax.swing.JButton backbtn;
     private javax.swing.JTextField banktb;
-    private javax.swing.JButton deletestudentbtn;
+    private javax.swing.JButton deletedoctorbtn;
     private javax.swing.JTable doctorstbl;
     private javax.swing.JTextField emailtb;
     private javax.swing.JTextField fnametb;
@@ -269,6 +274,6 @@ public class ManageDoctors extends javax.swing.JFrame {
     private javax.swing.JTextField passwordtb;
     private javax.swing.JTextField salarytb;
     private javax.swing.JLabel testlbl;
-    private javax.swing.JButton updatestudentbtn;
+    private javax.swing.JButton updatedoctorbtn;
     // End of variables declaration//GEN-END:variables
 }

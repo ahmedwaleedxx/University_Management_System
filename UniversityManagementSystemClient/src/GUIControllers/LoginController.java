@@ -33,9 +33,7 @@ public class LoginController {
 
     static Login gui;
     Registry r;
-    
-    
-    
+
     Color placeholdercolor = new Color(153, 153, 153);
     Color txtColor = new Color(51, 51, 51);
     ImageIcon erroricon = new ImageIcon("src/Images/erroricon.png");
@@ -43,7 +41,7 @@ public class LoginController {
     public LoginController(Login gui, Registry r) {
         this.gui = gui;
         this.r = r;
-        gui.getPasswordtb().setEchoChar((char)0);
+        gui.getPasswordtb().setEchoChar((char) 0);
         gui.getShowpasswordcb().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -167,7 +165,6 @@ public class LoginController {
                 String usertype = null;
                 validateLogin();
 
-                
                 if (gui.getAdminrb().isSelected()) {
                     usertype = "Admin";
                     user admin = (user) r.lookup("admin");
@@ -176,7 +173,7 @@ public class LoginController {
                         JOptionPane.showMessageDialog(null, "Login Failed!!");
                     } else {
                         JOptionPane.showMessageDialog(null, "Logged in Successfully !!");
-                        
+
                         AdminMenu am = new AdminMenu();
                         am.setLocationRelativeTo(null);
                         am.setVisible(true);
@@ -185,26 +182,23 @@ public class LoginController {
                         gui.dispose();
                     }
 
-                } else if(gui.getSuperioradminrb().isSelected()){
-                            usertype="Superior Admin";
-                            user superior = (user) r.lookup("superior");
-                            SuperiorAdminInterface sai = (SuperiorAdminInterface) superior.Login(email, password, usertype);
-                            if(sai == null){
-                                JOptionPane.showMessageDialog(null, "Login Failed!!");
-                            }else{
-                                JOptionPane.showMessageDialog(null, "Logged in Successfully");
-                                
-                                SuperiorAdminMenu am = new SuperiorAdminMenu();
+                } else if (gui.getSuperioradminrb().isSelected()) {
+                    usertype = "Superior Admin";
+                    user superior = (user) r.lookup("superior");
+                    SuperiorAdminInterface sai = (SuperiorAdminInterface) superior.Login(email, password, usertype);
+                    if (sai == null) {
+                        JOptionPane.showMessageDialog(null, "Login Failed!!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Logged in Successfully");
+
+                        SuperiorAdminMenu am = new SuperiorAdminMenu();
                         am.setLocationRelativeTo(null);
                         am.setVisible(true);
                         Registry r = LocateRegistry.getRegistry(1099);
                         SuperiorMenuController amc = new SuperiorMenuController(am, r, sai);
                         gui.dispose();
-                            }
-                            }
-                    
-                    
-                 else if (gui.getStudentrb().isSelected()) {
+                    }
+                } else if (gui.getStudentrb().isSelected()) {
                     usertype = "Student";
                     user student = (user) r.lookup("student");
                     Student student2 = (Student) student.Login(email, password, usertype);
@@ -213,19 +207,19 @@ public class LoginController {
                         JOptionPane.showMessageDialog(null, "Login Failed!!");
                     } else {
                         JOptionPane.showMessageDialog(null, "Logged in Successfully !!");
-                        
+
                         StudentHome hom = new StudentHome();
-                            hom.setLocationRelativeTo(null);
-                            hom.setVisible(true);
-                            
-                            Registry reg = LocateRegistry.getRegistry(1099);
+                        hom.setLocationRelativeTo(null);
+                        hom.setVisible(true);
+
+                        Registry reg = LocateRegistry.getRegistry(1099);
 // int StudentID, String StudentFName, String StudentLName, String Email, String Password, float StudentOverAllGrade, boolean isGraduated, boolean paidTutionFees, String Major, String Faculty, ArrayList<String> CoursesID
-                            
-                            ArrayList<String> cours = new ArrayList<>();
-                            cours.add("1");
-                            StudentDTO std = new StudentDTO(1,"Hi","Lo","Test@test.com","2", (float) 1.2,false,true,"SE","ICS",cours);
-                            StudentHomeController con = new StudentHomeController(hom,reg,std);
-                        
+
+                        ArrayList<String> cours = new ArrayList<>();
+                        cours.add("1");
+                        StudentDTO std = new StudentDTO(1, "Hi", "Lo", "Test@test.com", "2", (float) 1.2, false, true, "SE", "ICS", cours);
+                        StudentHomeController con = new StudentHomeController(hom, reg, std);
+
                     }
                 } else if (gui.getTarb().isSelected()) {
                     usertype = "TA";
@@ -246,43 +240,39 @@ public class LoginController {
                         JOptionPane.showMessageDialog(null, "Login Failed!!");
                     } else {
                         JOptionPane.showMessageDialog(null, "Logged in Successfully !!");
-                         DoctorMaterials dm = new DoctorMaterials();
+                        DoctorMaterials dm = new DoctorMaterials();
                         dm.setLocationRelativeTo(null);
                         dm.setVisible(true);
                         Registry r = LocateRegistry.getRegistry(1099);
                         DoctorMaterialsController amc = new DoctorMaterialsController(dm, doctor2, r);
                         gui.dispose();
-                        
+
                     }
 
-                }else if(gui.getFinancerb().isSelected()){
-                usertype = "Finance";
+                } else if (gui.getFinancerb().isSelected()) {
+                    usertype = "Finance";
                     user finance = (user) r.lookup("finance");
                     FinanceInterface finance2 = (FinanceInterface) finance.Login(email, password, usertype);
                     if (finance2 == null) {
                         JOptionPane.showMessageDialog(null, "Login Failed!!");
                     } else {
                         JOptionPane.showMessageDialog(null, "Logged in Successfully !!");
-                        
+
                         FinanceSelection fs = new FinanceSelection();
                         fs.setLocationRelativeTo(null);
                         fs.setVisible(true);
                         Registry r = LocateRegistry.getRegistry(1099);
                         FinanceSelectionController amc = new FinanceSelectionController(fs, finance2, r);
                         gui.dispose();
-                        
-                        
+
                     }
-                }
-                    else {
+                } else {
                     gui.getErrorpnl().setVisible(true);
                     gui.getErrorpnl().setBackground(Color.red);
                     JOptionPane.showMessageDialog(null, "Please choose user type to login !!", "Invalid User Type", 0, erroricon);
                 }
 
                 //
-
-
             } catch (RemoteException | NotBoundException ex) {
                 System.out.println(ex);
             }

@@ -5,11 +5,18 @@
  */
 package GUIControllers;
 
+import static GUIControllers.LoginController.gui;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import rmi.AdminInterface;
 import rmi.EmployeeInterface;
@@ -60,8 +67,139 @@ public class ManageDoctorsController {
         } catch (NotBoundException ex) {
             Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
         }
+ 
+    
+         
+         
+         gui.getAdddoctorbtn().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+           
+                
+                try {
+                    SuperiorAdminInterface admin = (SuperiorAdminInterface) r.lookup("superiorinterface");
+                    int id = Integer.parseInt(gui.getIdtb().getText());
+                    String fname = gui.getFnametb().getText();
+                    String lname = gui.getLnametb().getText();
+                    String email = gui.getEmailtb().getText();
+                    String password = gui.getPasswordtb().getText();
+                    float salary = Float.parseFloat(gui.getSalarytb().getText());
+                    String bank = gui.getBanktb().getText();
+                                                   //4,"Ahmed","Waleed", "ahmed", "1234", 100, null, "CIB", "Doctor", null, null
+                    admin.AssignDoctor(id, fname, lname, email, password, salary, null, bank, "Doctor");
+                    JOptionPane.showMessageDialog(gui, "Doctor Inserted Successfully");
+
+                } catch (RemoteException | NotBoundException ex) {
+                    Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+
+                
+           
+            }
+            
+
+           
+        });
+                                  gui.getUpdatedoctorbtn().addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                         try {
+                    SuperiorAdminInterface admin = (SuperiorAdminInterface) r.lookup("superiorinterface");
+                    int id = Integer.parseInt(gui.getIdtb().getText());
+                    String fname = gui.getFnametb().getText();
+                    String lname = gui.getLnametb().getText();
+                    String email = gui.getEmailtb().getText();
+                    String password = gui.getPasswordtb().getText();
+                    float salary = Float.parseFloat(gui.getSalarytb().getText());
+                    String bank = gui.getBanktb().getText();
+                    
+                    admin.UpdateDoctorInfo(id, fname, lname, email, password, salary, null, bank, "Doctor");
+                    JOptionPane.showMessageDialog(gui, "Doctor Updated Successfully");
+
+                } catch (RemoteException | NotBoundException ex) {
+                    Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                    }
+                });
+                                  
+                                  
+               gui.getDeletedoctorbtn().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+           
+                  try {
+                    SuperiorAdminInterface admin = (SuperiorAdminInterface) r.lookup("superiorinterface");
+                    int id = Integer.parseInt(gui.getIdtb().getText());
+                    admin.RemoveDoctor(id);
+                    JOptionPane.showMessageDialog(gui, "Doctor Deleted Successfully");
+                } catch (RemoteException ex) {
+                    Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (NotBoundException ex) {
+                    Logger.getLogger(ManageStudentsController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+               
+               
+               gui.getBackbtn().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+           try{
+                SuperiorAdminMenu am = new SuperiorAdminMenu();
+                        am.setLocationRelativeTo(null);
+                        am.setVisible(true);
+                        Registry r = LocateRegistry.getRegistry(1099);
+                        SuperiorMenuController amc = new SuperiorMenuController(am, r, admin);
+                        gui.dispose();
+           }    catch (RemoteException ex) {
+                    Logger.getLogger(ManageDoctorsController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            
+            }
+        });
+         
+               
+               gui.getDoctorstbl().addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               DefaultTableModel defaulttablemodelmodel = (DefaultTableModel) gui.getDoctorstbl().getModel();
+                int index = gui.getDoctorstbl().getSelectedRow();
+
+                gui.getIdtb().setText(defaulttablemodelmodel.getValueAt(index, 0).toString());
+                gui.getFnametb().setText(defaulttablemodelmodel.getValueAt(index, 1).toString());
+                gui.getLnametb().setText(defaulttablemodelmodel.getValueAt(index, 2).toString());
+                gui.getEmailtb().setText(defaulttablemodelmodel.getValueAt(index, 3).toString());
+                gui.getPasswordtb().setText(defaulttablemodelmodel.getValueAt(index, 4).toString());
+                gui.getSalarytb().setText(defaulttablemodelmodel.getValueAt(index, 5).toString());
+                gui.getBanktb().setText(defaulttablemodelmodel.getValueAt(index, 6).toString());
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+               
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+               
+            }
+        });
+               
+               
     }
     
     
+    
+ 
     
 }

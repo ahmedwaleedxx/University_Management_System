@@ -39,7 +39,7 @@ public class Doctor extends Employee implements DoctorInterface {
     private MongoDatabase database;
     private MongoCollection<Document> MaterialCollection;
     private MongoCollection<Document> courseCollection;
-    private Gson gson = new Gson();
+    private Gson gson;
 
     public Doctor() throws RemoteException {
         Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
@@ -50,11 +50,16 @@ public class Doctor extends Employee implements DoctorInterface {
         database = client.getDatabase("UniversityManagementSystem"); // Database name
         MaterialCollection = database.getCollection("Material"); // Collection name
         courseCollection = database.getCollection("Course");
+        gson= new Gson();
     }
 
     public Doctor(Course AssignedCourse, TA AssignedTA) throws RemoteException {
         this.AssignedCourse = AssignedCourse;
         this.AssignedTA = AssignedTA;
+    }
+
+    public Doctor(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType) throws RemoteException {
+        super(EmployeeID, EmployeeFName, EmployeeLName, Email, Password, EmployeeSalary, EmployeeWorkingHours, EmployeeBankAccountIBAN, EmployeeType);
     }
 
     public Doctor(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType, Course AssignedCourse, TA AssignedTA) throws RemoteException {

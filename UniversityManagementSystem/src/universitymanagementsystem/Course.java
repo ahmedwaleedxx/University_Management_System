@@ -15,6 +15,7 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +26,7 @@ import rmi.CourseInterface;
  *
  * @author ahmedwaleed
  */
-public class Course implements CourseInterface {
+public class Course extends UnicastRemoteObject implements CourseInterface {
 
     private MongoClient client;
     private MongoDatabase database;
@@ -66,7 +67,8 @@ public class Course implements CourseInterface {
         gson = new Gson();
     }
 
-    public int getCourseID() {
+    @Override
+    public int getCourseID() throws RemoteException {
         return CourseID;
     }
 
@@ -74,7 +76,8 @@ public class Course implements CourseInterface {
         this.CourseID = CourseID;
     }
 
-    public String getCourseTitle() {
+    @Override
+    public String getCourseTitle() throws RemoteException{
         return CourseTitle;
     }
 
@@ -82,7 +85,8 @@ public class Course implements CourseInterface {
         this.CourseTitle = CourseTitle;
     }
 
-    public int getCourseDoctor() {
+    @Override
+    public int getCourseDoctor() throws RemoteException{
         return CourseDoctorID;
     }
 
@@ -98,15 +102,16 @@ public class Course implements CourseInterface {
         this.CourseTAs = CourseTAs;
     }
 
-    public String getMail() {
+    @Override
+    public String getMail() throws RemoteException{
         return Mail;
     }
 
     public void setMail(String Mail) {
         this.Mail = Mail;
     }
-
-    public String getFaculty() {
+@Override
+    public String getFaculty() throws RemoteException{
         return Faculty;
     }
 
@@ -163,7 +168,7 @@ public class Course implements CourseInterface {
         return result;
     }
       
-       public Course getCoursebyDoctorID (int doctorID) {
+       public Course getCoursebyDoctorID (int doctorID) throws RemoteException {
         Document doc = courseCollection.find(Filters.eq("CourseDoctorID", doctorID)).first();
            System.out.println(doc);
         Course result = gson.fromJson(doc.toJson(), Course.class);
@@ -172,7 +177,7 @@ public class Course implements CourseInterface {
     }
        
        
-       public ArrayList<Material> getMaterialbyDoctorID(int doctorID) {
+       public ArrayList<Material> getMaterialbyDoctorID(int doctorID) throws RemoteException {
         Course c = getCoursebyDoctorID(doctorID);
         ArrayList<Material> result = new ArrayList();
        

@@ -15,15 +15,15 @@ import java.util.ArrayList;
  */
 public interface SuperiorAdminInterface extends Remote {
 
-    public void AssignDoctor(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType, CourseInterface AssignedCourse, TAInterface AssignedTA) throws RemoteException;
+    public void AssignDoctor(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType ) throws RemoteException;
 
-    public void UpdateDoctorInfo(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType, CourseInterface AssignedCourse, TAInterface AssignedTA) throws RemoteException;
+    public void UpdateDoctorInfo(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType) throws RemoteException;
 
     public void RemoveDoctor(int id) throws RemoteException;
 
-    public void AssignTA(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType, CourseInterface AssignedCourse, TAInterface AssignedTA) throws RemoteException;
+    public void AssignTA(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType) throws RemoteException;
 
-    public void UpdateTAInfo(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType, CourseInterface AssignedCourse, TAInterface AssignedTA) throws RemoteException;
+    public void UpdateTAInfo(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType) throws RemoteException;
 
     public void RemoveTA(int id) throws RemoteException;
 
@@ -44,4 +44,12 @@ public interface SuperiorAdminInterface extends Remote {
     public void UpdateAdmin(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType) throws RemoteException;
 
     public ArrayList<EmployeeInterface> getDoctors() throws RemoteException;
+    
+    public ArrayList<EmployeeInterface> getTAs() throws RemoteException;
+     
+     public ArrayList<EmployeeInterface> getAdmins() throws RemoteException;
+     
+     public ArrayList<FacultyInterface> getFaculties() throws RemoteException;
+     
+      public ArrayList<CourseInterface> getCourses() throws RemoteException;
 }

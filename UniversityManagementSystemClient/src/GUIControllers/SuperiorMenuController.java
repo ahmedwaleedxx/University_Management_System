@@ -53,25 +53,65 @@ public class SuperiorMenuController {
         gui.getMngTAsbtn().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                try {
+                    ManageTAs l = new ManageTAs();
+                    l.setLocationRelativeTo(null);
+                    l.setVisible(true);
+                    Registry r1;
+                    r1 = LocateRegistry.getRegistry(1099);
+                    ManageTAsController gui_controller = new ManageTAsController(l, r1, admin);
+                    gui.dispose();
+                } catch (RemoteException ex) {
+                    Logger.getLogger(AdminMenuController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         gui.getMngfacbtn().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                try {
+                    ManageFaculties l = new ManageFaculties();
+                    l.setLocationRelativeTo(null);
+                    l.setVisible(true);
+                    Registry r1;
+                    r1 = LocateRegistry.getRegistry(1099);
+                    ManageFacultiesController gui_controller = new ManageFacultiesController(l, r1, admin);
+                    gui.dispose();
+                } catch (RemoteException ex) {
+                    Logger.getLogger(AdminMenuController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         gui.getMngcoursebtn().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                try {
+                    ManageCourses l = new ManageCourses();
+                    l.setLocationRelativeTo(null);
+                    l.setVisible(true);
+                    Registry r1;
+                    r1 = LocateRegistry.getRegistry(1099);
+                    ManageCoursesController gui_controller = new ManageCoursesController(l, r1, admin);
+                    gui.dispose();
+                } catch (RemoteException ex) {
+                    Logger.getLogger(AdminMenuController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         gui.getMngadminbtn().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                try {
+                    ManageAdmins l = new ManageAdmins();
+                    l.setLocationRelativeTo(null);
+                    l.setVisible(true);
+                    Registry r1;
+                    r1 = LocateRegistry.getRegistry(1099);
+                    ManageAdminsController gui_controller = new ManageAdminsController(l, r1, admin);
+                    gui.dispose();
+                } catch (RemoteException ex) {
+                    Logger.getLogger(AdminMenuController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         gui.getAccinfobtn().addActionListener(new ActionListener() {

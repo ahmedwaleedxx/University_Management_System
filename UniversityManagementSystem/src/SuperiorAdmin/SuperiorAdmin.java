@@ -20,7 +20,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bson.Document;
+import rmi.CourseInterface;
 import rmi.EmployeeInterface;
+import rmi.FacultyInterface;
 import rmi.SuperiorAdminInterface;
 import rmi.user;
 import universitymanagementsystem.*;
@@ -44,7 +46,7 @@ public class SuperiorAdmin extends Employee implements SuperiorAdminInterface, u
         Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
         mongoLogger.setLevel(Level.SEVERE);
         // Initialize
-        gson = new Gson();
+
         client = new MongoClient(new MongoClientURI("mongodb://admin:jl6fIl0vxg1oyuME@ac-tm8fwxy-shard-00-00.bnsnciy.mongodb.net:27017,ac-tm8fwxy-shard-00-01.bnsnciy.mongodb.net:27017,ac-tm8fwxy-shard-00-02.bnsnciy.mongodb.net:27017/?ssl=true&replicaSet=atlas-117fq2-shard-0&authSource=admin&retryWrites=true&w=majority"));
         database = client.getDatabase("UniversityManagementSystem");
         DoctorCollection = database.getCollection("Doctor");
@@ -52,6 +54,7 @@ public class SuperiorAdmin extends Employee implements SuperiorAdminInterface, u
         TACollection = database.getCollection("TA");
         FacuCollection = database.getCollection("Faculty");
         CourseCollection = database.getCollection("Course");
+        gson = new Gson();
     }
 
     public SuperiorAdmin(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType) throws RemoteException {
@@ -128,7 +131,6 @@ public class SuperiorAdmin extends Employee implements SuperiorAdminInterface, u
 //        CourseCollection.deleteOne(Filters.eq("CourseID", c.getCourseID()));
 //        System.out.println("Deleted Successfully");
 //    }
-
     @Override
     public void AddAdmin(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType) throws RemoteException {
         Admin admin = new Admin(EmployeeID, EmployeeFName, EmployeeLName, Email, Password, EmployeeSalary, EmployeeWorkingHours, EmployeeBankAccountIBAN, EmployeeType);
@@ -154,16 +156,16 @@ public class SuperiorAdmin extends Employee implements SuperiorAdminInterface, u
     }
 
     @Override
-    public void AssignDoctor(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType, Course AssignedCourse, TA AssignedTA) throws RemoteException {
-        Doctor doctor = new Doctor(EmployeeID, EmployeeFName, EmployeeLName, Email, Password, EmployeeSalary, EmployeeWorkingHours, EmployeeBankAccountIBAN, EmployeeType, AssignedCourse, AssignedTA);
+    public void AssignDoctor(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType) throws RemoteException {
+        Doctor doctor = new Doctor(EmployeeID, EmployeeFName, EmployeeLName, Email, Password, EmployeeSalary, EmployeeWorkingHours, EmployeeBankAccountIBAN, EmployeeType);
         DoctorCollection.insertOne(Document.parse(gson.toJson(doctor)));
         System.out.println("Doctor Inserted Succesfully");
 
     }
 
     @Override
-    public void UpdateDoctorInfo(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType, Course AssignedCourse, TA AssignedTA) throws RemoteException {
-        Doctor doctor = new Doctor(EmployeeID, EmployeeFName, EmployeeLName, Email, Password, EmployeeSalary, EmployeeWorkingHours, EmployeeBankAccountIBAN, EmployeeType, AssignedCourse, AssignedTA);
+    public void UpdateDoctorInfo(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType) throws RemoteException {
+        Doctor doctor = new Doctor(EmployeeID, EmployeeFName, EmployeeLName, Email, Password, EmployeeSalary, EmployeeWorkingHours, EmployeeBankAccountIBAN, EmployeeType);
         Document doc = Document.parse(gson.toJson(doctor));
         DoctorCollection.replaceOne(Filters.eq("EmployeeID", doctor.getEmployeeID()), doc);
         System.out.println("Updated Successfully");
@@ -176,14 +178,14 @@ public class SuperiorAdmin extends Employee implements SuperiorAdminInterface, u
     }
 
     @Override
-    public void AssignTA(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType, Course AssignedCourse, TA AssignedTA) throws RemoteException {
+    public void AssignTA(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType) throws RemoteException {
         TA ta = new TA(EmployeeID, EmployeeFName, EmployeeLName, Email, Password, EmployeeSalary, EmployeeWorkingHours, EmployeeBankAccountIBAN, EmployeeType, EmployeeID);
         TACollection.insertOne(Document.parse(gson.toJson(ta)));
         System.out.println("TA Inserted Succesfully");
     }
 
     @Override
-    public void UpdateTAInfo(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType, Course AssignedCourse, TA AssignedTA) throws RemoteException {
+    public void UpdateTAInfo(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType) throws RemoteException {
         TA ta = new TA(EmployeeID, EmployeeFName, EmployeeLName, Email, Password, EmployeeSalary, EmployeeWorkingHours, EmployeeBankAccountIBAN, EmployeeType, EmployeeID);
         Document doc = Document.parse(gson.toJson(ta));
         TACollection.replaceOne(Filters.eq("EmployeeID", ta.getEmployeeID()), doc);
@@ -237,12 +239,35 @@ public class SuperiorAdmin extends Employee implements SuperiorAdminInterface, u
         CourseCollection.deleteOne(Filters.eq("CourseID", id));
         System.out.println("Deleted Successfully");
     }
-    
-    
+
     @Override
-    public ArrayList<Employee>getDoctors() throws RemoteException{
+    public ArrayList<Employee> getDoctors() throws RemoteException {
         DBConnect db = new DBConnect();
         return db.getDoctors();
     }
-    
+
+    @Override
+    public ArrayList<Employee> getTAs() throws RemoteException {
+        DBConnect db = new DBConnect();
+        return db.getTAs();
+    }
+
+    @Override
+    public ArrayList<Employee> getAdmins() throws RemoteException {
+        DBConnect db = new DBConnect();
+        return db.getAdmins();
+    }
+
+    @Override
+    public ArrayList<FacultyInterface> getFaculties() throws RemoteException {
+        DBConnect db = new DBConnect();
+        return db.getFaculties();
+    }
+
+    @Override
+    public ArrayList<CourseInterface> getCourses() throws RemoteException {
+        DBConnect db = new DBConnect();
+        return db.getCourses();
+    }
+
 }

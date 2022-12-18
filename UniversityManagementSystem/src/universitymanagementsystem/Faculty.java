@@ -5,6 +5,7 @@
  */
 package universitymanagementsystem;
 
+import rmi.FacultyInterface;
 import Doctor.*;
 import java.rmi.RemoteException;
 import java.util.*;
@@ -16,6 +17,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -29,7 +31,7 @@ import org.bson.BSON;
  *
  * @author ahmedwaleed
  */
-public class Faculty {
+public class Faculty extends UnicastRemoteObject implements FacultyInterface, Serializable {
 
     
        private MongoClient client;
@@ -50,7 +52,7 @@ public class Faculty {
     private ArrayList<Doctor> doctors;
     private double Fees;
 
-    public Faculty() {
+    public Faculty() throws RemoteException{
         
         Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
         mongoLogger.setLevel(Level.SEVERE);
@@ -62,7 +64,7 @@ public class Faculty {
         facultiesCollection = database.getCollection("Faculty");
     }
 
-    public Faculty(int FacultyID, String Name, String DeanName, String Mail, double Fees) {
+    public Faculty(int FacultyID, String Name, String DeanName, String Mail, double Fees) throws RemoteException{
         this.FacultyID = FacultyID;
         this.Name = Name;
         this.DeanName = DeanName;
@@ -90,11 +92,21 @@ public class Faculty {
          System.out.println("Faculty Fees Added");
          
     }
+
+       @Override
+    public double getFees() throws RemoteException{
+        return Fees;
+    }
+
+    public void setFees(double Fees) {
+        this.Fees = Fees;
+    }
      
      
      
  
-    public int getFacultyID() {
+    @Override
+    public int getFacultyID() throws RemoteException{
         return FacultyID;
     }
 
@@ -102,7 +114,8 @@ public class Faculty {
         this.FacultyID = FacultyID;
     }
 
-    public String getName() {
+    @Override
+    public String getName() throws RemoteException {
         return Name;
     }
 
@@ -110,7 +123,8 @@ public class Faculty {
         this.Name = Name;
     }
 
-    public String getDeanName() {
+    @Override
+    public String getDeanName() throws RemoteException{
         return DeanName;
     }
 
@@ -118,7 +132,8 @@ public class Faculty {
         this.DeanName = DeanName;
     }
 
-    public String getMail() {
+    @Override
+    public String getMail() throws RemoteException{
         return Mail;
     }
 

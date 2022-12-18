@@ -26,7 +26,9 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import org.bson.Document;
+import rmi.CourseInterface;
 import rmi.EmployeeInterface;
+import rmi.FacultyInterface;
 
 import rmi.user;
 
@@ -34,15 +36,13 @@ import rmi.user;
  *
  * @author ahmedwaleed
  */
-public class DBConnect extends UnicastRemoteObject{
+public class DBConnect extends UnicastRemoteObject {
 
     private MongoClient client;
     private MongoDatabase database;
-    
-    
+
     private MongoCollection<Document> collection;
-    
-    
+
     private MongoCollection<Document> StudentsCollection;
     private MongoCollection<Document> EmployeesCollection;
     private MongoCollection<Document> CoursesCollection;
@@ -63,7 +63,7 @@ public class DBConnect extends UnicastRemoteObject{
         client = new MongoClient(new MongoClientURI("mongodb://admin:jl6fIl0vxg1oyuME@ac-tm8fwxy-shard-00-00.bnsnciy.mongodb.net:27017,ac-tm8fwxy-shard-00-01.bnsnciy.mongodb.net:27017,ac-tm8fwxy-shard-00-02.bnsnciy.mongodb.net:27017/?ssl=true&replicaSet=atlas-117fq2-shard-0&authSource=admin&retryWrites=true&w=majority"));
         database = client.getDatabase("UniversityManagementSystem"); // Database name
         collection = database.getCollection("Depertmant"); // Collection name
-        
+
         AdminCollection = database.getCollection("Admin");
         StudentsCollection = database.getCollection("Student");
         EmployeesCollection = database.getCollection("Employee");
@@ -96,13 +96,13 @@ public class DBConnect extends UnicastRemoteObject{
                 }
                 Doctor doctorresult = gson.fromJson(doctor.toJson(), Doctor.class);
                 return doctorresult;
-            case "Admin":               
-               Document adminn = AdminCollection.find(Filters.and(Filters.eq("Email", email), Filters.eq("Password", Password))).first();
+            case "Admin":
+                Document adminn = AdminCollection.find(Filters.and(Filters.eq("Email", email), Filters.eq("Password", Password))).first();
                 //System.out.println(adminn); 
-               if (adminn == null) {
+                if (adminn == null) {
                     return null;
                 }
-                
+
                 Admin adminresult = gson.fromJson(adminn.toJson(), Admin.class);
                 //System.out.println(adminresult);
                 return adminresult;
@@ -132,36 +132,24 @@ public class DBConnect extends UnicastRemoteObject{
         }
         return null;
     }
-    
-    
-    
-    
-    
-    
-    
-
 
     public MongoDatabase getDatabase() throws RemoteException {
         return database;
     }
-
 
     public void SignUpStudent(Student s) throws RemoteException {
         StudentsCollection.insertOne(Document.parse(gson.toJson(s)));
         System.out.println("Student Inserted Succesfully");
     }
 
-
     public void UpdateStudent(Student s) throws RemoteException {
         Document doc = Document.parse(gson.toJson(s));
         StudentsCollection.replaceOne(Filters.eq("StudentID", s.getStudentID()), doc);
     }
 
-
     public void DeleteStudent(Student s) throws RemoteException {
         StudentsCollection.deleteOne(Filters.eq("StudentID", s.getStudentID()));
     }
-
 
     public Employee getEmployee(String email, String password, String EmployeeType) throws RemoteException {
         Document employee = EmployeesCollection.find(Filters.eq("email", email)).first();
@@ -173,13 +161,11 @@ public class DBConnect extends UnicastRemoteObject{
         }
     }
 
-
     public Course getCourse(int Course) throws RemoteException {
         Document course = CoursesCollection.find(Filters.eq("CourseID", Course)).first();
         Course result = gson.fromJson(course.toJson(), Course.class);
         return result;
     }
-
 
     public ArrayList<Student> getStudents() throws RemoteException {
         ArrayList<Document> students = StudentsCollection.find().into(new ArrayList<>());
@@ -191,8 +177,56 @@ public class DBConnect extends UnicastRemoteObject{
         }
         return finalList;
     }
+
+    public ArrayList<Employee> getTAs() throws RemoteException {
+        ArrayList<Document> tas = tacollection.find().into(new ArrayList<>());
+        ArrayList<Employee> finalList = new ArrayList<>();
+
+        for (int i = 0; i < tas.size(); i++) {
+            TA result = gson.fromJson(tas.get(i).toJson(), TA.class);
+            System.out.println(result.toString());
+            finalList.add(result);
+        }
+        return finalList;
+    }
+
+    public ArrayList<Employee> getAdmins() throws RemoteException {
+        ArrayList<Document> admins = AdminCollection.find().into(new ArrayList<>());
+        ArrayList<Employee> finalList = new ArrayList<>();
+
+        for (int i = 0; i < admins.size(); i++) {
+            Admin result = gson.fromJson(admins.get(i).toJson(), Admin.class);
+            System.out.println(result.toString());
+            finalList.add(result);
+        }
+        return finalList;
+    }
+
+    public ArrayList<FacultyInterface> getFaculties() throws RemoteException {
+        ArrayList<Document> faculties = facultiesCollection.find().into(new ArrayList<>());
+        ArrayList<FacultyInterface> finalList = new ArrayList<>();
+
+        for (int i = 0; i < faculties.size(); i++) {
+            FacultyInterface result = gson.fromJson(faculties.get(i).toJson(), Faculty.class);
+            System.out.println(result.toString());
+            finalList.add(result);
+        }
+        return finalList;
+    }
     
-    
+        public ArrayList<CourseInterface> getCourses() throws RemoteException {
+        ArrayList<Document> courses = CoursesCollection.find().into(new ArrayList<>());
+        ArrayList<CourseInterface> finalList = new ArrayList<>();
+
+        for (int i = 0; i < courses.size(); i++) {
+            CourseInterface result = gson.fromJson(courses.get(i).toJson(), Course.class);
+            System.out.println(result.toString());
+            finalList.add(result);
+        }
+        return finalList;
+    }
+
+
 //     public ArrayList<Material> getMaterialbyCourseID(int courseID) {
 //        ArrayList<Material> result = new ArrayList();
 //        ArrayList<Document> docs = courseCollection.find(Filters.eq("CourseID", courseID)).into(new ArrayList<>());
@@ -205,11 +239,9 @@ public class DBConnect extends UnicastRemoteObject{
 //          System.out.println(result);
 //        return result;
 //    }
-    
-    
-    public ArrayList<Employee>getDoctors() throws RemoteException{
-         ArrayList<Document> doctors = doctorcollection.find().into(new ArrayList<>());
-         //System.out.println(doctors);
+    public ArrayList<Employee> getDoctors() throws RemoteException {
+        ArrayList<Document> doctors = doctorcollection.find().into(new ArrayList<>());
+        //System.out.println(doctors);
         ArrayList<Employee> finalList = new ArrayList<>();
         for (int i = 0; i < doctors.size(); i++) {
             Doctor result = gson.fromJson(doctors.get(i).toJson(), Doctor.class);
@@ -219,17 +251,15 @@ public class DBConnect extends UnicastRemoteObject{
         return finalList;
     }
 
-
-    public ArrayList<Faculty> getFaculties() throws RemoteException {
-        ArrayList<Document> facs = (ArrayList<Document>) facultiesCollection.find();
-        ArrayList<Faculty> finalFacs = new ArrayList<>();
-        for (int i = 0; i < facs.size(); i++) {
-            Faculty result = gson.fromJson(facs.get(i).toJson(), Faculty.class);
-            finalFacs.add(result);
-        }
-        return finalFacs;
-    }
-
+//    public ArrayList<Faculty> getFaculties() throws RemoteException {
+//        ArrayList<Document> facs = (ArrayList<Document>) facultiesCollection.find();
+//        ArrayList<Faculty> finalFacs = new ArrayList<>();
+//        for (int i = 0; i < facs.size(); i++) {
+//            Faculty result = gson.fromJson(facs.get(i).toJson(), Faculty.class);
+//            finalFacs.add(result);
+//        }
+//        return finalFacs;
+//    }
 
     public void close() throws RemoteException {
         client.close();

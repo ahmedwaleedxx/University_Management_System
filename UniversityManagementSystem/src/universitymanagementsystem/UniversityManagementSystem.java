@@ -78,6 +78,11 @@ public class UniversityManagementSystem {
         r.bind("material", material);
         r.bind("doctorinterface", doctorr);
 
+        
+        
+        SuperiorAdmin sa = new SuperiorAdmin();
+        //sa.getFaculties();
+// sa.AssignDoctor(4,"Ahmed","Waleed", "ahmed", "1234", 100, null, "CIB", "Doctor", null, null);
 Finance f = new Finance();
 //f.setDoctorSalary(1, 66.5);
 Faculty f1 = new Faculty();
