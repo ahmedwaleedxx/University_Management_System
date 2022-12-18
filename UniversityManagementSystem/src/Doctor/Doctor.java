@@ -30,7 +30,7 @@ import universitymanagementsystem.*;
  *
  * @author ahmedwaleed
  */
-public class Doctor extends Employee implements DoctorInterface{
+public class Doctor extends Employee implements DoctorInterface {
 
     private Course AssignedCourse;
     private TA AssignedTA;
@@ -38,7 +38,7 @@ public class Doctor extends Employee implements DoctorInterface{
     private MongoClient client;
     private MongoDatabase database;
     private MongoCollection<Document> MaterialCollection;
-        private MongoCollection<Document> courseCollection;
+    private MongoCollection<Document> courseCollection;
     private Gson gson = new Gson();
 
     public Doctor() throws RemoteException {
@@ -79,41 +79,72 @@ public class Doctor extends Employee implements DoctorInterface{
         this.AssignedTA = AssignedTA;
     }
 
-    public void setGrades(Course assignedCourse, Student student) {
-
+    
+    @Override
+    public ArrayList<Material> getMaterialbyDoctorID(int id) throws RemoteException{
+        
+        Course c = new Course();
+        return c.getMaterialbyDoctorID(id);
     }
-
-    public void assignTATasks(TA ta, String task) {
-
-    }
-
-    public void addCourseMaterial(Course course, Material material) {
-
-    }
-
-    public void addTAtoCourse(Course course, TA ta) {
-
-    }
-
-    public void removeCourseTA(Course course, TA ta) {
-
-    }
-
-    public void removeCourseMaterial(Course course, Material courseMaterial) {
-
-    }
-
-    public void sendAnnouncements(Student student) {
-
-    }
-
-    public void setMaterialVisibility(Material material, Boolean isVisible) {
-
-    }
-
-    public void HandleComplaint() {
-
-    }
-
-   
+    
+    
+//    public void setGrades(Course assignedCourse, Student student) {
+//
+//    }
+//
+//    public void assignTATasks(TA ta, String task) {
+//
+//    }
+//
+//    public void addCourseMaterial(Course course, Material material) {
+//
+//    }
+//
+//    public void addTAtoCourse(Course course, TA ta) {
+//
+//    }
+//
+//    public void removeCourseTA(Course course, TA ta) {
+//
+//    }
+//
+//    public void removeCourseMaterial(Course course, Material courseMaterial) {
+//
+//    }
+//
+//    public void sendAnnouncements(Student student) {
+//
+//    }
+//
+//    public void setMaterialVisibility(Material material, Boolean isVisible) {
+//
+//    }
+//    @Override
+//    public void HandleComplaint() {
+//
+//    }
+//    @Override
+//    public void UpdateCourseTitle(int courseid, String title) throws RemoteException {
+//
+//    }
+//
+//    @Override
+//    public void UpdateMaterialCourse(int matid, int cid) throws RemoteException {
+//
+//    }
+//
+//    @Override
+//    public void UpdateMaterialTitle(int matid, String title) throws RemoteException {
+//
+//    }
+//
+//    @Override
+//    public void UpdateMaterialVisibility(int matid, boolean vis) throws RemoteException {
+//
+//    }
+//
+//    @Override
+//    public void sendAnnouncements(rmi.Student student) {
+//
+//    }
 }

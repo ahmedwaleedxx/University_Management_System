@@ -28,7 +28,7 @@ public class Student extends UnicastRemoteObject implements user, rmi.Student {
     private boolean paidTutionFees;
     private String Major;
     private String Faculty;
-    private ArrayList<Course> Courses;
+    private ArrayList<String> Courses;
     private ArrayList<Observer> Observers;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -36,7 +36,7 @@ public class Student extends UnicastRemoteObject implements user, rmi.Student {
     public Student() throws RemoteException {
     }
 
-    public Student(int StudentID, String StudentFName, String StudentLName, String Email, String Password, float StudentOverAllGrade, boolean isGraduated, boolean paidTutionFees, String Major, String Faculty, ArrayList<Course> Courses, ArrayList<Observer> Observers) throws RemoteException {
+    public Student(int StudentID, String StudentFName, String StudentLName, String Email, String Password, float StudentOverAllGrade, boolean isGraduated, boolean paidTutionFees, String Major, String Faculty, ArrayList<String> Courses, ArrayList<Observer> Observers) throws RemoteException {
         this.StudentID = StudentID;
         this.StudentFName = StudentFName;
         this.StudentLName = StudentLName;
@@ -64,7 +64,7 @@ public class Student extends UnicastRemoteObject implements user, rmi.Student {
         this.Faculty = Faculty;
     }
 
-    public void setCourses(ArrayList<Course> courses){
+    public void setCourses(ArrayList<String> courses){
         this.Courses=courses;
     }
     @Override
@@ -173,7 +173,7 @@ public class Student extends UnicastRemoteObject implements user, rmi.Student {
         return getGrades();
     }
 
-    ArrayList<Course> getCourses() {
+    public ArrayList<String> getCourses() {
         return getCourses();
     }
 

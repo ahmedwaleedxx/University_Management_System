@@ -163,4 +163,9 @@ public class Employee extends UnicastRemoteObject implements user, EmployeeInter
 
     }
 
+    @Override
+    public String toString() {
+        return EmployeeID + EmployeeFName +  EmployeeLName  +  Email + Password  + EmployeeSalary + EmployeeWorkingHours +  EmployeeBankAccountIBAN + EmployeeType + '}';
+    }
+
 }

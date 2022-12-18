@@ -7,6 +7,7 @@ package Admin;
 
 import rmi.AdminInterface;
 import Employee.*;
+import Finance.Finance;
 import Student.*;
 import SuperiorAdmin.SuperiorAdmin;
 import TA.TA;
@@ -38,7 +39,7 @@ public class Admin extends Employee implements AdminInterface {
     private MongoDatabase database;
     private MongoCollection<Document> collection;
     private MongoCollection<Document> StudentCollection;
-    private MongoCollection<Document> courseCollection;
+    private MongoCollection<Document> FinanceCollection;
 
     private Gson gson;
 
@@ -52,7 +53,7 @@ public class Admin extends Employee implements AdminInterface {
         database = client.getDatabase("UniversityManagementSystem");
         collection = database.getCollection("Depertmant");
         StudentCollection = database.getCollection("Student");
-        courseCollection = database.getCollection("Course");
+        FinanceCollection = database.getCollection("Finance");
 
     }
 
@@ -72,6 +73,12 @@ public class Admin extends Employee implements AdminInterface {
         System.out.println("Student Inserted Succesfully");
     }
     //int StudentID, String StudentFName, String StudentLName, String Email, String Password, float StudentOverAllGrade, boolean isGraduated, boolean paidTutionFees, String Major, String Faculty
+
+    public void AddFinance(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType) throws RemoteException {
+        Finance f = new Finance(EmployeeID, EmployeeFName, EmployeeLName, Email, Password, EmployeeSalary, EmployeeWorkingHours, EmployeeBankAccountIBAN, EmployeeType);
+        FinanceCollection.insertOne(Document.parse(gson.toJson(f)));
+        System.out.println("Finance Member Inserted Succesfully");
+    }
 
     @Override
     public ArrayList<Student> getStudents() throws RemoteException {

@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import org.bson.Document;
+import rmi.EmployeeInterface;
 
 import rmi.user;
 
@@ -185,6 +186,33 @@ public class DBConnect extends UnicastRemoteObject{
         ArrayList<Student> finalList = new ArrayList<>();
         for (int i = 0; i < students.size(); i++) {
             Student result = gson.fromJson(students.get(i).toJson(), Student.class);
+            System.out.println(result.toString());
+            finalList.add(result);
+        }
+        return finalList;
+    }
+    
+    
+//     public ArrayList<Material> getMaterialbyCourseID(int courseID) {
+//        ArrayList<Material> result = new ArrayList();
+//        ArrayList<Document> docs = courseCollection.find(Filters.eq("CourseID", courseID)).into(new ArrayList<>());
+//          //System.out.println(docs);
+//        for (int i = 0; i < docs.size(); i++) {
+//            String jsonResult = docs.get(i).toJson();
+//            result.add(gson.fromJson(jsonResult, Material.class));
+////            System.out.println(result);
+//        }
+//          System.out.println(result);
+//        return result;
+//    }
+    
+    
+    public ArrayList<Employee>getDoctors() throws RemoteException{
+         ArrayList<Document> doctors = doctorcollection.find().into(new ArrayList<>());
+         //System.out.println(doctors);
+        ArrayList<Employee> finalList = new ArrayList<>();
+        for (int i = 0; i < doctors.size(); i++) {
+            Doctor result = gson.fromJson(doctors.get(i).toJson(), Doctor.class);
             System.out.println(result.toString());
             finalList.add(result);
         }

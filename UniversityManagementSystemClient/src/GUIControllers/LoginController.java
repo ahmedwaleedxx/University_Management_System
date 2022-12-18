@@ -15,9 +15,13 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import rmi.AdminInterface;
+import rmi.DoctorInterface;
+import rmi.FinanceInterface;
 import rmi.Student;
+import rmi.StudentDTO;
 import rmi.SuperiorAdminInterface;
 import rmi.user;
 
@@ -209,6 +213,19 @@ public class LoginController {
                         JOptionPane.showMessageDialog(null, "Login Failed!!");
                     } else {
                         JOptionPane.showMessageDialog(null, "Logged in Successfully !!");
+                        
+                        StudentHome hom = new StudentHome();
+                            hom.setLocationRelativeTo(null);
+                            hom.setVisible(true);
+                            
+                            Registry reg = LocateRegistry.getRegistry(1099);
+// int StudentID, String StudentFName, String StudentLName, String Email, String Password, float StudentOverAllGrade, boolean isGraduated, boolean paidTutionFees, String Major, String Faculty, ArrayList<String> CoursesID
+                            
+                            ArrayList<String> cours = new ArrayList<>();
+                            cours.add("1");
+                            StudentDTO std = new StudentDTO(1,"Hi","Lo","Test@test.com","2", (float) 1.2,false,true,"SE","ICS",cours);
+                            StudentHomeController con = new StudentHomeController(hom,reg,std);
+                        
                     }
                 } else if (gui.getTarb().isSelected()) {
                     usertype = "TA";
@@ -224,44 +241,48 @@ public class LoginController {
                 } else if (gui.getDoctorrb().isSelected()) {
                     usertype = "Doctor";
                     user doctor = (user) r.lookup("doctor");
-                    user doctor2 = doctor.Login(email, password, usertype);
+                    DoctorInterface doctor2 = (DoctorInterface) doctor.Login(email, password, usertype);
                     if (doctor2 == null) {
                         JOptionPane.showMessageDialog(null, "Login Failed!!");
                     } else {
                         JOptionPane.showMessageDialog(null, "Logged in Successfully !!");
+                         DoctorMaterials dm = new DoctorMaterials();
+                        dm.setLocationRelativeTo(null);
+                        dm.setVisible(true);
+                        Registry r = LocateRegistry.getRegistry(1099);
+                        DoctorMaterialsController amc = new DoctorMaterialsController(dm, doctor2, r);
+                        gui.dispose();
+                        
                     }
 
-                } else {
+                }else if(gui.getFinancerb().isSelected()){
+                usertype = "Finance";
+                    user finance = (user) r.lookup("finance");
+                    FinanceInterface finance2 = (FinanceInterface) finance.Login(email, password, usertype);
+                    if (finance2 == null) {
+                        JOptionPane.showMessageDialog(null, "Login Failed!!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Logged in Successfully !!");
+                        
+                        FinanceSelection fs = new FinanceSelection();
+                        fs.setLocationRelativeTo(null);
+                        fs.setVisible(true);
+                        Registry r = LocateRegistry.getRegistry(1099);
+                        FinanceSelectionController amc = new FinanceSelectionController(fs, finance2, r);
+                        gui.dispose();
+                        
+                        
+                    }
+                }
+                    else {
                     gui.getErrorpnl().setVisible(true);
                     gui.getErrorpnl().setBackground(Color.red);
                     JOptionPane.showMessageDialog(null, "Please choose user type to login !!", "Invalid User Type", 0, erroricon);
                 }
 
                 //
-//                user finance = (user)r.lookup("finance");
-//                user superioradmin =(user)r.lookup("superior");
-//                u.Login(email, password, usertype);
-//                user admin2 = admin.Login(email, password, usertype);
-//                if (admin2 == null) {
-//                    JOptionPane.showMessageDialog(null, "Login Failed!!");
-//                } else {
-//                    JOptionPane.showMessageDialog(null, "Logged in Successfully !!");
-//                }
-//                user finance2 = finance.Login(email, password, usertype);
-//                if (finance2 == null) {
-//                    JOptionPane.showMessageDialog(null, "Login Failed!!");
-//                } else {
-//                    JOptionPane.showMessageDialog(null, "Logged in Successfully !!");
-//                }
-//                
-//                
-//                
-//                user superioradmin2 = superioradmin.Login(email, password, usertype);
-//                if (superioradmin2 == null) {
-//                    JOptionPane.showMessageDialog(null, "Login Failed!!");
-//                } else {
-//                    JOptionPane.showMessageDialog(null, "Logged in Successfully !!");
-//                }
+
+
             } catch (RemoteException | NotBoundException ex) {
                 System.out.println(ex);
             }

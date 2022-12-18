@@ -4,6 +4,7 @@
  */
 package StudentController;
 
+import rmi.StudentDTO;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 

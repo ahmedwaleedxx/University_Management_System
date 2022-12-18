@@ -18,10 +18,13 @@ import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import rmi.AdminInterface;
+import rmi.DoctorInterface;
+import rmi.FinanceInterface;
+import rmi.MaterialInterface;
+import rmi.SuperiorAdminInterface;
 
 // import PackageName.ClassName;
 /**
@@ -46,12 +49,16 @@ public class UniversityManagementSystem {
         user doctor = new Doctor();
         user tas = new TA();
         user employee = new Employee();
+        //user fin = new Finance();
 
+        MaterialInterface material = new Material();
         AdminInterface adminInterface = new Admin();
         Student st = new Student();
-
+        SuperiorAdminInterface superiorinterface = new SuperiorAdmin();
+        FinanceInterface financeinterface =  new Finance();
 // An RMI Registry initialized on port 1099
         Registry r = LocateRegistry.createRegistry(1099);
+        DoctorInterface doctorr=new Doctor();
 
         // Our remote object g is binded to the name "grade"
         r.bind("database", db);
@@ -62,25 +69,42 @@ public class UniversityManagementSystem {
         r.bind("ta", tas);
         r.bind("finance", finance);
         r.bind("superior", superior);
+        
+        
+        
         r.bind("admininterface", adminInterface);
+        r.bind("financeinterface", financeinterface);
+        r.bind("superiorinterface", superiorinterface);
+        r.bind("material", material);
+        r.bind("doctorinterface", doctorr);
 
-        DBConnect dbc = new DBConnect();
+Finance f = new Finance();
+//f.setDoctorSalary(1, 66.5);
+Faculty f1 = new Faculty();
+//f1.setFacultyFees(1, 22.2);
 
+Admin a = new Admin();
+//a.AddFinance(11, "Ahmed", "Waleed", "ahmed", "12345", 5, null, "CIB", "Finance");
         
-        
-        ArrayList<Course> cos = new ArrayList<>();
-        Student stud = new Student();
+Material m = new Material();
 
-        stud.setStudentFName("Esmy El Awl");
-        stud.setStudentLName("Esmy El Tany");
-        stud.setIsGraduated(false);
-        stud.setFaculty("ICS");
-        stud.setEmail("Esmy");
-        stud.setCourses(cos);
+//a.getStudents();
 
-        
-        db.SignUpStudent(stud);
-        
+
+
+SuperiorAdmin ss = new SuperiorAdmin();
+//ss.getDoctors();
+//ss.AddCourse(2, "MARIO", 1, "mario", "ICS");
+//m.AddCourseMaterial(2, "MARIOSE22222222", true, 1);
+//m.RemoveCourseMaterial(2);
+//m.UpdateMaterialVisibility(1, false);
+
+        Course c = new Course();
+     // c.getMaterialbyDoctorID(1);
+        // c.getCoursebyDoctorID(1);
+///c.RemoveCourseTA(1);
+//c.UpdateCourseTitle(1, "AOOP");
+        //\\c.getMaterialbyCourseID(1);
         //Admin a = new Admin();
         //Student s1 = new Student();
         // r.bind("student2", s1);

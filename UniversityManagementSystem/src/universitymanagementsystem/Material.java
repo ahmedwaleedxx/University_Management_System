@@ -124,22 +124,22 @@ public class Material implements MaterialInterface, ViewMaterial {
     @Override
     public void UpdateMaterialTitle(int matid, String title) throws RemoteException {
         System.out.println("Title Edited");
-        Document doc = Document.parse(gson.toJson(title));
-        MaterialCollection.updateOne(Filters.eq("ID", matid), Updates.set("MaterialTitle", doc));
+
+        MaterialCollection.updateOne(Filters.eq("ID", matid), Updates.set("MaterialTitle", title));
     }
 
     @Override
     public void UpdateMaterialVisibility(int matid, boolean vis) throws RemoteException {
         System.out.println("Visibility Edited");
-        Document doc = Document.parse(gson.toJson(vis));
-        MaterialCollection.updateOne(Filters.eq("ID", matid), Updates.set("MaterialVisibility", doc));
+
+        MaterialCollection.updateOne(Filters.eq("ID", matid), Updates.set("MaterialVisibility", vis));
     }
 
     @Override
     public void UpdateMaterialCourse(int matid, int cid) throws RemoteException {
         System.out.println("Course Edited");
-        Document doc = Document.parse(gson.toJson(cid));
-        MaterialCollection.updateOne(Filters.eq("ID", matid), Updates.set("CourseID", doc));
+
+        MaterialCollection.updateOne(Filters.eq("ID", matid), Updates.set("CourseID", cid));
     }
 
   

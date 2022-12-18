@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bson.Document;
+import rmi.EmployeeInterface;
 import rmi.SuperiorAdminInterface;
 import rmi.user;
 import universitymanagementsystem.*;
@@ -196,15 +197,15 @@ public class SuperiorAdmin extends Employee implements SuperiorAdminInterface, u
     }
 
     @Override
-    public void AddFaculty(int FacultyID, String Name, String DeanName, String Mail, ArrayList<Doctor> doctors) throws RemoteException {
-        Faculty faculty = new Faculty(FacultyID, Name, DeanName, Mail, doctors);
+    public void AddFaculty(int FacultyID, String Name, String DeanName, String Mail, double Fees) throws RemoteException {
+        Faculty faculty = new Faculty(FacultyID, Name, DeanName, Mail, Fees);
         FacuCollection.insertOne(Document.parse(gson.toJson(faculty)));
         System.out.println("Faculty Inserted Succesfully");
     }
 
     @Override
-    public void UpdateFaculty(int FacultyID, String Name, String DeanName, String Mail, ArrayList<Doctor> doctors) throws RemoteException {
-        Faculty faculty = new Faculty(FacultyID, Name, DeanName, Mail, doctors);
+    public void UpdateFaculty(int FacultyID, String Name, String DeanName, String Mail, double Fees) throws RemoteException {
+        Faculty faculty = new Faculty(FacultyID, Name, DeanName, Mail, Fees);
         Document doc = Document.parse(gson.toJson(faculty));
         FacuCollection.replaceOne(Filters.eq("EmployeeID", faculty.getFacultyID()), doc);
         System.out.println("Updated Successfully");
@@ -217,14 +218,14 @@ public class SuperiorAdmin extends Employee implements SuperiorAdminInterface, u
     }
 
     @Override
-    public void AddCourse(int CourseID, String CourseTitle, Doctor CourseDoctor, String Mail, String Faculty) throws RemoteException {
+    public void AddCourse(int CourseID, String CourseTitle, int CourseDoctor, String Mail, String Faculty) throws RemoteException {
         Course c = new Course(CourseID, CourseTitle, CourseDoctor, Mail, Faculty);
         CourseCollection.insertOne(Document.parse(gson.toJson(c)));
         System.out.println("Course Inserted Succesfully");
     }
 
     @Override
-    public void UpdateCourse(int CourseID, String CourseTitle, Doctor CourseDoctor, String Mail, String Faculty) throws RemoteException {
+    public void UpdateCourse(int CourseID, String CourseTitle, int CourseDoctor, String Mail, String Faculty) throws RemoteException {
         Course c = new Course(CourseID, CourseTitle, CourseDoctor, Mail, Faculty);
         Document doc = Document.parse(gson.toJson(c));
         CourseCollection.replaceOne(Filters.eq("CourseID", c.getCourseID()), doc);
@@ -236,4 +237,12 @@ public class SuperiorAdmin extends Employee implements SuperiorAdminInterface, u
         CourseCollection.deleteOne(Filters.eq("CourseID", id));
         System.out.println("Deleted Successfully");
     }
+    
+    
+    @Override
+    public ArrayList<Employee>getDoctors() throws RemoteException{
+        DBConnect db = new DBConnect();
+        return db.getDoctors();
+    }
+    
 }

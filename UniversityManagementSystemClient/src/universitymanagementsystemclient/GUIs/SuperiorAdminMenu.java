@@ -113,31 +113,31 @@ public class SuperiorAdminMenu extends javax.swing.JFrame {
         mngdoctorsbtn.setFont(new java.awt.Font("Engravers MT", 0, 14)); // NOI18N
         mngdoctorsbtn.setForeground(new java.awt.Color(255, 255, 255));
         mngdoctorsbtn.setText("Manage Doctors");
-        jPanel1.add(mngdoctorsbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 220, 60));
+        jPanel1.add(mngdoctorsbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 220, 60));
 
         mngTAsbtn.setBackground(new java.awt.Color(0, 0, 0));
         mngTAsbtn.setFont(new java.awt.Font("Engravers MT", 0, 14)); // NOI18N
         mngTAsbtn.setForeground(new java.awt.Color(255, 255, 255));
         mngTAsbtn.setText("Manage TAs");
-        jPanel1.add(mngTAsbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 220, 60));
+        jPanel1.add(mngTAsbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 220, 60));
 
         mngfacbtn.setBackground(new java.awt.Color(0, 0, 0));
         mngfacbtn.setFont(new java.awt.Font("Engravers MT", 0, 14)); // NOI18N
         mngfacbtn.setForeground(new java.awt.Color(255, 255, 255));
         mngfacbtn.setText("Manage Faculties");
-        jPanel1.add(mngfacbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 110, 230, 60));
+        jPanel1.add(mngfacbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 110, 230, 60));
 
         mngcoursebtn.setBackground(new java.awt.Color(0, 0, 0));
         mngcoursebtn.setFont(new java.awt.Font("Engravers MT", 0, 14)); // NOI18N
         mngcoursebtn.setForeground(new java.awt.Color(255, 255, 255));
         mngcoursebtn.setText("Manage Courses");
-        jPanel1.add(mngcoursebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 220, 60));
+        jPanel1.add(mngcoursebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 220, 60));
 
         mngadminbtn.setBackground(new java.awt.Color(0, 0, 0));
         mngadminbtn.setFont(new java.awt.Font("Engravers MT", 0, 14)); // NOI18N
         mngadminbtn.setForeground(new java.awt.Color(255, 255, 255));
         mngadminbtn.setText("Maanage Admins");
-        jPanel1.add(mngadminbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, 220, 60));
+        jPanel1.add(mngadminbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 240, 220, 60));
 
         signoutbtn.setBackground(new java.awt.Color(0, 0, 0));
         signoutbtn.setFont(new java.awt.Font("Engravers MT", 0, 14)); // NOI18N
@@ -149,7 +149,7 @@ public class SuperiorAdminMenu extends javax.swing.JFrame {
         accinfobtn.setFont(new java.awt.Font("Engravers MT", 0, 14)); // NOI18N
         accinfobtn.setForeground(new java.awt.Color(255, 255, 255));
         accinfobtn.setText("Account Info");
-        jPanel1.add(accinfobtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 240, 220, 60));
+        jPanel1.add(accinfobtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 240, 220, 60));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universitymanagementsystemclient/GUIs/Grad2.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 500));

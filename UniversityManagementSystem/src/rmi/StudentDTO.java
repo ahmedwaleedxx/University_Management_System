@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package StudentController;
+package rmi;
 
 import java.io.Serializable;
-
+import java.util.ArrayList;
 
 /**
  *
@@ -22,8 +22,9 @@ public class StudentDTO implements Serializable {
     private boolean paidTutionFees;
     private String Major;
     private String Faculty;
+    private ArrayList<String> CoursesID;
 
-    public StudentDTO(int StudentID, String StudentFName, String StudentLName, String Email, String Password, float StudentOverAllGrade, boolean isGraduated, boolean paidTutionFees, String Major, String Faculty) {
+    public StudentDTO(int StudentID, String StudentFName, String StudentLName, String Email, String Password, float StudentOverAllGrade, boolean isGraduated, boolean paidTutionFees, String Major, String Faculty, ArrayList<String> CoursesID) {
         this.StudentID = StudentID;
         this.StudentFName = StudentFName;
         this.StudentLName = StudentLName;
@@ -34,9 +35,19 @@ public class StudentDTO implements Serializable {
         this.paidTutionFees = paidTutionFees;
         this.Major = Major;
         this.Faculty = Faculty;
+        this.CoursesID = CoursesID;
     }
 
-    public int getStudentID()   {
+    public ArrayList<String> getCoursesID() {
+        return CoursesID;
+    }
+
+    public void setCoursesID(ArrayList<String> CoursesID) {
+        this.CoursesID = CoursesID;
+    }
+    
+
+    public int getStudentID() {
         return StudentID;
     }
 
@@ -44,7 +55,7 @@ public class StudentDTO implements Serializable {
         this.StudentID = StudentID;
     }
 
-    public String getStudentFName()  {
+    public String getStudentFName() {
         return StudentFName;
     }
 
@@ -52,7 +63,7 @@ public class StudentDTO implements Serializable {
         this.StudentFName = StudentFName;
     }
 
-    public String getStudentLName()  {
+    public String getStudentLName() {
         return StudentLName;
     }
 
@@ -60,7 +71,7 @@ public class StudentDTO implements Serializable {
         this.StudentLName = StudentLName;
     }
 
-    public String getEmail()  {
+    public String getEmail() {
         return Email;
     }
 
@@ -68,7 +79,7 @@ public class StudentDTO implements Serializable {
         this.Email = Email;
     }
 
-    public String getPassword()  {
+    public String getPassword() {
         return Password;
     }
 
@@ -76,7 +87,7 @@ public class StudentDTO implements Serializable {
         this.Password = Password;
     }
 
-    public float getStudentOverAllGrade()  {
+    public float getStudentOverAllGrade() {
         return StudentOverAllGrade;
     }
 
@@ -115,9 +126,4 @@ public class StudentDTO implements Serializable {
     public void setFaculty(String Faculty) {
         this.Faculty = Faculty;
     }
-
-
-    
-    
-    
 }

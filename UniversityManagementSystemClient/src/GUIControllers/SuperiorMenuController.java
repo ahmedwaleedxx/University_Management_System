@@ -36,6 +36,17 @@ public class SuperiorMenuController {
         gui.getMngdoctorsbtn().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                try {
+                    ManageDoctors l = new ManageDoctors();
+                    l.setLocationRelativeTo(null);
+                    l.setVisible(true);
+                    Registry r1;
+                    r1 = LocateRegistry.getRegistry(1099);
+                    ManageDoctorsController gui_controller = new ManageDoctorsController(l, r1, admin);
+                    gui.dispose();
+                } catch (RemoteException ex) {
+                    Logger.getLogger(AdminMenuController.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
             }
         });

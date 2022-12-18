@@ -6,6 +6,7 @@
 package rmi;
 
 import Doctor.Doctor;
+import Employee.Employee;
 import TA.TA;
 import java.rmi.*;
 import java.util.ArrayList;
@@ -31,15 +32,15 @@ public interface SuperiorAdminInterface extends Remote {
     
     
 
-    public void AddFaculty(int FacultyID, String Name, String DeanName, String Mail, ArrayList<Doctor> doctors) throws RemoteException;
+    public void AddFaculty(int FacultyID, String Name, String DeanName, String Mail, double Fees) throws RemoteException;
 
-    public void UpdateFaculty(int FacultyID, String Name, String DeanName, String Mail, ArrayList<Doctor> doctors) throws RemoteException;
+    public void UpdateFaculty(int FacultyID, String Name, String DeanName, String Mail, double Fees) throws RemoteException;
 
     public void RemoveFaculty(int id) throws RemoteException;
 
-    public void AddCourse(int CourseID, String CourseTitle, Doctor CourseDoctor, String Mail, String Faculty) throws RemoteException;
+    public void AddCourse(int CourseID, String CourseTitle, int CourseDoctor, String Mail, String Faculty) throws RemoteException;
 
-    public void UpdateCourse(int CourseID, String CourseTitle, Doctor CourseDoctor, String Mail, String Faculty) throws RemoteException;
+    public void UpdateCourse(int CourseID, String CourseTitle, int CourseDoctor, String Mail, String Faculty) throws RemoteException;
 
     public void DeleteCourse(int id) throws RemoteException;
     
@@ -47,6 +48,7 @@ public interface SuperiorAdminInterface extends Remote {
 
     public void UpdateAdmin(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType) throws RemoteException;
 
+     public ArrayList<Employee>getDoctors() throws RemoteException;
     //public void DeleteAdmin(int id);
     
 }

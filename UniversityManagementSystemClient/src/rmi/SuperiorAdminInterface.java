@@ -27,9 +27,9 @@ public interface SuperiorAdminInterface extends Remote {
 
     public void RemoveTA(int id) throws RemoteException;
 
-    public void AddFaculty(int FacultyID, String Name, String DeanName, String Mail, ArrayList<DoctorInterface> doctors) throws RemoteException;
+    public void AddFaculty(int FacultyID, String Name, String DeanName, String Mail, double Fees) throws RemoteException;
 
-    public void UpdateFaculty(int FacultyID, String Name, String DeanName, String Mail, ArrayList<DoctorInterface> doctors) throws RemoteException;
+    public void UpdateFaculty(int FacultyID, String Name, String DeanName, String Mail, double Fees) throws RemoteException;
 
     public void RemoveFaculty(int id) throws RemoteException;
 
@@ -43,4 +43,5 @@ public interface SuperiorAdminInterface extends Remote {
 
     public void UpdateAdmin(int EmployeeID, String EmployeeFName, String EmployeeLName, String Email, String Password, float EmployeeSalary, ArrayList<String> EmployeeWorkingHours, String EmployeeBankAccountIBAN, String EmployeeType) throws RemoteException;
 
+    public ArrayList<EmployeeInterface> getDoctors() throws RemoteException;
 }
